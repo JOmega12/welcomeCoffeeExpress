@@ -1,0 +1,75 @@
+{
+   "app-users": [
+     {
+       "username": "test",
+       "password": "testP",
+       "id": 1
+     },
+     {
+       "username": "jen",
+       "password": "password",
+       "id": 2
+     }
+   ],
+   "coffee": [
+     {
+       "title": "Oatmilk Latte ",
+       "description": "Oatmilk with 2 espresso shots",
+       "id": 1
+     },
+     {
+       "title": "Vanilla Creme Cold Brew ",
+       "description": "Coffee that is brewed overnight with vanilla creme",
+       "id": 2
+     },
+     {
+       "title": "Brown Sugar Matcha Dream ",
+       "description": "Matcha Latte with a pump of brown sugar",
+       "id": 3
+     },
+     {
+       "title": "cappucinno",
+       "description": "1 shot espresso, rest water",
+       "id": 4
+     }
+   ],
+   "favorite": [
+     {
+       "userId": 1,
+       "coffeeId": 1,
+       "id": 1
+     },
+     {
+       "userId": 2,
+       "coffeeId": 1,
+       "id": 2
+     },
+     {
+       "userId": 2,
+       "coffeeId": 2,
+       "id": 4
+     },
+     {
+       "userId": 5,
+       "coffeeId": 4,
+       "id": 5
+     }
+   ],
+   "comments": [
+     {
+       "id": 1,
+       "userId": 1,
+       "coffeeId": 3,
+       "name": "jacksonHoovile",
+       "text": "I teenage daughters loves the Brown Sugar matcha Dream!"
+     },
+     {
+       "id": 2,
+       "userId": 1,
+       "coffeeId": 2,
+       "name": "jacksonHoovile",
+       "text": "Too sweet"
+     }
+   ]
+ }
+ 
