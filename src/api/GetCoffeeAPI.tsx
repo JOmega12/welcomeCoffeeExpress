@@ -10,11 +10,11 @@ export const getAllCoffee = () => {
 
 
 //this creates the coffee 
-export const getNewCoffee = ({name, description}: CoffeeType) => {
+export const getNewCoffee = ({title, description, image}: CoffeeType) => {
    fetch(API_CONFIG.baseUrl + "/coffee", {
       method: "POST",
       headers: {"Content-Type": "application/json"
       },
-      body: JSON.stringify({name, description}),
+      body: JSON.stringify({title, description, image}),
    });
 }

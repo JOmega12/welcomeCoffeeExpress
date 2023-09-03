@@ -1,24 +1,46 @@
-import { createContext, useEffect, useState } from "react";
+/* eslint-disable react-refresh/only-export-components */
+import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 import { CoffeeType } from "../types/types";
-import { getAllCoffee } from "../api/GetCoffeeAPI";
+import { getAllCoffee, getNewCoffee } from "../api/GetCoffeeAPI";
 
-
+type CoffeeProviderProps = {
+   children: ReactNode
+}
 
 export const CoffeeContext = createContext({});
 
+export const CoffeeProvider = ({children}: CoffeeProviderProps) => {
+  const [coffee, setCoffee] = useState<CoffeeType | []>([]);
 
-export const CoffeeProvider = () => {
+  const refetch = () => {
+    getAllCoffee().then(setCoffee);
+  };
 
-   const [coffee, setCoffee] = useState<CoffeeType | []>([])
+  useEffect(() => {
+    refetch();
+  }, []);
 
-   const refetch = () => {
-      getAllCoffee().then(setCoffee);
-   }
+  const createCoffee = async ({ title, description, image }: CoffeeType) => {
+    try {
+      await getNewCoffee({ title, description, image });
+      await refetch();
+    } catch (err) {
+      console.log("Error cannot create new coffee", err);
+    }
+  };
 
-   useEffect(() => {
-      refetch()
-   }, [])
+  return (
+    <CoffeeContext.Provider
+      value={{
+        coffee,
+        setCoffee,
+        createCoffee,
+      }}
+    >{children}</CoffeeContext.Provider>
+  );
+};
 
-   
-
+export const useCoffee = () => {
+   const context = useContext(CoffeeContext)
+   return context;
 }
