@@ -1,14 +1,17 @@
 
 // import './App.css'
 
+import { AuthProvider } from "./providers/AuthProvider"
 import { CoffeeProvider } from "./providers/CoffeeProvider"
 
 function App() {
 
   return (
-    <CoffeeProvider>
-      
-    </CoffeeProvider>
+    <AuthProvider>
+      <CoffeeProvider>
+          
+      </CoffeeProvider>
+    </AuthProvider>
   )
 }
 
