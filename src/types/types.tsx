@@ -5,3 +5,8 @@ export type CoffeeType = {
    description: string,
    image: string,
 }
+
+export const LandingPagesProps = {
+   Login: () => void;
+   Signup: () => void;
+}
