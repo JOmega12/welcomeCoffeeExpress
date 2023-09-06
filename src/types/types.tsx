@@ -6,7 +6,7 @@ export type CoffeeType = {
    image: string,
 }
 
-export const LandingPagesProps = {
-   Login: () => void;
-   Signup: () => void;
-}
+// export const LandingPagesProps = {
+//    Login: () => void;
+//    Signup: () => void;
+// }

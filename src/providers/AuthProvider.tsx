@@ -3,7 +3,9 @@ import { UserInformation, getUserFromServer, registerFetch } from "../api/UserAP
 
 
 type AuthTypes = {
-   children: ReactNode
+   children: ReactNode;
+   // isLogin: boolean;
+
 }
 
 const AuthContext = createContext({});
@@ -12,6 +14,9 @@ const AuthContext = createContext({});
 export const AuthProvider = ({children}: AuthTypes) => {
    const [user, setUser] = useState({});
    const [isRegister, setIsRegister] = useState(false);
+
+   //this is used to choose between landingpage or login/signup
+   const [isLogin, setIsLogin] = useState(false);
 
    const registerUser = ({username, password}: UserInformation) => {
       registerFetch({username, password})
@@ -50,7 +55,7 @@ export const AuthProvider = ({children}: AuthTypes) => {
    return (
       <AuthContext.Provider
          value={{
-            user, setUser, isRegister, setIsRegister, registerUser, loginUser, logoutUser
+            user, setUser, isRegister, setIsRegister, registerUser, loginUser, logoutUser, isLogin, setIsLogin
          }}>
          {children}
       </AuthContext.Provider>

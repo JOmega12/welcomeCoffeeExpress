@@ -2,15 +2,24 @@
 // import './App.css'
 
 import { LandingPage } from "./components/LandingPage"
-import { AuthProvider } from "./providers/AuthProvider"
+import { AuthProvider, useAuth } from "./providers/AuthProvider"
 import { CoffeeProvider } from "./providers/CoffeeProvider"
+
+type AuthContextType = {
+  isLogin: boolean;
+
+}
 
 function App() {
 
+  const {isLogin}= useAuth() as AuthContextType;
   return (
     <AuthProvider>
       <CoffeeProvider>
-          <LandingPage />
+          {isLogin? (
+            null
+          ): (<LandingPage />)
+          }
       </CoffeeProvider>
     </AuthProvider>
   )
