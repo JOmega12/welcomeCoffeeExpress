@@ -18,21 +18,23 @@ function App() {
 //is there a better way to make it clean?
   // const {isLogin}= useAuth() as AuthContextType;
   return (
-    <AuthProvider>
-      <CoffeeProvider>
-        <Routes>
-          <Route path="/" element ={<LandingPage />}>
-          </Route>
-          <Route path="login" element={<Login/>}></Route>
-          <Route path="signup" element={<Signup/>}></Route>
-        </Routes> 
-      
-          {/* {isLogin? (
-            null
-          ): (<LandingPage />)
-          } */}
-      </CoffeeProvider>
-    </AuthProvider>
+
+
+      <AuthProvider>
+        <CoffeeProvider>
+          <Routes>
+            <Route path="/" element ={<LandingPage />}>
+            </Route>
+            <Route path="login" element={<Login/>}></Route>
+            <Route path="signup" element={<Signup/>}></Route>
+          </Routes> 
+        
+            {/* {isLogin? (
+              null
+            ): (<LandingPage />)
+            } */}
+        </CoffeeProvider>
+      </AuthProvider>
   
     )
 }

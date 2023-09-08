@@ -54,3 +54,6 @@ to spin up the backend:
 <!-- This still needs to be created -->
 to reload a new array: 
 - npm run seed
+
+to load the tailwind: 
+-npm run tailwind
