@@ -1,7 +1,7 @@
 // import {  useState } from "react"
 // import { useAuth } from "../providers/AuthProvider";
 import { Link } from "react-router-dom";
-
+import '../custom.css'
 // type LandingPagesProps = {
 //    Login: ReactNode;
 //    Signup: ReactNode;
@@ -10,36 +10,21 @@ import { Link } from "react-router-dom";
 // }
 
 export const LandingPage = () => {
-  // const [isLogin, setIsLogin] = useState(false);
-
-  //use the as
-  // const {isLogin, setIsLogin} = useAuth();
 
   return (
-    <div className="w-screen h-screen text-red-500">
-      <div className="welcomeUser" style={{}}>
-        <h1>Hello! Would you like some coffee?</h1>
-        <div
-          style={{
-            display: "flex",
-            gap: "10px",
-          }}
-        >
+      <div className="text-center space-y-10">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 animate-fade-in">
+          Hello Welcome!
+        </h1>
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4">
+          Would you like some coffee?
+        </h2>
+        <div className="flex flex-col md:flex-row gap-10 justify-center">
           {/* you want to div deep into the react router */}
-          <Link
-            to="login"
-            style={{
-              border: "1px solid transparent",
-              padding: "0.6em 1.2em",
-              cursor: "pointer",
-              transition: "border-color 0.25s",
-            }}
-          >
-            Login
-          </Link>
-          <Link to="signup">Signup</Link>
+          <Link to="login" className="text-blue-500 hover:text-blue-700 text-2xl">Login</Link>
+          <Link to="signup" className="text-blue-500 hover:text-blue-700 text-2xl">Signup</Link>
         </div>
       </div>
-    </div>
+
   );
 };

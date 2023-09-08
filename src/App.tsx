@@ -19,7 +19,7 @@ function App() {
   // const {isLogin}= useAuth() as AuthContextType;
   return (
 
-
+    <div className="flex justify-center items-center w-screen h-screen">
       <AuthProvider>
         <CoffeeProvider>
           <Routes>
@@ -27,6 +27,7 @@ function App() {
             </Route>
             <Route path="login" element={<Login/>}></Route>
             <Route path="signup" element={<Signup/>}></Route>
+            <Route path="login"></Route>
           </Routes> 
         
             {/* {isLogin? (
@@ -35,6 +36,7 @@ function App() {
             } */}
         </CoffeeProvider>
       </AuthProvider>
+    </div>
   
     )
 }
