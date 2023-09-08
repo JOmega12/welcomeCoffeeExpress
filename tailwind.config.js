@@ -5,7 +5,7 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}"
   ],
   colors: {
-    espresso: '#2E1E17',
+    'text-espresso': '#2E1E17',
     cream: '#ECE6DB',
   },
   theme: {
