@@ -5,6 +5,8 @@ import { Route, Routes, } from "react-router-dom";
 import { LandingPage } from "./components/LandingPage"
 import { AuthProvider, useAuth } from "./providers/AuthProvider"
 import { CoffeeProvider } from "./providers/CoffeeProvider"
+import { Login } from "./components/Login";
+import { Signup } from "./components/Signup";
 
 type AuthContextType = {
   isLogin: boolean;
@@ -18,10 +20,12 @@ function App() {
   return (
     <AuthProvider>
       <CoffeeProvider>
-      <Routes>
-        <Route path="/" element ={<LandingPage />}>
-        </Route>
-      </Routes> 
+        <Routes>
+          <Route path="/" element ={<LandingPage />}>
+          </Route>
+          <Route path="login" element={<Login/>}></Route>
+          <Route path="signup" element={<Signup/>}></Route>
+        </Routes> 
       
           {/* {isLogin? (
             null

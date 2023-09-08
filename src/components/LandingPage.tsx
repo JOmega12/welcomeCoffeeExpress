@@ -1,7 +1,6 @@
 // import {  useState } from "react"
-import { Login } from "./Login";
-import { Signup } from "./Signup";
-import { useAuth } from "../providers/AuthProvider";
+// import { useAuth } from "../providers/AuthProvider";
+import { Link } from "react-router-dom";
 
 
 // type LandingPagesProps = {
@@ -16,20 +15,25 @@ export const LandingPage = () => {
    // const [isLogin, setIsLogin] = useState(false);
 
 //use the as 
-   const {isLogin, setIsLogin} = useAuth();
-   const loginOnClick = (bool: boolean) => {
-      setIsLogin(bool)
-   }
+   // const {isLogin, setIsLogin} = useAuth();
+
 
    return (
       <>
          <div className="welcomeUser">
             <h1>Hello! Would you like some coffee?</h1>
-            <div>
+            <div style={{
+               display: 'flex',
+               gap: '10px',
+            }}>
                {/* you want to div deep into the react router */}
-               <button onClick={() =>loginOnClick(true)}>Login</button>
-               <button onClick={()=> loginOnClick(false)}>Signup</button>
-               {isLogin? (<Login />) : (<Signup />)}
+               <Link to='login' style={{
+                  border:'1px solid transparent',
+                  padding: '0.6em 1.2em',
+                  cursor: 'pointer',
+                  transition: 'border-color 0.25s'
+               }}>Login</Link>
+               <Link to='signup'>Signup</Link>
             </div>
          </div>
       </>
