@@ -1,6 +1,7 @@
 
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export const Signup = () => {
@@ -8,6 +9,8 @@ export const Signup = () => {
    const [usernameInput, setUsernameInput] = useState('');
    const [password, setPassword] = useState('')
    const [confirmPass, setConfirmPass] = useState('')
+
+   const navigate = useNavigate();
 
    return(
       <form className="flex-col items-center">
@@ -34,6 +37,11 @@ export const Signup = () => {
                <input type="text"  className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
                onChange={(e) => setConfirmPass(e.target.value)}
                value={confirmPass}
+               />
+            </div>
+            <div className="flex flex-row gap-10 text-center">
+               <button onClick={() => navigate(-1)} className="w-32 text-lg mb-2 p-3">Back</button>
+               <input type="submit"  className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
                />
             </div>
             {/* add back button */}

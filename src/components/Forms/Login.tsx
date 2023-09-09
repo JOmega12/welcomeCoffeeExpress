@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export const Login = () => {
@@ -7,6 +7,7 @@ export const Login = () => {
    const [usernameInput, setUsernameInput] = useState('');
    const [password, setPassword] = useState('')
 
+   const navigate = useNavigate();
    return(
       <form className="flex-col items-center">
          <div className="text-center text-[#2E1E17] p-5 rounded-xl text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
@@ -27,8 +28,8 @@ export const Login = () => {
                value={password}
                />
             </div>
-            <div className="flex flex-row gap-10">
-               <Link></Link>
+            <div className="flex flex-row gap-10 text-center">
+               <button onClick={() => navigate(-1)} className="w-32 text-lg mb-2 p-3">Back</button>
                <input type="submit"  className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
                />
             </div>
