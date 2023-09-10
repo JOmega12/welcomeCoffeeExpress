@@ -7,11 +7,8 @@ import { AuthProvider, useAuth } from "./providers/AuthProvider"
 import { CoffeeProvider } from "./providers/CoffeeProvider"
 import { Login } from "./components/Forms/Login";
 import { Signup } from "./components/Forms/Signup";
+import { Lobby } from "./components/Lobby";
 
-type AuthContextType = {
-  isLogin: boolean;
-
-}
 
 function App() {
   return (
@@ -22,9 +19,9 @@ function App() {
           <Routes>
             <Route path="/" element ={<LandingPage />}>
             </Route>
-            <Route path="login" element={<Login/>}></Route>
-            <Route path="signup" element={<Signup/>}></Route>
-            {/* <Route path="login"></Route> */}
+              <Route path="login" element={<Login/>}></Route>
+              <Route path="signup" element={<Signup/>}></Route>
+              <Route path="lobby" element={<Lobby/>}></Route>
           </Routes> 
 
         </CoffeeProvider>
