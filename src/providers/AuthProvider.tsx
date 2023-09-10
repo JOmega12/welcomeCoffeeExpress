@@ -1,11 +1,11 @@
 import { ReactNode, createContext, useContext, useEffect, useState } from "react";
-import { UserInformation, getUserFromServer, registerFetch } from "../api/UserAPI";
+import { getUserFromServer, registerFetch } from "../api/UserAPI";
+import { UserInformation } from "../types/types";
+import { toast } from "react-hot-toast";
 
 
 type AuthTypes = {
    children: ReactNode;
-   // isLogin: boolean;
-
 }
 
 const AuthContext = createContext({});
@@ -14,7 +14,7 @@ const AuthContext = createContext({});
 export const AuthProvider = ({children}: AuthTypes) => {
    const [user, setUser] = useState({});
    const [isRegister, setIsRegister] = useState(false);
-
+   const [error, setError] = useState(false)
    //this is used to choose between landingpage or login/signup
    const [isLogin, setIsLogin] = useState(false);
 
@@ -27,11 +27,17 @@ export const AuthProvider = ({children}: AuthTypes) => {
    }
 
    const loginUser = async({username, password}: UserInformation) => {
-      const user = await getUserFromServer({username, password})
-      if(user.password !== password) {
-         throw new Error("invalid password")
-      } 
-      setUser(user)
+      try {
+         const user = await getUserFromServer({username, password})
+         if(user.password !== password) {
+            toast.error('password not found')
+         } else if (user.username !== username) {
+            toast.error('username does not exist')
+         }
+         setUser(user)
+      } catch(e) {
+         console.error('error while logging in')
+      }
    }
 
    const logoutUser = () => {
@@ -55,7 +61,7 @@ export const AuthProvider = ({children}: AuthTypes) => {
    return (
       <AuthContext.Provider
          value={{
-            user, setUser, isRegister, setIsRegister, registerUser, loginUser, logoutUser, isLogin, setIsLogin
+            user, setUser, isRegister, setIsRegister, registerUser, loginUser, logoutUser, isLogin, setIsLogin, error, setError
          }}>
          {children}
       </AuthContext.Provider>

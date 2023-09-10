@@ -1,10 +1,6 @@
+import { UserInformation } from "../types/types";
 import { API_CONFIG } from "./config"
 
-
-export type UserInformation = {
-   username: string,
-   password: string
-}
 
 //this registers the user
 export const registerFetch = ({username, password}: UserInformation) => {

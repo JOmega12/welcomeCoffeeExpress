@@ -3,11 +3,12 @@
 
 import { Route, Routes, } from "react-router-dom";
 import { LandingPage } from "./components/LandingPage"
-import { AuthProvider, useAuth } from "./providers/AuthProvider"
+import { AuthProvider } from "./providers/AuthProvider"
 import { CoffeeProvider } from "./providers/CoffeeProvider"
 import { Login } from "./components/Forms/Login";
 import { Signup } from "./components/Forms/Signup";
 import { Lobby } from "./components/Lobby";
+import { Toaster } from "react-hot-toast";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     <div className="flex justify-center items-center w-screen h-screen">
       <AuthProvider>
         <CoffeeProvider>
+          <Toaster />
           <Routes>
             <Route path="/" element ={<LandingPage />}>
             </Route>
