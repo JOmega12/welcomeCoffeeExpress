@@ -29,6 +29,13 @@ export const Lobby = () => {
         ) : (
           <div className="text-center">Not Logged In</div>
         )}
+
+        {/* 
+        first we map all the cards, 
+        then for each one of the card
+        it is clickable to show a full component
+        showing image, description and comments
+        */}
         <div className="mainBody">
          <div>
             <div>
