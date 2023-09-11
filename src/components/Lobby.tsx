@@ -61,6 +61,14 @@ export const Lobby = () => {
          </div>
         </div>
 
+
+        {/* example code
+
+        coffeeCards.map((card) => {
+          seeFullCard ? (<CoffeeCards/>) : (<PreviewCard/>)
+        })
+        
+        */}
         <button onClick={() => logoutUser()}>Logout</button>
       </div>
     </>
