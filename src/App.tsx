@@ -14,7 +14,7 @@ import { Toaster } from "react-hot-toast";
 function App() {
   return (
     //at the top add navigation and navbar
-    <div className="flex justify-center items-center w-screen h-screen">
+    <div className="flex justify-center items-center lg:p-20 md:p-10 w-screen h-screen">
       <AuthProvider>
         <CoffeeProvider>
           <Toaster />

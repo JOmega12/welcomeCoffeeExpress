@@ -19,7 +19,6 @@ export const LandingPage = () => {
         Would you like some coffee?
       </h2>
       <div className="flex flex-col md:flex-row gap-10 justify-center">
-        {/* you want to div deep into the react router */}
         <Link
           to="login"
           className="text-blue-500 group hover:text-blue-700 text-2xl rounded-xl hover:border-blue-700 hover:border-2 hover:border-opacity-50 p-2"

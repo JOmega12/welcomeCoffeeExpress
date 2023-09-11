@@ -3,6 +3,7 @@
 export type CoffeeType = {
    title: string,
    description: string,
+   // ingredients: [],
    image: string,
 }
 
