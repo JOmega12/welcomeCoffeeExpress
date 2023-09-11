@@ -64,12 +64,11 @@ export const Lobby = () => {
         ) : (
           <div className="text-center">Not Logged In</div>
         )}
-        <div>
-          <div>
-            <h3 className="font-bold text-2xl text-center m-10">Create Coffee</h3>
-          </div>
+        {/* i dont know howto make the button smaller? */}
+        <div className="text-center hover:cursor-pointer m-10">
+          <h3 className=" px-4 py-2 font-bold rounded-lg text-2xl bg-green-500 text-white hover:bg-green-600">Create Coffee</h3>
         </div>
-        <div className="flex flex-grow flex-wrap justify-center p-4">
+        <div className="flex flex-grow flex-wrap justify-center p-4 lg:justify-evenly">
           {testCoffeeItems.map((item, index) => (
             <PreviewCard item={item} index={index}/>
           ))}
@@ -90,16 +89,17 @@ export const Lobby = () => {
         })
         
         */}
-        <section>
-          <div>
+        <section className="flex flex-col lg:flex-row h-screen sm:flex-col w-screen justify-center gap-20 pb-10 pt-5">
+          <div className="bg-white rounded-lg shadow-lg m-2 p-5 hover:cursor-default hover:text-white  hover:bg-yellow-500 font-semibold">
             <button>Favorites</button>
           </div>
-          <div>
-            <button>Logout</button>
+          <div className="bg-white rounded-lg shadow-lg m-2 p-5 hover:cursor-default hover:bg-red-500 hover:text-white font-semibold">
+            <button onClick={() => logoutUser()}>Logout</button>
           </div>
         </section>
-        <button onClick={() => logoutUser()}>Logout</button>
       </div>
     </>
   );
 };
+{/* <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"> */}
+
