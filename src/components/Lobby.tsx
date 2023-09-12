@@ -1,7 +1,8 @@
 // import { useNavigate } from "react-router-dom";
-// import { useState } from "react";
+import { useState } from "react";
 import { useAuth } from "../providers/AuthProvider";
 import { UserInformation } from "../types/types";
+import { CoffeeCard } from "./CoffeeCard";
 import { PreviewCard } from "./PreviewCard";
 
 type LobbyTypes = {
@@ -13,7 +14,7 @@ type LobbyTypes = {
 export const Lobby = () => {
   const { logoutUser, isRegister, user } = useAuth() as LobbyTypes;
 
-  // const [ seePreview, setSeePreview ] = useState(false);
+  const [ seePreview, setSeePreview ] = useState(false);
 
   // const navigate = useNavigate();
 
@@ -53,11 +54,16 @@ export const Lobby = () => {
     },
   ];
 
+
+  const setActiveCard = (bool: boolean) => {
+    setSeePreview(bool);
+  }
+
   return (
     <>
       <div className="flex flex-col h-screen">
         {isRegister ? (
-          <div className="w-full text-lg mb-2 p-3">
+          <div className="w-full text-lg mb-2 p-3  mt-3 text-center">
             <h3>Hello! {user.username}</h3>
             <h4>There are coffees to try!</h4>
           </div>
@@ -66,12 +72,15 @@ export const Lobby = () => {
         )}
         {/* i dont know howto make the button smaller? */}
         <div className="text-center hover:cursor-pointer m-10">
-          <h3 className=" px-4 py-2 font-bold rounded-lg text-2xl bg-green-500 text-white hover:bg-green-600">Create Coffee</h3>
+          <button className="px-4 py-2 font-bold rounded-lg text-3xl bg-green-500 text-white hover:bg-green-600">Create Coffee</button>
         </div>
         <div className="flex flex-grow flex-wrap justify-center p-4 lg:justify-evenly">
-          {testCoffeeItems.map((item, index) => (
-            <PreviewCard item={item} index={index}/>
-          ))}
+          {testCoffeeItems.map((item, index) => {
+            const cardToRender = seePreview 
+            ? (<CoffeeCard item={item} index={index} onClick={() => setActiveCard(false)}/>)  
+            : (<PreviewCard item={item} index={index} onClick={() => setActiveCard(true)}/>) 
+            return cardToRender;         
+          })}
         </div>
 
         {/* 
@@ -87,13 +96,13 @@ export const Lobby = () => {
             (<CoffeeCard />) : 
             (<PreviewCard/>)
         })
-        
         */}
+        {/* need to fix favorites and delete buttons css media query */}
         <section className="flex flex-col lg:flex-row h-screen sm:flex-col w-screen justify-center gap-20 pb-10 pt-5">
-          <div className="bg-white rounded-lg shadow-lg m-2 p-5 hover:cursor-default hover:text-white  hover:bg-yellow-500 font-semibold">
+          <div className="bg-yellow-400 rounded-lg shadow-lg m-2 p-5 hover:cursor-default hover:text-white  hover:bg-yellow-500 font-semibold">
             <button>Favorites</button>
           </div>
-          <div className="bg-white rounded-lg shadow-lg m-2 p-5 hover:cursor-default hover:bg-red-500 hover:text-white font-semibold">
+          <div className="bg-red-400 rounded-lg shadow-lg m-2 p-5 hover:cursor-default hover:bg-red-500 hover:text-white font-semibold">
             <button onClick={() => logoutUser()}>Logout</button>
           </div>
         </section>
@@ -101,5 +110,4 @@ export const Lobby = () => {
     </>
   );
 };
-{/* <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"> */}
 
