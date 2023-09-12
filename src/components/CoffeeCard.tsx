@@ -1,16 +1,15 @@
+import { useParams } from "react-router-dom";
+import { CoffeeCardProps } from "../types/types";
+
 export const CoffeeCard = ({
   item,
   index,
   onClick,
-}: {
-  item: {
-    title: string;
-    imageURL: string;
-    description: string;
-  };
-  index: number;
-  onClick: () => void;
-}) => {
+}: CoffeeCardProps) => {
+
+  // const params = useParams<CoffeeCardProps/>();
+  // const coffeeId = params.id;
+
   return (
     <div key={index} onClick={onClick}>
       <div>

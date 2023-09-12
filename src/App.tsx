@@ -9,8 +9,8 @@ import { Login } from "./components/Forms/Login";
 import { Signup } from "./components/Forms/Signup";
 import { Lobby } from "./components/Lobby";
 import { Toaster } from "react-hot-toast";
-// import { CoffeeCard } from "./components/CoffeeCard";
-
+import { CoffeeCard } from "./components/CoffeeCard";
+import { CoffeeCardProps } from "./types/types";
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
               <Route path="lobby" element={<Lobby/>}></Route>
 
               {/* how do i add the coffeeCard component with types and id number of the card */}
-              {/* <Route path="coffeeCard" element={<CoffeeCard/>}></Route> */}
+              <Route<CoffeeCardProps> path="coffeeCard/:index" element={<CoffeeCard/>}/>
           </Routes> 
 
         </CoffeeProvider>

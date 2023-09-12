@@ -4,6 +4,8 @@ import { useAuth } from "../providers/AuthProvider";
 import { UserInformation } from "../types/types";
 import { CoffeeCard } from "./CoffeeCard";
 import { PreviewCard } from "./PreviewCard";
+import { Link } from "react-router-dom";
+import { key } from "localforage";
 
 type LobbyTypes = {
   logoutUser: () => void;
@@ -77,7 +79,12 @@ export const Lobby = () => {
         <div className="flex flex-grow flex-wrap justify-center p-4 lg:justify-evenly">
           {testCoffeeItems.map((item, index) => {
             const cardToRender = seePreview 
-            ? (<CoffeeCard item={item} index={index} onClick={() => setActiveCard(false)}/>)  
+            ? (
+            <Link to={`/coffeeCard/${index}`}>
+              <CoffeeCard item={item} index={index} onClick={() => setActiveCard(false)}/>
+            </Link>
+            // <Link to={"/coffeeCard"}></Link>
+            )  
             : (<PreviewCard item={item} index={index} onClick={() => setActiveCard(true)}/>) 
             return cardToRender;         
           })}
