@@ -1,22 +1,28 @@
 // import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { useAuth } from "../providers/AuthProvider";
 import { UserInformation } from "../types/types";
 import { CoffeeCard } from "./CoffeeCard";
 import { PreviewCard } from "./PreviewCard";
 import { Link } from "react-router-dom";
-import { key } from "localforage";
+import { testCoffeeItems } from "./testCoffeeItems";
+import { useCoffee } from "../providers/CoffeeProvider";
+
 
 type LobbyTypes = {
   logoutUser: () => void;
   user: UserInformation;
   isRegister: boolean;
+  seePreview: boolean;
+  // setSeePreview: (bool: boolean) => void;
+  setActiveCard: (bool: boolean) => void
 };
 
 export const Lobby = () => {
   const { logoutUser, isRegister, user } = useAuth() as LobbyTypes;
 
-  const [ seePreview, setSeePreview ] = useState(false);
+  const { seePreview, setActiveCard } = useCoffee() as LobbyTypes;
+
+  // const [ seePreview, setSeePreview ] = useState(true);
 
   // const navigate = useNavigate();
 
@@ -25,41 +31,9 @@ export const Lobby = () => {
   //    logoutUser();
   //   };
 
-  const testCoffeeItems = [
-    {
-      imageURL:
-        "https://perfectdailygrind.com/wp-content/uploads/2016/11/latte-art-@harshlight-1024x683.jpg",
-      title: "Coffee1",
-      description: "description1",
-      ingredients: "coffee, milk, sugar",
-    },
-    {
-      imageURL:
-        "https://coffeeaffection.com/wp-content/uploads/2021/05/Spanish-latte-milk-and-espresso.jpg",
-      title: "Coffee2",
-      description: "description2",
-      ingredients: ['coffee', 'milk', 'sugar',]
-    },
-    {
-      imageURL:
-        "https://perfectdailygrind.com/wp-content/uploads/2016/11/latte-art-@harshlight-1024x683.jpg",
-      title: "Coffee3",
-      description: "description3",
-      ingredients: ['coffee', 'milk', 'sugar',]
-    },
-    {
-      imageURL:
-        "https://coffeeaffection.com/wp-content/uploads/2021/05/Spanish-latte-milk-and-espresso.jpg",
-      title: "Coffee5",
-      description: "description4",
-      ingredients: ['coffee', 'milk', 'sugar',]
-    },
-  ];
-
-
-  const setActiveCard = (bool: boolean) => {
-    setSeePreview(bool);
-  }
+  // const setActiveCard = (bool: boolean) => {
+  //   setSeePreview(bool);
+  // }
 
   return (
     <>
@@ -80,16 +54,19 @@ export const Lobby = () => {
           {testCoffeeItems.map((item, index) => {
             const cardToRender = seePreview 
             ? (
-            <Link to={`/coffeeCard/${index}`}>
+            <Link to={`/coffee-card/${index}`}>
               <CoffeeCard item={item} index={index} onClick={() => setActiveCard(false)}/>
             </Link>
             // <Link to={"/coffeeCard"}></Link>
+            // <CoffeeCard item={item} index={index} onClick={() => setActiveCard(false)}/>
             )  
             : (<PreviewCard item={item} index={index} onClick={() => setActiveCard(true)}/>) 
             return cardToRender;         
           })}
         </div>
 
+
+        {/* how to make the UI succint? */}
         {/* 
         first we map all the cards, 
         then for each one of the card

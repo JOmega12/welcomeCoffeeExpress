@@ -7,9 +7,6 @@ export const CoffeeCard = ({
   onClick,
 }: CoffeeCardProps) => {
 
-  // const params = useParams<CoffeeCardProps/>();
-  // const coffeeId = params.id;
-
   return (
     <div key={index} onClick={onClick}>
       <div>

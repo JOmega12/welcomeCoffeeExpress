@@ -4,7 +4,8 @@ import { CoffeeType } from "../types/types";
 import { getAllCoffee, getNewCoffee } from "../api/GetCoffeeAPI";
 
 type CoffeeProviderProps = {
-   children: ReactNode
+   children: ReactNode;
+
 }
 
 export const CoffeeContext = createContext({});
@@ -13,6 +14,13 @@ export const CoffeeProvider = ({children}: CoffeeProviderProps) => {
   const [coffee, setCoffee] = useState<CoffeeType | []>([]);
 
   const [favCoffee, setFavCoffee] = useState <CoffeeType | []>([]);
+  
+  const [ seePreview, setSeePreview ] = useState(false);
+
+  const setActiveCard = (bool: boolean) => {
+    setSeePreview(bool);
+  }
+  
   const refetch = () => {
     getAllCoffee().then(setCoffee);
   };
@@ -37,7 +45,10 @@ export const CoffeeProvider = ({children}: CoffeeProviderProps) => {
         setCoffee,
         createCoffee,
         favCoffee,
-        setFavCoffee
+        setFavCoffee,
+        seePreview,
+        setSeePreview,
+        setActiveCard
       }}
     >{children}</CoffeeContext.Provider>
   );
