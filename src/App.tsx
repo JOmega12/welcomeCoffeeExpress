@@ -14,13 +14,10 @@ import { CoffeeCard } from "./components/CoffeeCard";
 // import { testCoffeeItems } from "./components/testCoffeeItems";
 
 // type LocalCoffeeState = {
-//   // seePreview: boolean;
 //   setActiveCard: (bool: boolean) => void;
 // };
 
 function App() {
-
-  // const {setActiveCard } = useCoffee() as LocalCoffeeState;
 
   return (
     //at the top add navigation and navbar

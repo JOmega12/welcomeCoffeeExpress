@@ -14,12 +14,7 @@ export const CoffeeProvider = ({children}: CoffeeProviderProps) => {
   const [coffee, setCoffee] = useState<CoffeeType | []>([]);
 
   const [favCoffee, setFavCoffee] = useState <CoffeeType | []>([]);
-  
-  const [ seePreview, setSeePreview ] = useState(false);
 
-  const setActiveCard = (bool: boolean) => {
-    setSeePreview(bool);
-  }
   
   const refetch = () => {
     getAllCoffee().then(setCoffee);
@@ -46,9 +41,6 @@ export const CoffeeProvider = ({children}: CoffeeProviderProps) => {
         createCoffee,
         favCoffee,
         setFavCoffee,
-        seePreview,
-        setSeePreview,
-        setActiveCard
       }}
     >{children}</CoffeeContext.Provider>
   );

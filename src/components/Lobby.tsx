@@ -1,39 +1,20 @@
-// import { useNavigate } from "react-router-dom";
 import { useAuth } from "../providers/AuthProvider";
 import { UserInformation } from "../types/types";
-// import { CoffeeCard } from "./CoffeeCard";
 import { PreviewCard } from "./PreviewCard";
 import { Link } from "react-router-dom";
 import { testCoffeeItems } from "./testCoffeeItems";
-// import { useCoffee } from "../providers/CoffeeProvider";
 
-
+// !fix ui
 type LobbyTypes = {
   logoutUser: () => void;
   user: UserInformation;
   isRegister: boolean;
   seePreview: boolean;
-  // setSeePreview: (bool: boolean) => void;
   setActiveCard: (bool: boolean) => void
 };
 
 export const Lobby = () => {
   const { logoutUser, isRegister, user } = useAuth() as LobbyTypes;
-
-  // const { seePreview, setActiveCard } = useCoffee() as LobbyTypes;
-
-  // const [ seePreview, setSeePreview ] = useState(true);
-
-  // const navigate = useNavigate();
-
-  //   const handleLogoutButton = () => {
-  //    navigate('/')
-  //    logoutUser();
-  //   };
-
-  // const setActiveCard = (bool: boolean) => {
-  //   setSeePreview(bool);
-  // }
 
   return (
     <>
@@ -51,14 +32,15 @@ export const Lobby = () => {
         </div>
         <div className="flex flex-grow flex-wrap justify-center p-4 lg:justify-evenly">
           {testCoffeeItems.map((item, index) => ( 
-            <Link to={`/coffee-card/${index}`}>
+            <Link to={`/coffee-card/${index}`}
+            className="w-full md:w-1/2 lg:w-1/3 p-2 bg-white rounded-lg shadow-md m-2 hover:cursor-pointer"
+            >
               <PreviewCard item={item} index={index}/>
             </Link>     
           ))}
         </div>
 
 
-        {/* how to make the UI succint? */}
         {/* need to fix favorites and delete buttons css media query */}
         {/* next fix ui issues with Link */}
         <section className="flex flex-col lg:flex-row h-screen sm:flex-col w-screen justify-center gap-20 pb-10 pt-5">

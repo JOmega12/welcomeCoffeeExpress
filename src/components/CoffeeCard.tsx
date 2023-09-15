@@ -1,38 +1,47 @@
 import { useParams } from "react-router-dom";
+import { testCoffeeItems } from "./testCoffeeItems";
 // import { CoffeeCardProps } from "../types/types";
 
 export const CoffeeCard = (
 //   {
 //   item,
 //   index,
-//   onClick,
 // }: CoffeeCardProps
 
 ) => {
 
 
   const {coffeeId} = useParams();
-  console.log(coffeeId);
+  const coffeeToNumber = Number(coffeeId);
+
+  const coffee= testCoffeeItems[coffeeToNumber];
+  
+  // const coffee = testCoffeeItems.find((coffee) => {
+  //   return coffee.id.toString() === coffeeId;
+  // })
+
+  // console.log(coffeeNumber)
+  console.log(coffee, 'types of coffee')
 
   return (
     // <div key={index} onClick={onClick}>
     <div>
-      <h1>Stuff</h1>
+      <h1>Stuff{coffeeId}</h1>
 
-      {/* <div>
-        <h2>{item.title}</h2>
+      <div>
+        <h2>{coffee.title}</h2>
       </div>
       <div>
-        <img src={item.imageURL} alt="" />
+        <img src={coffee.imageURL} alt="" />
       </div>
       <div>
-        <p>{item.description}</p>
+        <p>{coffee?.description}</p>
       </div>
       <div>
         <ul>
           <li></li>
         </ul>
-      </div> */}
+      </div>
       <section>
          <div>
           <button>Back</button>
