@@ -8,12 +8,10 @@ export const PreviewCard = ({ item, index }: {
       description: string;
    };
    index: number;
-  //  onClick: () => void;
 }) => {
   return (
     <>
       <div key={index} className="w-full md:w-1/2 lg:w-1/3 p-2 bg-white rounded-lg shadow-md m-2 hover:cursor-pointer"
-      // onClick={onClick}
       >
         <div>youre seeing preview card</div>
         <div className="p-4">
