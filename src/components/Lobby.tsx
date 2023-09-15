@@ -1,11 +1,11 @@
 // import { useNavigate } from "react-router-dom";
 import { useAuth } from "../providers/AuthProvider";
 import { UserInformation } from "../types/types";
-import { CoffeeCard } from "./CoffeeCard";
+// import { CoffeeCard } from "./CoffeeCard";
 import { PreviewCard } from "./PreviewCard";
 import { Link } from "react-router-dom";
 import { testCoffeeItems } from "./testCoffeeItems";
-import { useCoffee } from "../providers/CoffeeProvider";
+// import { useCoffee } from "../providers/CoffeeProvider";
 
 
 type LobbyTypes = {
@@ -20,7 +20,7 @@ type LobbyTypes = {
 export const Lobby = () => {
   const { logoutUser, isRegister, user } = useAuth() as LobbyTypes;
 
-  const { seePreview, setActiveCard } = useCoffee() as LobbyTypes;
+  // const { seePreview, setActiveCard } = useCoffee() as LobbyTypes;
 
   // const [ seePreview, setSeePreview ] = useState(true);
 
@@ -46,23 +46,21 @@ export const Lobby = () => {
         ) : (
           <div className="text-center">Not Logged In</div>
         )}
-        {/* i dont know howto make the button smaller? */}
         <div className="text-center hover:cursor-pointer m-10">
           <button className="px-4 py-2 font-bold rounded-lg text-3xl bg-green-500 text-white hover:bg-green-600">Create Coffee</button>
         </div>
         <div className="flex flex-grow flex-wrap justify-center p-4 lg:justify-evenly">
-          {testCoffeeItems.map((item, index) => {
-            const cardToRender = seePreview 
-            ? (
+          {testCoffeeItems.map((item, index) => (
             <Link to={`/coffee-card/${index}`}>
-              <CoffeeCard item={item} index={index} onClick={() => setActiveCard(false)}/>
+              <PreviewCard item={item} index={index}/> 
             </Link>
-            // <Link to={"/coffeeCard"}></Link>
-            // <CoffeeCard item={item} index={index} onClick={() => setActiveCard(false)}/>
-            )  
-            : (<PreviewCard item={item} index={index} onClick={() => setActiveCard(true)}/>) 
-            return cardToRender;         
-          })}
+          ))}
+{/* 
+          {testCoffeeItems.map((item, index) => (
+            <Link key={index} to={`/coffee-card/${index}`}>
+              <PreviewCard item={item} index={index} />
+            </Link>
+          ))} */}
         </div>
 
 
