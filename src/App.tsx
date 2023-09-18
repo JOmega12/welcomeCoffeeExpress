@@ -10,12 +10,7 @@ import { Signup } from "./components/Forms/Signup";
 import { Lobby } from "./components/Lobby";
 import { Toaster } from "react-hot-toast";
 import { CoffeeCard } from "./components/CoffeeCard";
-// import { CoffeeCardProps } from "./types/types";
-// import { testCoffeeItems } from "./components/testCoffeeItems";
-
-// type LocalCoffeeState = {
-//   setActiveCard: (bool: boolean) => void;
-// };
+import { CreateCoffeeForm } from "./components/Forms/CreateCoffeeForm";
 
 function App() {
 
@@ -32,9 +27,7 @@ function App() {
               <Route path="signup" element={<Signup/>}></Route>
               <Route path="lobby" element={<Lobby/>}></Route>
               <Route path="coffee-card/:coffeeId" element={<CoffeeCard />}></Route>
-              {/* {testCoffeeItems.map((item, index) => (
-                <Route path="coffee-card/:index" element={<CoffeeCard item={item} index={index} onClick={() => setActiveCard(false)}/>}/>
-              ))} */}
+              <Route path="create-coffee" element={<CreateCoffeeForm />}></Route>
           </Routes> 
 
         </CoffeeProvider>
