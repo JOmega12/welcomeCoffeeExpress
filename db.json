@@ -14,6 +14,21 @@
       "username": "testt",
       "password": "testee",
       "id": 3
+    },
+    {
+      "username": "adf",
+      "password": "asdf",
+      "id": 4
+    },
+    {
+      "username": "james",
+      "password": "password",
+      "id": 5
+    },
+    {
+      "username": "",
+      "password": "",
+      "id": 6
     }
   ],
   "coffee": [
@@ -56,8 +71,18 @@
     },
     {
       "userId": 5,
+      "coffeeId": 2,
+      "id": 6
+    },
+    {
+      "userId": 5,
+      "coffeeId": 3,
+      "id": 7
+    },
+    {
+      "userId": 5,
       "coffeeId": 4,
-      "id": 5
+      "id": 8
     }
   ],
   "comments": [
