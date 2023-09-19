@@ -1,7 +1,7 @@
 import { useAuth } from "../providers/AuthProvider";
 import { UserInformation } from "../types/types";
 import { PreviewCard } from "./PreviewCard";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { testCoffeeItems } from "./testCoffeeItems";
 // import { CreateCoffeeForm } from "./Forms/CreateCoffeeForm";
 
@@ -17,16 +17,24 @@ type LobbyTypes = {
 export const Lobby = () => {
   const { logoutUser, isRegister, user } = useAuth() as LobbyTypes;
 
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    logoutUser();
+    navigate('/');
+  }
   return (
     <>
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col h-screen mt-10">
         {isRegister ? (
-          <div className="w-full text-lg mb-2 p-3  mt-3 text-center">
+          <div className="w-full mb-2 p-3 mt-3 text-center font-bold text-xl md:text-4xl lg:text-4xl">
             <h3>Hello! {user.username}</h3>
             <h4>There are coffees to try!</h4>
           </div>
         ) : (
-          <div className="text-center">Not Logged In</div>
+          <div className="text-center
+          font-bold text-xl md:text-4xl lg:text-4xl
+          ">Not Logged In</div>
         )}
         <div className="text-center hover:cursor-pointer m-10">
           {/* <button className="px-4 py-2 font-bold rounded-lg text-3xl bg-green-500 text-white hover:bg-green-600">Create Coffee</button> */}
@@ -49,7 +57,7 @@ export const Lobby = () => {
             <button>Favorites</button>
           </div>
           <div className="bg-red-400 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-default hover:bg-red-500 hover:text-white font-semibold">
-            <button onClick={() => logoutUser()}>Logout</button>
+            <button onClick={() => handleLogout()}>Logout</button>
           </div>
         </section>
       </div>
