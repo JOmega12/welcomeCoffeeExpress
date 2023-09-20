@@ -16,13 +16,10 @@ const NavLinks = () => {
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-//   !! currently struggling with navbar
-   const toggleNavbar = (bool:boolean) => {
-      if(bool === false) {
-         setIsOpen(true);
-      } 
-      return bool;
+   const toggleNavbar = () => {
+      setIsOpen(!isOpen);
    }
+   
   return (
     <header>
       <nav className="flex flex-row justify-between bg-[#2E1E17] text-white items-center gap-7 px-4 py-5">
@@ -36,12 +33,12 @@ export const Navbar = () => {
           <NavLinks />
         </div>
         <div className="md:hidden">
-            <button onClick={() => toggleNavbar(false)}>
+            <button onClick={() => toggleNavbar()}>
                {isOpen 
                   ? <FontAwesomeIcon icon={faTimes} className="text-3xl text-white"/>
                   : <FontAwesomeIcon icon={faBars}
                   className=""
-                  />
+                  />  
                }
             </button>
         </div>
