@@ -17,7 +17,6 @@ export const AuthProvider = ({children}: AuthTypes) => {
    const [error, setError] = useState(false)
    //this is used to choose between landingpage or login/signup
    const [isLogin, setIsLogin] = useState(false);
-
    const registerUser = ({username, password}: UserInformation) => {
       registerFetch({username, password})
          .then((user) => {

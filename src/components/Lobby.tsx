@@ -1,10 +1,13 @@
 import { useAuth } from "../providers/AuthProvider";
-import { UserInformation } from "../types/types";
+import { CoffeeType, UserInformation } from "../types/types";
 import { PreviewCard } from "./PreviewCard";
 import { Link, useNavigate } from "react-router-dom";
 import { testCoffeeItems } from "./testCoffeeItems";
+import { useCoffee } from "../providers/CoffeeProvider";
 
-// !next create the coffee card component
+// !current problem is that there are no images in the actual database
+// !need to create another point in the coffee endpoint for image url for a select amount of coffee
+//! OR i could keep it as a string so that the person uploading it can have their customized image
 type LobbyTypes = {
   logoutUser: () => void;
   user: UserInformation;
@@ -13,8 +16,15 @@ type LobbyTypes = {
   setActiveCard: (bool: boolean) => void
 };
 
+type CoffeeTypes = {
+  coffee : CoffeeType
+}
+
+
 export const Lobby = () => {
   const { logoutUser, isRegister, user } = useAuth() as LobbyTypes;
+
+  const { coffee } = useCoffee() as CoffeeTypes;
 
   const navigate = useNavigate()
 
@@ -41,8 +51,10 @@ export const Lobby = () => {
           </Link>
 
         </div>
+
         <div className="flex flex-grow flex-wrap justify-center p-4 lg:justify-evenly">
-          {testCoffeeItems.map((item, index) => ( 
+          {/* {testCoffeeItems.map((item, index) => (  */}
+          {coffee.map((item, index) => ( 
             <Link to={`/coffee-card/${index}`}
             className="w-full md:w-1/2 lg:w-1/3 p-2 bg-white rounded-lg shadow-md m-2 hover:cursor-pointer hover:bg-gray-500"
             >

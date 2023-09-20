@@ -1,13 +1,23 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { testCoffeeItems } from "./testCoffeeItems";
+// import { testCoffeeItems } from "./testCoffeeItems";
+import { useCoffee } from "../providers/CoffeeProvider";
+import { CoffeeType } from "../types/types";
+
+type CoffeeTypes = {
+  coffee: CoffeeType;
+  coffeeToNumber: number;
+}
+
 
 export const CoffeeCard = () => {
   const navigate = useNavigate();
+  const {coffee} = useCoffee() as CoffeeTypes; 
 
   const { coffeeId } = useParams();
   const coffeeToNumber = Number(coffeeId);
 
-  const coffee = testCoffeeItems[coffeeToNumber];
+  // const coffeeItems = testCoffeeItems[coffeeToNumber];
+  const coffeeItems = coffee[coffeeToNumber] as CoffeeTypes;
 
 
   
@@ -18,13 +28,13 @@ export const CoffeeCard = () => {
     "
     >
       <div className="p-2 w-full sm:w-1/2 mt-10 sm:p-5">
-        <img src={coffee?.imageURL} alt="" className="w-full h-auto" />
+        <img src={coffeeItems?.imageURL} alt="" className="w-full h-auto" />
       </div>
       <div className="md:text-4xl font-bold text-xl text-transform: capitalize sm:3xl">
-        <h2>{coffee?.title}</h2>
+        <h2>{coffeeItems?.title}</h2>
       </div>
       <div className="md:text-3xl text-xl sm:3xl mt-3">
-        <p>{coffee?.description}</p>
+        <p>{coffeeItems?.description}</p>
       </div>
       <div className="mt-2">
         <ol>
