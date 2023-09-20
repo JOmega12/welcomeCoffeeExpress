@@ -43,30 +43,12 @@ export const Navbar = () => {
             </button>
         </div>
         {isOpen && (
-          <div className="md:hidden w-full absolute top-[90px] left-0 right-0 bg-[#2E1E17]">
+          <div className="md:hidden w-full absolute top-[77px] left-0 right-0 bg-[#2E1E17]">
             <div className="text-white px-4 py-2 flex flex-col text-center ">
               <NavLinks />
             </div>
           </div>
         )}
-        {/* <ul className="list-none flex gap-4 ml-auto text-xl">
-            <li>
-               <Link
-                  to="/"
-                  className=""
-               >
-                  Home
-               </Link>
-            </li>
-            <li>
-               <Link
-                  to="about-us"
-                  className=""
-               >
-                  About Us
-               </Link>
-            </li>
-         </ul> */}
         <button></button>
       </nav>
     </header>

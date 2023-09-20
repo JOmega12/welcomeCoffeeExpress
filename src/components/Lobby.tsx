@@ -3,7 +3,6 @@ import { UserInformation } from "../types/types";
 import { PreviewCard } from "./PreviewCard";
 import { Link, useNavigate } from "react-router-dom";
 import { testCoffeeItems } from "./testCoffeeItems";
-// import { CreateCoffeeForm } from "./Forms/CreateCoffeeForm";
 
 // !next create the coffee card component
 type LobbyTypes = {
@@ -37,7 +36,6 @@ export const Lobby = () => {
           ">Not Logged In</div>
         )}
         <div className="text-center hover:cursor-pointer m-10">
-          {/* <button className="px-4 py-2 font-bold rounded-lg text-3xl bg-green-500 text-white hover:bg-green-600">Create Coffee</button> */}
           <Link to={"/create-coffee"} className="px-4 py-2 font-bold rounded-lg text-3xl bg-green-500 text-white hover:bg-green-600">
             Create Coffee
           </Link>

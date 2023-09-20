@@ -15,7 +15,11 @@ import { Navbar } from "./components/Navbar/Navbar";
 
 function App() {
   return (
-    //at the top add navigation and navbar
+    // ! about us page needs sample info at a later time 
+    // !need to fetch actual coffee data
+    // !how to create the favorite component where it shows your favorites
+    //!add the star favorites as being favorited
+    // !need to create more error handling on signup and login and create form
     <>
     <Navbar/>
     <div className="flex justify-center items-center lg:p-20 md:p-10 w-screen h-screen">
