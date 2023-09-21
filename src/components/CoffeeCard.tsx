@@ -4,7 +4,7 @@ import { useCoffee } from "../providers/CoffeeProvider";
 import { CoffeeType } from "../types/types";
 
 type CoffeeTypes = {
-  coffee: CoffeeType;
+  coffee: CoffeeType[];
   coffeeToNumber: number;
 }
 
@@ -17,7 +17,7 @@ export const CoffeeCard = () => {
   const coffeeToNumber = Number(coffeeId);
 
   // const coffeeItems = testCoffeeItems[coffeeToNumber];
-  const coffeeItems = coffee[coffeeToNumber] as CoffeeTypes;
+  const coffeeItems = coffee[coffeeToNumber];
 
 
   
@@ -28,7 +28,7 @@ export const CoffeeCard = () => {
     "
     >
       <div className="p-2 w-full sm:w-1/2 mt-10 sm:p-5">
-        <img src={coffeeItems?.imageURL} alt="" className="w-full h-auto" />
+        <img src={coffeeItems?.image} alt="" className="w-full max-h-96 h-auto" />
       </div>
       <div className="md:text-4xl font-bold text-xl text-transform: capitalize sm:3xl">
         <h2>{coffeeItems?.title}</h2>

@@ -2,12 +2,13 @@ import { useAuth } from "../providers/AuthProvider";
 import { CoffeeType, UserInformation } from "../types/types";
 import { PreviewCard } from "./PreviewCard";
 import { Link, useNavigate } from "react-router-dom";
-import { testCoffeeItems } from "./testCoffeeItems";
+// import { testCoffeeItems } from "./testCoffeeItems";
 import { useCoffee } from "../providers/CoffeeProvider";
 
-// !current problem is that there are no images in the actual database
+// !need to check the create coffee and if it works
 // !need to create another point in the coffee endpoint for image url for a select amount of coffee
 //! OR i could keep it as a string so that the person uploading it can have their customized image
+// !add a star to be used as a favorite look at previous iteration for code
 type LobbyTypes = {
   logoutUser: () => void;
   user: UserInformation;
@@ -17,7 +18,7 @@ type LobbyTypes = {
 };
 
 type CoffeeTypes = {
-  coffee : CoffeeType
+  coffee : CoffeeType[]
 }
 
 
@@ -27,6 +28,9 @@ export const Lobby = () => {
   const { coffee } = useCoffee() as CoffeeTypes;
 
   const navigate = useNavigate()
+
+  // !create a disable button for create coffee until you sign in
+
 
   const handleLogout = () => {
     logoutUser();

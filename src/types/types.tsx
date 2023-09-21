@@ -3,8 +3,8 @@
 export type CoffeeType = {
    title: string,
    description: string,
-   // ingredients: [],
    image: string,
+   // ingredients: [],
 }
 
 export type CoffeeCardProps = {
@@ -21,8 +21,3 @@ export type UserInformation = {
    username: string,
    password: string
 }
-
-// export const LandingPagesProps = {
-//    Login: () => void;
-//    Signup: () => void;
-// }
