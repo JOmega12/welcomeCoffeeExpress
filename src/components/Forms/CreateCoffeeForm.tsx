@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { getNewCoffee } from "../../api/GetCoffeeAPI";
+import { getNewCoffee } from "../../api/GetCoffeeAPI";
 
 // !style on this page
 
@@ -18,22 +18,21 @@ export const CreateCoffeeForm = () => {
         onSubmit={(e) => {
           e.preventDefault();
           // !cant use this until styled and using the actual db
-          // getNewCoffee({
-          //    title: title,
-          //    description: description,
-          //    image: image
-          // })
+          getNewCoffee({
+             title: title,
+             description: description,
+             image: image
+          })
           setTitle("");
           setDescription("");
           setImage("");
         }}
-        // className="flex flex-col justify-center items-center max-w-full min-h-screen p-5 md:p-10 lg:p-20 shadow-lg rounded-xl"
+
         className="flex flex-col justify-center items-center max-w-full h-screen p-10 shadow-lg rounded-xl"
       >
         <h3 className="mb-4 text-center text-3xl font-bold md:text-4xl sm:text-5xl">
           Create Your Coffee!
         </h3>
-        {/*  <h3 className="mb-4 text-center text-3xl md:text-4xl lg:text-5xl font-bold">Create Your Coffee!</h3> */}
         <div className="mb-4 w-full">
           <label htmlFor="">Coffee Name:</label>
           <input

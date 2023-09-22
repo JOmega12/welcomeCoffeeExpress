@@ -39,12 +39,12 @@ export const Lobby = () => {
   return (
     <>
       <div className="flex flex-col h-screen mt-10">
-        {isRegister ? (
+        {isRegister ? 
           <div className="w-full mb-2 p-3 mt-3 text-center font-bold text-xl md:text-4xl lg:text-4xl">
             <h3>Hello! {user.username}</h3>
             <h4>There are coffees to try!</h4>
           </div>
-        ) : (
+         : (
           <div className="text-center
           font-bold text-xl md:text-4xl lg:text-4xl
           ">Not Logged In</div>
