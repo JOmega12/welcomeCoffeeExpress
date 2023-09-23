@@ -19,7 +19,6 @@ export const registerFetch = ({username, password}: UserInformation) => {
 }
 
 //this logs in the user
-
 export const getUserFromServer = ({username}: UserInformation) => {
    return fetch(API_CONFIG.baseUrl + "/app-users")
       .then((res) => {

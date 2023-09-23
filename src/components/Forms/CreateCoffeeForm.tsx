@@ -14,6 +14,7 @@ export const CreateCoffeeForm = () => {
 
   return (
     <>
+    {/* how to keep the user logged in?  */}
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -26,6 +27,7 @@ export const CreateCoffeeForm = () => {
           setTitle("");
           setDescription("");
           setImage("");
+          navigate('/lobby');
         }}
 
         className="flex flex-col justify-center items-center max-w-full h-screen p-10 shadow-lg rounded-xl"
@@ -55,7 +57,7 @@ export const CreateCoffeeForm = () => {
           ></textarea>
         </div>
         <div className="mb-4 w-full">
-          <label htmlFor="">Select Image:</label>
+          <label htmlFor="">Select Image: {`(Copy/Paste Image Address)`}</label>
           <input
             type="text"
             value={image}

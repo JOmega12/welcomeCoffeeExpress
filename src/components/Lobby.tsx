@@ -5,10 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 // import { testCoffeeItems } from "./testCoffeeItems";
 import { useCoffee } from "../providers/CoffeeProvider";
 
-// !need to check the create coffee and if it works
 // !need to create another point in the coffee endpoint for image url for a select amount of coffee
 //! OR i could keep it as a string so that the person uploading it can have their customized image
+//!create a favorite container?
 // !add a star to be used as a favorite look at previous iteration for code
+// !put a reseed of information
 type LobbyTypes = {
   logoutUser: () => void;
   user: UserInformation;

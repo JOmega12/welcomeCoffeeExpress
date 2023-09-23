@@ -50,6 +50,8 @@ export const AuthProvider = ({children}: AuthTypes) => {
       if(maybeUser) {
          try{
             setUser(JSON.parse(maybeUser));
+            // // how to set item to make the user stay
+            // localStorage.setItem(maybeUser)
          } catch(err) {
             console.log("Error parsing user data", err)
          }
