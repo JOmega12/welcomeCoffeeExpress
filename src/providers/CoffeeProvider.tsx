@@ -13,7 +13,7 @@ export const CoffeeContext = createContext({});
 export const CoffeeProvider = ({children}: CoffeeProviderProps) => {
   const [coffee, setCoffee] = useState<CoffeeType | []>([]);
 
-  const [favCoffee, setFavCoffee] = useState <CoffeeType | []>([]);
+  // const [favCoffee, setFavCoffee] = useState <CoffeeType | []>([]);
 
   
   const refetch = () => {
@@ -40,8 +40,8 @@ export const CoffeeProvider = ({children}: CoffeeProviderProps) => {
         coffee,
         setCoffee,
         createCoffee,
-        favCoffee,
-        setFavCoffee,
+        // favCoffee,
+        // setFavCoffee,
       }}
     >{children}</CoffeeContext.Provider>
   );
