@@ -12,6 +12,8 @@ import { CoffeeCard } from "./components/CoffeeCard";
 import { CreateCoffeeForm } from "./components/Forms/CreateCoffeeForm";
 import { AboutUs } from "./components/Navbar/AboutUs";
 import { Navbar } from "./components/Navbar/Navbar";
+import { FavoriteProvider } from "./providers/FavoriteProvider";
+import { FavoriteCards } from "./components/FavoriteCards";
 
 function App() {
   return (
@@ -22,22 +24,27 @@ function App() {
     // !need to create more error handling on signup and login and create form
     <>
     <Navbar/>
-    <div className="flex justify-center items-center lg:p-20 md:p-10 w-screen h-screen">
+    {/*     bg-[#f4f4ec] */}
+    <div className="flex justify-center items-center lg:p-20 md:p-10 w-screen h-screen
+    ">
       <AuthProvider>
         <CoffeeProvider>
-          <Toaster />
-          <Routes>
-            <Route path="/" element={<LandingPage />}></Route>
-            <Route path="about-us" element={<AboutUs />}></Route>
-            <Route path="login" element={<Login />}></Route>
-            <Route path="signup" element={<Signup />}></Route>
-            <Route path="lobby" element={<Lobby />}></Route>
-            <Route
-              path="coffee-card/:coffeeId"
-              element={<CoffeeCard />}
-            ></Route>
-            <Route path="create-coffee" element={<CreateCoffeeForm />}></Route>
-          </Routes>
+          <FavoriteProvider>
+            <Toaster />
+            <Routes>
+              <Route path="/" element={<LandingPage />}></Route>
+              <Route path="about-us" element={<AboutUs />}></Route>
+              <Route path="login" element={<Login />}></Route>
+              <Route path="signup" element={<Signup />}></Route>
+              <Route path="lobby" element={<Lobby />}></Route>
+              <Route path='favorites/:favoriteId' element={<FavoriteCards />}></Route>
+              <Route
+                path="coffee-card/:coffeeId"
+                element={<CoffeeCard />}
+              ></Route>
+              <Route path="create-coffee" element={<CreateCoffeeForm />}></Route>
+            </Routes>
+          </FavoriteProvider>
         </CoffeeProvider>
       </AuthProvider>
     </div>

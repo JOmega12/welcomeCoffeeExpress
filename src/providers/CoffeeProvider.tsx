@@ -12,9 +12,6 @@ export const CoffeeContext = createContext({});
 
 export const CoffeeProvider = ({children}: CoffeeProviderProps) => {
   const [coffee, setCoffee] = useState<CoffeeType | []>([]);
-
-  // const [favCoffee, setFavCoffee] = useState <CoffeeType | []>([]);
-
   
   const refetch = () => {
     getAllCoffee().then(setCoffee);

@@ -14,22 +14,28 @@ export const Login = () => {
 
   const [usernameInput, setUsernameInput] = useState("");
   const [password, setPassword] = useState("");
+  // const [error, setError] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      loginUser({
-        username: usernameInput,
-        password: password,
+    // !problem: the user can login without an error issue
+    Promise.resolve()
+      .then(() =>
+        loginUser({
+          username: usernameInput,
+          password: password,
+        })
+      )
+      .then(() => {
+        setIsRegister(true);
+        navigate("/lobby");
+      })
+      .catch((err) => {
+        toast.error("Login error");
+        console.log(err);
       });
-      setIsRegister(true);
-      navigate("/lobby");
-    } catch (err) {
-      toast.error("Login error");
-      console.log(err);
-    }
   };
 
   return (

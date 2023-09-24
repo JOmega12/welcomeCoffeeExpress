@@ -27,6 +27,7 @@ export const Signup = () => {
 
    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+      // !error where the user can go in without getting an error 
       try{
          //error is not confirming, try doing the error in the authprovider
          if(confirmPass !== password) {
