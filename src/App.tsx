@@ -13,7 +13,7 @@ import { CreateCoffeeForm } from "./components/Forms/CreateCoffeeForm";
 import { AboutUs } from "./components/Navbar/AboutUs";
 import { Navbar } from "./components/Navbar/Navbar";
 import { FavoriteProvider } from "./providers/FavoriteProvider";
-import { FavoriteCards } from "./components/FavoriteCards";
+import { FavoriteCards } from "./components/Favorites/FavoriteCards";
 
 function App() {
   return (
@@ -37,11 +37,15 @@ function App() {
               <Route path="login" element={<Login />}></Route>
               <Route path="signup" element={<Signup />}></Route>
               <Route path="lobby" element={<Lobby />}></Route>
-              <Route path='favorites/:favoriteId' element={<FavoriteCards />}></Route>
               <Route
                 path="coffee-card/:coffeeId"
                 element={<CoffeeCard />}
               ></Route>
+              <Route path='favorites' element={<FavoriteCards />}></Route>
+              <Route 
+              path='favorite-card/"favoriteId' 
+              element={<FavoriteCards />}></Route>
+              
               <Route path="create-coffee" element={<CreateCoffeeForm />}></Route>
             </Routes>
           </FavoriteProvider>

@@ -69,7 +69,9 @@ export const Lobby = () => {
         </div>
         <section className="mt-2 flex flex-col lg:flex-row h-screen sm:flex-col w-screen justify-center gap-20 pb-10 pt-5">
           <div className="bg-yellow-400 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-default hover:text-white  hover:bg-yellow-500 font-semibold">
-            <button>Favorites</button>
+
+            <Link to={`/favorites`}>Favorites</Link>
+            {/* <button>Favorites</button> */}
           </div>
           <div className="bg-red-400 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-default hover:bg-red-500 hover:text-white font-semibold">
             <button onClick={() => handleLogout()}>Logout</button>
