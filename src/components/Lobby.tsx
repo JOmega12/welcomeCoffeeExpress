@@ -58,7 +58,6 @@ export const Lobby = () => {
         </div>
 
         <div className="flex flex-grow flex-wrap justify-center p-4 lg:justify-evenly">
-          {/* {testCoffeeItems.map((item, index) => (  */}
           {coffee.map((item, index) => ( 
             <Link to={`/coffee-card/${index}`}
             className="w-full md:w-1/2 lg:w-1/3 p-2 bg-white rounded-lg shadow-md m-2 hover:cursor-pointer hover:bg-gray-500"

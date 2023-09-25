@@ -12,13 +12,14 @@ export const FavoriteProvider = ({children}:FavTypes) => {
    const [favCoffee, setFavCoffee] = useState([]);
 
    const refetch = () => {
-      getAllFavorites();
+      getAllFavorites().then(setFavCoffee);
    }
 
    useEffect(() => {
       refetch();
    }, []);
 
+   console.log(favCoffee, 'favCoffee');
    const toggleFavorite = ({userId, coffeeId}: {userId: number, coffeeId: number}) => {
       return toggleFavoriteAPI({userId, coffeeId}).then(() => {
          return refetch();
