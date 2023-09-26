@@ -70,21 +70,24 @@ export const FavoriteCards = () => {
         </div>
 
         <div className="flex flex-grow flex-wrap justify-center p-4 lg:justify-evenly">
-          {/* {testCoffeeItems.map((item, index) => (  */}
           {/* Look at coffee praactice for info but the problem in the typescript issue */}
           {coffee.map((item, index) => {
-            const isFavorite = favCoffee.find((favorite) => favorite.userId === user?id && favorite.coffeeId === item.id)
+            // const isFavorite = favCoffee.find((favorite) => favorite.userId === user?id && favorite.coffeeId === item.id)
             
             return(
                <Link
                to={`/favorite-card/:${index}`}
                className="w-full md:w-1/2 lg:w-1/3 p-2 bg-white rounded-lg shadow-md m-2 hover:cursor-pointer hover:bg-gray-500"
              >
-               <PreviewCard item={item} index={index} />
+               <PreviewCard item={item} index={index} onClick ={() => {
+                  toggleFavorite({
+                    coffeeId: item?.id, userId: user?.id
+                  })
+               }}/>
              </Link>
             )
-            
           })}
+          
         </div>
         <section className="mt-2 flex flex-col lg:flex-row h-screen sm:flex-col w-screen justify-center gap-20 pb-10 pt-5">
           <div className="bg-yellow-400 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-default hover:text-white  hover:bg-yellow-500 font-semibold">
