@@ -47,7 +47,6 @@ export const PreviewCard = ({ item, index }  :
           <h3 className="text-lg font-semibold">{item.title}</h3>
           <p>{item.description}</p>
         </div>
-        {/* Add the star */}
       </div>
     </>
   );

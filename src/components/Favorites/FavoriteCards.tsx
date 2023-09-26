@@ -31,11 +31,6 @@ export const FavoriteCards = () => {
   const { logoutUser, isRegister, user } = useAuth() as LobbyTypes;
 
   const navigate = useNavigate()
-  // const { favoriteId } = useParams();
-
-  // const coffeeToNumber = Number(favoriteId);
-
-  // const favoriteItems = favCoffee[coffeeToNumber];
 
   const handleLogout = () => {
    logoutUser();
@@ -71,6 +66,7 @@ export const FavoriteCards = () => {
 
         <div className="flex flex-grow flex-wrap justify-center p-4 lg:justify-evenly">
           {/* Look at coffee praactice for info but the problem in the typescript issue */}
+          {/* Why do i need to show the other unfav coffee when i can just show the fav coffee for this SPECIFIC COMPONENT */}
           {coffee.map((item, index) => {
             // const isFavorite = favCoffee.find((favorite) => favorite.userId === user?id && favorite.coffeeId === item.id)
             
@@ -79,11 +75,7 @@ export const FavoriteCards = () => {
                to={`/favorite-card/:${index}`}
                className="w-full md:w-1/2 lg:w-1/3 p-2 bg-white rounded-lg shadow-md m-2 hover:cursor-pointer hover:bg-gray-500"
              >
-               <PreviewCard item={item} index={index} onClick ={() => {
-                  toggleFavorite({
-                    coffeeId: item?.id, userId: user?.id
-                  })
-               }}/>
+               <PreviewCard item={item} index={index}/>
              </Link>
             )
           })}
