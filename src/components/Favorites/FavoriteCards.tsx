@@ -26,7 +26,6 @@ type LobbyTypes = {
 };
 
 export const FavoriteCards = () => {
-  // const { coffee } = useCoffee() as CoffeeTypes;
   const { favCoffee } = useFavorite() as CoffeeTypes;
   const { logoutUser, isRegister, user } = useAuth() as LobbyTypes;
 
@@ -67,22 +66,22 @@ export const FavoriteCards = () => {
           {/* Look at coffee praactice for info but the problem in the typescript issue */}
           {/* Why do i need to show the other unfav coffee when i can just show the fav coffee for this SPECIFIC COMPONENT */}
           {favCoffee.length > 0 ? (
-            <div>No Favorites</div>
-          ) : (
             favCoffee.map((item, index) => (
               <Link
-                to={`/favorite-card/${index}`} 
+                to={`/favorite-card/${index}`}
                 className="w-full md:w-1/2 lg:w-1/3 p-2 bg-white rounded-lg shadow-md m-2 hover:cursor-pointer hover:bg-gray-500"
                 key={index}
               >
                 <PreviewCard item={item} index={index} />
               </Link>
             ))
+          ) : (
+            <div>No Favorites</div>
           )}
         </div>
 
         <section className="mt-2 flex flex-col lg:flex-row h-screen sm:flex-col w-screen justify-center gap-20 pb-10 pt-5">
-          <div className="flex justify-between h-[70px]" >
+          <div className="flex justify-between h-[70px]">
             <div className="bg-yellow-400 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-default hover:text-white  hover:bg-yellow-500 font-semibold">
               <Link to={`/lobby`}>Lobby</Link>
             </div>

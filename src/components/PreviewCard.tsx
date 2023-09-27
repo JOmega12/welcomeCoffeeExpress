@@ -20,9 +20,6 @@ export const PreviewCard = ({ item, index }  :
   // const {favCoffee} = useFavorite() as CoffeeTypes;
 
 
-  // * okay, so I want to be able to have the star favorite in each card
-  // *how do I 
-  // 
   return (
     <>
       <div key={index} >

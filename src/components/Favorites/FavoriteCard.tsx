@@ -13,17 +13,21 @@ export const FavoriteCard = () => {
   const navigate = useNavigate();
   const { favCoffee, toggleFavorite } = useFavorite() as CoffeeTypes;
 
+
   const { favoriteId } = useParams();
 
   const coffeeToNumber = Number(favoriteId);
 
   const favCoffeeItems = favCoffee[coffeeToNumber];
 
-  //  const isFavorite = favCoffee.find((favorite: { userId: UserInformation; coffeeId: number; }) => favorite.userId === user?id && favorite.coffeeId === item.id)
-
+  //  const isFavorite = favCoffee.find((favorite: { userId: UserInformation; coffeeId: number; }) => favorite.userId === user?id && favorite.coffeeId === item.id);
+   const isFavorite = favCoffee.some(
+    (favorite) =>
+      favorite.userId === user?.id && favorite.coffeeId === favCoffeeItems?.id
+  );
   const onFavoriteClick = () => {
     toggleFavorite({
-      coffeeId: item?.id,
+      coffeeId: favCoffeeItems?.id,
       userId: user?.id,
     });
   };

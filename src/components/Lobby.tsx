@@ -56,7 +56,6 @@ export const Lobby = () => {
           </Link>
 
         </div>
-
         <div className="flex flex-grow flex-wrap justify-center p-4 lg:justify-evenly">
           {coffee.map((item, index) => ( 
             <Link to={`/coffee-card/${index}`}
