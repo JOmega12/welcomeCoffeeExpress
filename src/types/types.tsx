@@ -4,7 +4,7 @@ export type CoffeeType = {
    title: string,
    description: string,
    image: string,
-   id: number,
+   // id: number,
    // ingredients: [],
 }
 

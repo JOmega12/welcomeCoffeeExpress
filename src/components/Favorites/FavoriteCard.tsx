@@ -1,38 +1,52 @@
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom";
 import { useFavorite } from "../../providers/FavoriteProvider";
 import { CoffeeType } from "../../types/types";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 type CoffeeTypes = {
-   favCoffee: CoffeeType[];
-}
+  favCoffee: CoffeeType[];
+  toggleFavorite: () => void;
+};
 
 export const FavoriteCard = () => {
+  const navigate = useNavigate();
+  const { favCoffee, toggleFavorite } = useFavorite() as CoffeeTypes;
 
-   const navigate = useNavigate();
-   const {favCoffee, toggleFavorite} = useFavorite() as CoffeeTypes;
+  const { favoriteId } = useParams();
 
-   const {favoriteId}= useParams();
+  const coffeeToNumber = Number(favoriteId);
 
-   const coffeeToNumber = Number(favoriteId)
+  const favCoffeeItems = favCoffee[coffeeToNumber];
 
-   const favCoffeeItems = favCoffee[coffeeToNumber];
+  //  const isFavorite = favCoffee.find((favorite: { userId: UserInformation; coffeeId: number; }) => favorite.userId === user?id && favorite.coffeeId === item.id)
 
+  const onFavoriteClick = () => {
+    toggleFavorite({
+      coffeeId: item?.id,
+      userId: user?.id,
+    });
+  };
 
-   const onFavoriteClick = () => {
-      toggleFavorite({
-         coffeeId: item?.id, userId: user?.id
-       })
-   }
-
-   return(
-      <div
+  return (
+    <div
       className="flex flex-col h-screen flex-grow justify-center items-center
     pb-10 pt-20 md:p-5 sm:p-5
     "
     >
+      {isFavorite && (
+        <FontAwesomeIcon
+          icon={faStar}
+          className="text-center text-yellow-300"
+        />
+      )}
+      {!isFavorite && <FontAwesomeIcon icon={faStar} className="text-center" />}
       <div className="p-2 w-full sm:w-1/2 mt-10 sm:p-5">
-        <img src={favCoffeeItems?.image} alt="" className="w-full max-h-96 h-auto" />
+        <img
+          src={favCoffeeItems?.image}
+          alt=""
+          className="w-full max-h-96 h-auto"
+        />
       </div>
       <div className="md:text-4xl font-bold text-xl text-transform: capitalize sm:3xl">
         <h2>{favCoffeeItems?.title}</h2>
@@ -55,5 +69,5 @@ export const FavoriteCard = () => {
         </div>
       </section>
     </div>
-   )
-}
+  );
+};
