@@ -64,7 +64,6 @@ export const FavoriteCards = () => {
 
         <div className="flex flex-grow flex-wrap justify-center p-4 lg:justify-evenly">
           {/* Look at coffee praactice for info but the problem in the typescript issue */}
-          {/* Why do i need to show the other unfav coffee when i can just show the fav coffee for this SPECIFIC COMPONENT */}
           {favCoffee.length > 0 ? (
             favCoffee.map((item, index) => (
               <Link
