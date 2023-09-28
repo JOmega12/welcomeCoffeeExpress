@@ -1,17 +1,30 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useFavorite } from "../../providers/FavoriteProvider";
-import { CoffeeType } from "../../types/types";
+import { CoffeeType, UserInformation } from "../../types/types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "../../providers/AuthProvider";
 
 type CoffeeTypes = {
-  favCoffee: CoffeeType[];
+  favCoffee: [
+    {
+    id: number;
+    coffeeId: number;
+    userId: number;
+    title: string,
+    description: string,
+    image: string,
+    }
+  ];
   toggleFavorite: () => void;
+  user: UserInformation;
 };
 
 export const FavoriteCard = () => {
   const navigate = useNavigate();
   const { favCoffee, toggleFavorite } = useFavorite() as CoffeeTypes;
+
+  const {user} = useAuth() as CoffeeTypes;
 
 
   const { favoriteId } = useParams();
@@ -21,10 +34,15 @@ export const FavoriteCard = () => {
   const favCoffeeItems = favCoffee[coffeeToNumber];
 
   //  const isFavorite = favCoffee.find((favorite: { userId: UserInformation; coffeeId: number; }) => favorite.userId === user?id && favorite.coffeeId === item.id);
-   const isFavorite = favCoffee.some(
+
+  // THE PROBLEM is that i can't seem to show the specific information for the specific user's favorites and it's givign a bunch of errors especially the isFavorite variable
+  // google how to make the userId and coffeeId in isFavorite for typesafe
+   const isFavorite = favCoffee.find(
     (favorite) =>
       favorite.userId === user?.id && favorite.coffeeId === favCoffeeItems?.id
   );
+
+  // ?why is it showing only 0 argument when it actually takes in 1?
   const onFavoriteClick = () => {
     toggleFavorite({
       coffeeId: favCoffeeItems?.id,
