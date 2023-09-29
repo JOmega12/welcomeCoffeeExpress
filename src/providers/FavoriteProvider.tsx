@@ -14,7 +14,7 @@ export const FavoriteProvider = ({children}:FavTypes) => {
    const refetch = () => {
       getAllFavorites().then(setFavCoffee);
    }
-
+   
    useEffect(() => {
       refetch();
    }, []);

@@ -21,5 +21,5 @@ export type CoffeeCardProps = {
 export type UserInformation = {
    username: string,
    password: string,
-   id: number,
+   // id: number,
 }

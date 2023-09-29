@@ -42,7 +42,6 @@ export const FavoriteCard = () => {
       favorite.userId === user?.id && favorite.coffeeId === favCoffeeItems?.id
   );
 
-  // ?why is it showing only 0 argument when it actually takes in 1?
   const onFavoriteClick = () => {
     toggleFavorite({
       coffeeId: favCoffeeItems?.id,

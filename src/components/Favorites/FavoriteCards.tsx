@@ -74,6 +74,8 @@ export const FavoriteCards = () => {
                 <PreviewCard item={item} index={index} />
               </Link>
             ))
+            // fetch favorites then match coffee items and faorites 
+            // geta function that fetch all single coffee to favorite
           ) : (
             <div>No Favorites</div>
           )}

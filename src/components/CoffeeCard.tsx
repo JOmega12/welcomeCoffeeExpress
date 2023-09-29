@@ -2,25 +2,44 @@ import { useNavigate, useParams } from "react-router-dom";
 // import { testCoffeeItems } from "./testCoffeeItems";
 import { useCoffee } from "../providers/CoffeeProvider";
 import { CoffeeType } from "../types/types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { useFavorite } from "../providers/FavoriteProvider";
 
 type CoffeeTypes = {
   coffee: CoffeeType[];
   coffeeToNumber: number;
+  favCoffee: CoffeeType[];
+  toggleFavorite: () => void;
 }
 
 
 export const CoffeeCard = () => {
   const navigate = useNavigate();
   const {coffee} = useCoffee() as CoffeeTypes; 
+  const {favCoffee, toggleFavorite} = useFavorite() as CoffeeTypes
 
   const { coffeeId } = useParams();
   const coffeeToNumber = Number(coffeeId);
 
+  
+  const { favoriteId } = useParams();
+  const favCoffeeItems = favCoffee
   // const coffeeItems = testCoffeeItems[coffeeToNumber];
   const coffeeItems = coffee[coffeeToNumber];
 
+  const isFavorite = favCoffee.find(
+    (favorite) =>
+      favorite.userId === user?.id && favorite.coffeeId === favCoffeeItems?.id
+  );
 
-  
+  const onFavoriteClick = () => {
+    toggleFavorite({
+      coffeeId: favCoffeeItems?.id,
+      userId: user?.id,
+    });
+  };
+
   return (
     <div
       className="flex flex-col h-screen flex-grow justify-center items-center
@@ -28,9 +47,14 @@ export const CoffeeCard = () => {
     "
     >
       <div className="p-2 w-full sm:w-1/2 mt-10 sm:p-5">
-        <img src={coffeeItems?.image} alt="" className="w-full max-h-96 h-auto" />
+        <img src={coffeeItems?.image} alt="" className="w-full max-h-[50vh] h-auto" />
       </div>
-      <div className="md:text-4xl font-bold text-xl text-transform: capitalize sm:3xl">
+      <div className="m-3 md:m-5 sm:m-5 hover:cursor-pointer"
+        onClick={() => onFavoriteClick()}
+      >
+        <FontAwesomeIcon icon={faStar} className="text-3xl text-yellow-500 rounded-lg shadow-lg p-3"/>
+      </div>
+      <div className="md:text- 4xl font-bold text-xl text-transform: capitalize sm:3xl">
         <h2>{coffeeItems?.title}</h2>
       </div>
       <div className="md:text-3xl text-xl sm:3xl mt-3">

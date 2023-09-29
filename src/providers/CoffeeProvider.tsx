@@ -21,7 +21,7 @@ export const CoffeeProvider = ({children}: CoffeeProviderProps) => {
     refetch();
   }, []);
 
-  console.log(coffee, 'coffee');
+  // console.log(coffee, 'coffee');
   const createCoffee = async ({ title, description, image }: CoffeeType) => {
     try {
     await getNewCoffee({ title, description, image });
