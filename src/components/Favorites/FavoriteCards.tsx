@@ -5,6 +5,8 @@ import { PreviewCard } from "../PreviewCard";
 import { useAuth } from "../../providers/AuthProvider";
 // import { useCoffee } from "../../providers/CoffeeProvider";
 import { useFavorite } from "../../providers/FavoriteProvider";
+import { useCoffee } from "../../providers/CoffeeProvider";
+import { useEffect, useState } from "react";
 
 type CoffeeTypes = {
   favCoffee: CoffeeType[];
@@ -27,9 +29,38 @@ type LobbyTypes = {
 
 export const FavoriteCards = () => {
   const { favCoffee } = useFavorite() as CoffeeTypes;
+
+  const {coffee} = useCoffee() as CoffeeTypes; 
+
   const { logoutUser, isRegister, user } = useAuth() as LobbyTypes;
 
+  const [favoriteCoffeeData, setFavoriteCoffeeData] = useState<CoffeeType[]>([]);
   const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   // Match favorite data with coffee data
+  //   const matchedCoffeeData = favCoffee.map((favoriteItem) => {
+  //     const matchingCoffee = coffee.find((coffeeItem) => coffeeItem.id === favoriteItem.coffeeId);
+  //     return matchingCoffee;
+  //   });
+
+  //   setFavoriteCoffeeData(matchedCoffeeData);
+  // }, [favCoffee]);
+
+
+  //!this works but it's not customized to the userId
+  useEffect(() => {
+    const matchedData = favCoffee.map((favItem) => {
+      const matchingCoffee = coffee.find((coffeeItem) => coffeeItem.id === favItem.id);
+      return matchingCoffee;
+    });
+    const filteredData = matchedData.filter((item) => item !== undefined);
+
+    setFavoriteCoffeeData(filteredData)
+  }, [coffee, favCoffee])
+
+
+
 
   const handleLogout = () => {
     logoutUser();
@@ -64,8 +95,8 @@ export const FavoriteCards = () => {
 
         <div className="flex flex-grow flex-wrap justify-center p-4 lg:justify-evenly">
           {/* Look at coffee praactice for info but the problem in the typescript issue */}
-          {favCoffee.length > 0 ? (
-            favCoffee.map((item, index) => (
+          {favoriteCoffeeData.length > 0 ? (
+            favoriteCoffeeData.map((item, index) => (
               <Link
                 to={`/favorite-card/${index}`}
                 className="w-full md:w-1/2 lg:w-1/3 p-2 bg-white rounded-lg shadow-md m-2 hover:cursor-pointer hover:bg-gray-500"
