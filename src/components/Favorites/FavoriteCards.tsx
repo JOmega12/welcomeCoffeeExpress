@@ -41,21 +41,20 @@ export const FavoriteCards = () => {
   const [favoriteCoffeeData, setFavoriteCoffeeData] = useState<CoffeeType[]>([]);
   const navigate = useNavigate();
 
-  //!this works but it's not customized to the userId
+  //!this works but it's not mapping the other data just one datapoint, how do i map it?
   useEffect(() => {
-    const userFavorites = favCoffee.filter((favItem) => favItem.id === user.id)
+    const userFavorites = favCoffee.filter((favItem) => favItem.userId === user.id)
+    console.log(userFavorites, 'userFavorites')
 
     const matchedData = userFavorites.map((favItem) => {
       const matchingCoffee = coffee.find((coffeeItem) => coffeeItem.id === favItem.id);
       return matchingCoffee;
     });
-    // const filteredData = matchedData.filter((item) => item !== undefined);
     setFavoriteCoffeeData(matchedData)
-    // return matchedData;
-  }, [coffee, favCoffee])
+  }, [coffee, favCoffee, user.id])
 
 
-
+  console.log(favoriteCoffeeData, 'favCoffeeData')
 
   const handleLogout = () => {
     logoutUser();
@@ -66,19 +65,12 @@ export const FavoriteCards = () => {
     <>
       <div className="flex flex-col h-screen mt-10">
         {isRegister ? (
+          <>
           <div className="w-full mb-2 p-3 mt-3 text-center font-bold text-xl md:text-4xl lg:text-4xl">
             <h3>Hello! {user.username}</h3>
             <h4>Your Favorites</h4>
           </div>
-        ) : (
-          <div
-            className="text-center
-          font-bold text-xl md:text-4xl lg:text-4xl
-          "
-          >
-            Not Logged In
-          </div>
-        )}
+
         <div className="text-center hover:cursor-pointer m-10">
           <Link
             to={"/create-coffee"}
@@ -89,7 +81,7 @@ export const FavoriteCards = () => {
         </div>
 
         <div className="flex flex-grow flex-wrap justify-center p-4 lg:justify-evenly">
-          {/* Look at coffee praactice for info but the problem in the typescript issue */}
+
           {favoriteCoffeeData.length > 0 ? (
             favoriteCoffeeData.map((item, index) => (
               <Link
@@ -115,6 +107,16 @@ export const FavoriteCards = () => {
             </div>
           </div>
         </section>
+        </>
+        ) : (
+          <div
+            className="text-center
+          font-bold text-xl md:text-4xl lg:text-4xl
+          "
+          >
+            Not Logged In
+          </div>
+        )}
       </div>
     </>
   );

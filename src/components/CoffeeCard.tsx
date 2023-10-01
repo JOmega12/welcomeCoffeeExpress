@@ -28,17 +28,17 @@ export const CoffeeCard = () => {
   // const coffeeItems = testCoffeeItems[coffeeToNumber];
   const coffeeItems = coffee[coffeeToNumber];
 
-  const isFavorite = favCoffee.find(
-    (favorite) =>
-      favorite.userId === user?.id && favorite.coffeeId === favCoffeeItems?.id
-  );
+  // const isFavorite = favCoffee.find(
+  //   (favorite) =>
+  //     favorite.userId === user?.id && favorite.coffeeId === favCoffeeItems?.id
+  // );
 
-  const onFavoriteClick = () => {
-    toggleFavorite({
-      coffeeId: favCoffeeItems?.id,
-      userId: user?.id,
-    });
-  };
+  // const onFavoriteClick = () => {
+  //   toggleFavorite({
+  //     coffeeId: favCoffeeItems?.id,
+  //     userId: user?.id,
+  //   });
+  // };
 
   return (
     <div
@@ -52,12 +52,15 @@ export const CoffeeCard = () => {
       <div className="m-3 md:m-5 sm:m-5 hover:cursor-pointer"
         onClick={() => onFavoriteClick()}
       >
-        <FontAwesomeIcon icon={faStar} className="text-3xl text-yellow-500 rounded-lg shadow-lg p-3"/>
+        <FontAwesomeIcon icon={faStar}
+        // className="text-3xl text-yellow-500 rounded-lg shadow-lg p-3"
+        className="text-3xl text-black rounded-lg shadow-lg p-3"
+        />
       </div>
       <div className="md:text- 4xl font-bold text-xl text-transform: capitalize sm:3xl">
         <h2>{coffeeItems?.title}</h2>
       </div>
-      <div className="md:text-3xl text-xl sm:3xl mt-3">
+      <div className="md:text-3xl text-xl sm:2xl mt-3">
         <p>{coffeeItems?.description}</p>
       </div>
       <div className="mt-2">

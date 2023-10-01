@@ -78,6 +78,11 @@
       "userId": 5,
       "coffeeId": 5,
       "id": 5
+    },
+    {
+      "userId": 1,
+      "coffeeId": 2,
+      "id": 6
     }
   ],
   "comments": [
