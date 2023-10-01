@@ -21,7 +21,11 @@ type CoffeeTypes = {
 
 type LobbyTypes = {
   logoutUser: () => void;
-  user: UserInformation;
+  user: {
+    username: string,
+    password: string,
+    id: number,
+  };
   isRegister: boolean;
   seePreview: boolean;
   setActiveCard: (bool: boolean) => void;
@@ -37,26 +41,17 @@ export const FavoriteCards = () => {
   const [favoriteCoffeeData, setFavoriteCoffeeData] = useState<CoffeeType[]>([]);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   // Match favorite data with coffee data
-  //   const matchedCoffeeData = favCoffee.map((favoriteItem) => {
-  //     const matchingCoffee = coffee.find((coffeeItem) => coffeeItem.id === favoriteItem.coffeeId);
-  //     return matchingCoffee;
-  //   });
-
-  //   setFavoriteCoffeeData(matchedCoffeeData);
-  // }, [favCoffee]);
-
-
   //!this works but it's not customized to the userId
   useEffect(() => {
-    const matchedData = favCoffee.map((favItem) => {
+    const userFavorites = favCoffee.filter((favItem) => favItem.id === user.id)
+
+    const matchedData = userFavorites.map((favItem) => {
       const matchingCoffee = coffee.find((coffeeItem) => coffeeItem.id === favItem.id);
       return matchingCoffee;
     });
-    const filteredData = matchedData.filter((item) => item !== undefined);
-
-    setFavoriteCoffeeData(filteredData)
+    // const filteredData = matchedData.filter((item) => item !== undefined);
+    setFavoriteCoffeeData(matchedData)
+    // return matchedData;
   }, [coffee, favCoffee])
 
 
@@ -105,8 +100,6 @@ export const FavoriteCards = () => {
                 <PreviewCard item={item} index={index} />
               </Link>
             ))
-            // fetch favorites then match coffee items and faorites 
-            // geta function that fetch all single coffee to favorite
           ) : (
             <div>No Favorites</div>
           )}
