@@ -23,31 +23,31 @@ type CoffeeTypes = {
 export const FavoriteCard = () => {
   const navigate = useNavigate();
   const { favCoffee, toggleFavorite } = useFavorite() as CoffeeTypes;
-
   const {user} = useAuth() as CoffeeTypes;
-
-
   const { favoriteId } = useParams();
+
 
   const coffeeToNumber = Number(favoriteId);
 
-  const favCoffeeItems = favCoffee[coffeeToNumber];
 
-  //  const isFavorite = favCoffee.find((favorite: { userId: UserInformation; coffeeId: number; }) => favorite.userId === user?id && favorite.coffeeId === item.id);
+  // const favCoffeeItems = favCoffee[coffeeToNumber];
 
-  // THE PROBLEM is that i can't seem to show the specific information for the specific user's favorites and it's givign a bunch of errors especially the isFavorite variable
-  // google how to make the userId and coffeeId in isFavorite for typesafe
-   const isFavorite = favCoffee.find(
-    (favorite) =>
-      favorite.userId === user?.id && favorite.coffeeId === favCoffeeItems?.id
-  );
 
-  // const onFavoriteClick = () => {
-  //   toggleFavorite({
-  //     coffeeId: favCoffeeItems?.id,
-  //     userId: user?.id,
-  //   });
-  // };
+  const favCoffeeItems = favCoffee.find((favorite) => favorite.userId === user?.id && favorite.coffeeId === coffeeId)
+
+  const isFavorite = !!favCoffeeItems;
+
+  //  const isFavorite = favCoffee.find(
+  //   (favorite) =>
+  //     favorite.userId === user?.id && favorite.coffeeId === favCoffeeItems?.id
+  // );
+
+  const onFavoriteClick = () => {
+    toggleFavorite({
+      coffeeId: favCoffeeItems?.id,
+      userId: user?.id,
+    });
+  };
 
   return (
     <div
