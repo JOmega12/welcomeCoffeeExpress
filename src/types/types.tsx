@@ -1,6 +1,8 @@
 
 
 export type CoffeeType = {
+   userId: number;
+   coffeeId: number;
    id: number;
    favoriteId: number;
    title: string,
@@ -19,6 +21,7 @@ export type CoffeeCardProps = {
 }
 
 export type UserInformation = {
+   id: number;
    username: string,
    password: string,
 }

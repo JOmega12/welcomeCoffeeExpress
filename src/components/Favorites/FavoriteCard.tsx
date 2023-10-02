@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useFavorite } from "../../providers/FavoriteProvider";
-import { CoffeeType, UserInformation } from "../../types/types";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { UserInformation } from "../../types/types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../providers/AuthProvider";
 
 type CoffeeTypes = {
@@ -27,7 +27,7 @@ export const FavoriteCard = () => {
   const { favoriteId } = useParams();
 
 
-  const coffeeToNumber = Number(favoriteId);
+  const coffeeId = Number(favoriteId);
 
 
   // const favCoffeeItems = favCoffee[coffeeToNumber];
@@ -42,12 +42,18 @@ export const FavoriteCard = () => {
   //     favorite.userId === user?.id && favorite.coffeeId === favCoffeeItems?.id
   // );
 
-  const onFavoriteClick = () => {
-    toggleFavorite({
-      coffeeId: favCoffeeItems?.id,
-      userId: user?.id,
-    });
-  };
+  // const handleFavoriteClick = () => {
+    // You can add your logic to toggle favorites here
+    // Example: toggleFavorite({ userId: user?.id, coffeeId });
+  // };
+
+  // const onFavoriteClick = () => {
+  //   // toggleFavorite({
+  //   //   userId: user?.id,
+  //   //   coffeeId
+  //   // });
+  //   toggleFavorite({ userId: user?.id, coffeeId })
+  // };
 
   return (
     <div
@@ -55,13 +61,13 @@ export const FavoriteCard = () => {
     pb-10 pt-20 md:p-5 sm:p-5
     "
     >
-      {/* {isFavorite && (
+      {isFavorite && (
         <FontAwesomeIcon
           icon={faStar}
           className="text-center text-yellow-300"
         />
       )}
-      {!isFavorite && <FontAwesomeIcon icon={faStar} className="text-center" />} */}
+      {!isFavorite && <FontAwesomeIcon icon={faStar} className="text-center" />}
       
       <div className="p-2 w-full sm:w-1/2 mt-10 sm:p-5">
         <img

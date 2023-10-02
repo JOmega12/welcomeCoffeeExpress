@@ -47,7 +47,7 @@ export const FavoriteCards = () => {
     console.log(userFavorites, 'userFavorites')
 
     const matchedData = userFavorites.map((favItem) => {
-      const matchingCoffee = coffee.find((coffeeItem) => coffeeItem.id === favItem.id);
+      const matchingCoffee = coffee.find((coffeeItem) => coffeeItem.id === favItem.coffeeId);
       return matchingCoffee;
     });
     setFavoriteCoffeeData(matchedData)
@@ -89,7 +89,7 @@ export const FavoriteCards = () => {
                 className="w-full md:w-1/2 lg:w-1/3 p-2 bg-white rounded-lg shadow-md m-2 hover:cursor-pointer hover:bg-gray-500"
                 key={index}
               >
-                <PreviewCard item={item} index={index} />
+                <PreviewCard item={item} index={index} key={index} />
               </Link>
             ))
           ) : (
