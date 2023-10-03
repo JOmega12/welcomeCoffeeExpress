@@ -6,19 +6,12 @@ import { CoffeeType } from "../types/types";
 
 type CoffeeTypes = {
   item: CoffeeType;
-  // favCoffee: CoffeeType;
-  // user: UserInformation;
-  // onClick: () => void;
   index: number;
 }
 
 export const PreviewCard = ({ item, index }  : 
     CoffeeTypes
   ) => {
-
-  // const { user } = useAuth() as CoffeeTypes;
-  // const {favCoffee} = useFavorite() as CoffeeTypes;
-
 
   return (
     <>

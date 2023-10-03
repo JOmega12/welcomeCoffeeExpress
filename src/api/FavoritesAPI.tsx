@@ -7,7 +7,6 @@ export type FavoriteIDs= {
    // id: number,
 }
 
-
 export const getAllFavorites = () => {
    return fetch(API_CONFIG.baseUrl + "/favorite")
       .then((res) => {

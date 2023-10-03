@@ -83,6 +83,11 @@
       "userId": 1,
       "coffeeId": 2,
       "id": 6
+    },
+    {
+      "userId": 1,
+      "coffeeId": 4,
+      "id": 7
     }
   ],
   "comments": [

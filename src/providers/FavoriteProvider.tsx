@@ -10,6 +10,7 @@ const FavoriteContext = createContext({});
 export const FavoriteProvider = ({children}:FavTypes) => {
 
    const [favCoffee, setFavCoffee] = useState([]);
+   const [isFavStar, setIsFavStar] = useState(null);
 
    const refetch = () => {
       getAllFavorites().then(setFavCoffee);
@@ -20,10 +21,9 @@ export const FavoriteProvider = ({children}:FavTypes) => {
    }, []);
 
    console.log(favCoffee, 'favCoffee');
-   const toggleFavorite = ({userId, coffeeId}: {userId: number, coffeeId: number}) => {
-      return toggleFavoriteAPI({userId, coffeeId}).then(() => {
-         return refetch();
-      })
+   const toggleFavorite = async ({userId, coffeeId}: {userId: number, coffeeId: number}) => {
+      await toggleFavoriteAPI({ userId, coffeeId });
+      return refetch();
    }
 
    return(
@@ -32,6 +32,8 @@ export const FavoriteProvider = ({children}:FavTypes) => {
             favCoffee,
             setFavCoffee,
             toggleFavorite,
+            isFavStar,
+            setIsFavStar,
          }}
       >
          {children}
