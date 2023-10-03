@@ -10,7 +10,6 @@ const FavoriteContext = createContext({});
 export const FavoriteProvider = ({children}:FavTypes) => {
 
    const [favCoffee, setFavCoffee] = useState([]);
-   const [isFavStar, setIsFavStar] = useState(null);
 
    const refetch = () => {
       getAllFavorites().then(setFavCoffee);
@@ -32,8 +31,6 @@ export const FavoriteProvider = ({children}:FavTypes) => {
             favCoffee,
             setFavCoffee,
             toggleFavorite,
-            isFavStar,
-            setIsFavStar,
          }}
       >
          {children}

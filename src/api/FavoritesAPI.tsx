@@ -32,7 +32,7 @@ export const createFavorite = ({userId, coffeeId}: FavoriteIDs) => {
    })
 }
 
-const deleteFavorite = (id: FavoriteIDs) => {
+const deleteFavorite = async(id: number) => {
    return fetch(API_CONFIG.baseUrl + "/favorite/" + id, {
       method: "DELETE",
    }).then((res) => {
@@ -42,6 +42,7 @@ const deleteFavorite = (id: FavoriteIDs) => {
       return res;
    })
 }
+
 
 export const toggleFavoriteAPI = async({userId, coffeeId}: FavoriteIDs) => {
    const allFavorites = await getAllFavorites();

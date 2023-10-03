@@ -88,6 +88,46 @@
       "userId": 1,
       "coffeeId": 4,
       "id": 7
+    },
+    {
+      "userId": 1,
+      "coffeeId": 2,
+      "id": 8
+    },
+    {
+      "userId": 1,
+      "coffeeId": 2,
+      "id": 9
+    },
+    {
+      "userId": 1,
+      "coffeeId": 2,
+      "id": 10
+    },
+    {
+      "userId": 1,
+      "coffeeId": 2,
+      "id": 11
+    },
+    {
+      "userId": 1,
+      "coffeeId": 2,
+      "id": 12
+    },
+    {
+      "userId": 1,
+      "coffeeId": 2,
+      "id": 13
+    },
+    {
+      "userId": 1,
+      "coffeeId": 2,
+      "id": 14
+    },
+    {
+      "userId": 1,
+      "coffeeId": 2,
+      "id": 15
     }
   ],
   "comments": [

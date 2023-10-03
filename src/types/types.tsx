@@ -1,10 +1,10 @@
 
 
 export type CoffeeType = {
-   userId: number;
-   coffeeId: number;
-   id: number;
-   favoriteId: number;
+   // userId: number;
+   // coffeeId: number;
+   // id: number;
+   // favoriteId: number;
    title: string,
    description: string,
    image: string,
