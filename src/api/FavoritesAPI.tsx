@@ -47,7 +47,7 @@ const deleteFavorite = async(id: number) => {
 export const toggleFavoriteAPI = async({userId, coffeeId}: FavoriteIDs) => {
    const allFavorites = await getAllFavorites();
    const matchingFavorite = allFavorites.find((favorite: FavoriteIDs) => {
-      favorite.userId === userId && favorite.coffeeId === coffeeId
+      return favorite.userId === userId && favorite.coffeeId === coffeeId
    });
 
    if(!matchingFavorite) {

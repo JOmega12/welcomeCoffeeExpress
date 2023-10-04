@@ -41,6 +41,10 @@ export const FavoriteCards = () => {
   const [favoriteCoffeeData, setFavoriteCoffeeData] = useState<CoffeeType[]>([]);
   const navigate = useNavigate();
 
+
+  // try using the favId and and coffeeId from the coffeeCard 
+
+
   //!this works but it's not mapping the other data just one datapoint, how do i map it?
   useEffect(() => {
     const userFavorites = favCoffee.filter((favItem) => favItem.userId === user.id)

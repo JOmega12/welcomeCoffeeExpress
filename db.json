@@ -65,69 +65,9 @@
       "id": 1
     },
     {
-      "userId": 2,
-      "coffeeId": 1,
+      "userId": 1,
+      "coffeeId": 2,
       "id": 2
-    },
-    {
-      "userId": 2,
-      "coffeeId": 2,
-      "id": 4
-    },
-    {
-      "userId": 5,
-      "coffeeId": 5,
-      "id": 5
-    },
-    {
-      "userId": 1,
-      "coffeeId": 2,
-      "id": 6
-    },
-    {
-      "userId": 1,
-      "coffeeId": 4,
-      "id": 7
-    },
-    {
-      "userId": 1,
-      "coffeeId": 2,
-      "id": 8
-    },
-    {
-      "userId": 1,
-      "coffeeId": 2,
-      "id": 9
-    },
-    {
-      "userId": 1,
-      "coffeeId": 2,
-      "id": 10
-    },
-    {
-      "userId": 1,
-      "coffeeId": 2,
-      "id": 11
-    },
-    {
-      "userId": 1,
-      "coffeeId": 2,
-      "id": 12
-    },
-    {
-      "userId": 1,
-      "coffeeId": 2,
-      "id": 13
-    },
-    {
-      "userId": 1,
-      "coffeeId": 2,
-      "id": 14
-    },
-    {
-      "userId": 1,
-      "coffeeId": 2,
-      "id": 15
     }
   ],
   "comments": [

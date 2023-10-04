@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useFavorite } from "../providers/FavoriteProvider";
 import { useAuth } from "../providers/AuthProvider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type CoffeeTypes = {
   coffee: [{
@@ -29,6 +29,7 @@ type CoffeeTypes = {
    image: string,}
   ];
   toggleFavorite: (favorite: { coffeeId: number; userId: number }) => void;
+  
 }
 
 type userType = {
@@ -48,13 +49,27 @@ export const CoffeeCard = () => {
 
   const isFavorite = favCoffee.find(
     (favorite) =>{
-    favorite.userId === user?.id && favorite.coffeeId === favorite?.id
+    return favorite.userId === user?.id && favorite.coffeeId === coffeeItems?.id
     }
   );
 
   const [isFavorited, setIsFavorited] = useState(!!isFavorite)
 
 
+  useEffect(() => {
+    const isFavorite = favCoffee.find(
+      (favorite) =>{
+      return favorite.userId === user?.id && favorite.coffeeId === coffeeItems?.id
+      }
+    );
+    console.log(isFavorite, 'useeffect')
+
+    setIsFavorited(!!isFavorite);
+
+  }, [])
+
+
+  
   const onFavoriteClick = async() => {
     toggleFavorite({
       coffeeId: coffeeItems?.id,
