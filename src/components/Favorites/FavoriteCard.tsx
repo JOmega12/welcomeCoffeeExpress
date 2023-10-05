@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../providers/AuthProvider";
 import { useEffect, useState } from "react";
+import { useCoffee } from "../../providers/CoffeeProvider";
 
 type CoffeeTypes = {
   coffee: [{
@@ -39,18 +40,22 @@ export const FavoriteCard = () => {
 
   const { favCoffee, toggleFavorite } = useFavorite() as CoffeeTypes;
 
+  const {coffee} = useCoffee() as CoffeeTypes;
+
   const {user} = useAuth() as userType;
 
   const { favoriteId } = useParams();
-  
   const favCoffeeItem = Number(favoriteId);
-
   const favCoffeeItems = favCoffee[favCoffeeItem];
 
+  //this is to check if the item per card number would actually show and show the information per card
+  console.log(favCoffeeItems, 'favCoffeeItems');
 
-  console.log(favCoffeeItems, 'favCoffeeItems')
   const isFavorite = favCoffee.find((favorite) => {
-    return favorite.userId === user?.id && favorite.favoriteId === favCoffeeItems.id
+    // ?check how to mesaure the coffeeId and the favItem is a favorite
+    // !the coffeeId number and favorite number will not be the same to show the card. So would it be better to show the favorite number? How do I make this better for the number alignment? 
+    console.log(favorite.coffeeId, 'coffeeId');
+    // return favorite.userId === user?.id && favorite.coffeeId === favCoffeeItems.id
   });
 
   const [isFavorited, setIsFavorited] = useState(!!isFavorite);
@@ -69,14 +74,13 @@ export const FavoriteCard = () => {
   // );
 
 
-  const onFavoriteClick = async() => {
-    toggleFavorite({
-      // coffeeId: 
-      // userId: user?.id,
-    })
+  // const onFavoriteClick = async() => {
+  //   toggleFavorite({
+  //     // coffeeId: 
+  //     // userId: user?.id,
+  //   })
 
-
-  };
+  // };
 
   return (
     <div
@@ -87,6 +91,7 @@ export const FavoriteCard = () => {
       <div className="m-3 md:m-5 sm:m-5 hover:cursor-pointer"
         // onClick={() => onFavoriteClick()}
       >
+        still working on the backend code
         <FontAwesomeIcon icon={faStar}
         className={`text-3xl ${isFavorited ? ' text-yellow-500' : 'text-black'}
         rounded-lg shadow-lg p-3`}
