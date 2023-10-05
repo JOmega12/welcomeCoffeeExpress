@@ -36,7 +36,6 @@ type userType = {
   user: UserInformation
 }
 
-
 export const CoffeeCard = () => {
   const navigate = useNavigate();
   const {coffee} = useCoffee() as CoffeeTypes; 

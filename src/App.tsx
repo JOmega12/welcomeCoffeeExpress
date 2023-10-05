@@ -14,6 +14,7 @@ import { AboutUs } from "./components/Navbar/AboutUs";
 import { Navbar } from "./components/Navbar/Navbar";
 import { FavoriteProvider } from "./providers/FavoriteProvider";
 import { FavoriteCards } from "./components/Favorites/FavoriteCards";
+import { FavoriteCard } from "./components/Favorites/FavoriteCard";
 
 function App() {
   return (
@@ -43,8 +44,8 @@ function App() {
               ></Route>
               <Route path='favorites' element={<FavoriteCards />}></Route>
               <Route 
-              path='favorite-card/:favoriteId' 
-              element={<FavoriteCards />}></Route>
+              path="favorite-card/:favoriteId "
+              element={<FavoriteCard />}></Route>
               
               <Route path="create-coffee" element={<CreateCoffeeForm />}></Route>
             </Routes>

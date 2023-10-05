@@ -54,7 +54,6 @@ export const FavoriteCards = () => {
 
   const { logoutUser, isRegister, user } = useAuth() as LobbyTypes;
 
-  // const [favoriteCoffeeData, setFavoriteCoffeeData] = useState<CoffeeType[]>([]);
   const [favoriteCoffeeData, setFavoriteCoffeeData] = useState<(CoffeeType | undefined)[]>([]);
 
 
@@ -62,7 +61,6 @@ export const FavoriteCards = () => {
 
   // try using the favId and and coffeeId from the coffeeCard ==> can be used in favoritecard
 
-  //!this works but it's not mapping the other data just one datapoint, how do i map it?
   useEffect(() => {
     //this checks if the userId === current user.id
     const userFavorites = favCoffee.filter((favItem) => {

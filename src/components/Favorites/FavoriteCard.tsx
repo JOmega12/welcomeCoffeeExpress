@@ -4,56 +4,79 @@ import { UserInformation } from "../../types/types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../providers/AuthProvider";
+import { useEffect, useState } from "react";
 
 type CoffeeTypes = {
+  coffee: [{
+    userId: number,
+    coffeeId: number,
+    id: number,
+    favoriteId: number,
+    title: string,
+    description: string,
+    image: string,}
+  ];
   favCoffee: [
     {
     id: number;
     coffeeId: number;
+    favoriteId: number;
     userId: number;
     title: string,
     description: string,
     image: string,
     }
   ];
-  toggleFavorite: () => void;
-  user: UserInformation;
+  toggleFavorite: (favorite: { coffeeId: number; userId: number }) => void;
 };
+
+type userType = {
+  user: UserInformation
+}
 
 export const FavoriteCard = () => {
   const navigate = useNavigate();
+
   const { favCoffee, toggleFavorite } = useFavorite() as CoffeeTypes;
-  const {user} = useAuth() as CoffeeTypes;
+
+  const {user} = useAuth() as userType;
+
   const { favoriteId } = useParams();
+  
+  const favCoffeeItem = Number(favoriteId);
+
+  const favCoffeeItems = favCoffee[favCoffeeItem];
 
 
-  const coffeeId = Number(favoriteId);
+  console.log(favCoffeeItems, 'favCoffeeItems')
+  const isFavorite = favCoffee.find((favorite) => {
+    return favorite.userId === user?.id && favorite.favoriteId === favCoffeeItems.id
+  });
 
+  const [isFavorited, setIsFavorited] = useState(!!isFavorite);
 
-  // const favCoffeeItems = favCoffee[coffeeToNumber];
+  useEffect(() => {
+    const isFavorite = favCoffee.find((favorite) => {
+      return favorite.userId === user?.id && favorite.favoriteId === favCoffeeItems.id
+    });
+    // console.log(isFavorite, 'isFavorite');
 
-
-  const favCoffeeItems = favCoffee.find((favorite) => favorite.userId === user?.id && favorite.coffeeId === coffeeId)
-
-  const isFavorite = !!favCoffeeItems;
-
+    setIsFavorited(!!isFavorite);
+  })
   //  const isFavorite = favCoffee.find(
   //   (favorite) =>
   //     favorite.userId === user?.id && favorite.coffeeId === favCoffeeItems?.id
   // );
 
-  // const handleFavoriteClick = () => {
-    // You can add your logic to toggle favorites here
-    // Example: toggleFavorite({ userId: user?.id, coffeeId });
-  // };
 
-  // const onFavoriteClick = () => {
-  //   // toggleFavorite({
-  //   //   userId: user?.id,
-  //   //   coffeeId
-  //   // });
-  //   toggleFavorite({ userId: user?.id, coffeeId })
-  // };
+  const onFavoriteClick = async() => {
+    toggleFavorite({
+      // coffeeId: 
+      // userId: user?.id,
+    })
+
+
+  };
 
   return (
     <div
@@ -61,13 +84,14 @@ export const FavoriteCard = () => {
     pb-10 pt-20 md:p-5 sm:p-5
     "
     >
-      {isFavorite && (
-        <FontAwesomeIcon
-          icon={faStar}
-          className="text-center text-yellow-300"
+      <div className="m-3 md:m-5 sm:m-5 hover:cursor-pointer"
+        // onClick={() => onFavoriteClick()}
+      >
+        <FontAwesomeIcon icon={faStar}
+        className={`text-3xl ${isFavorited ? ' text-yellow-500' : 'text-black'}
+        rounded-lg shadow-lg p-3`}
         />
-      )}
-      {!isFavorite && <FontAwesomeIcon icon={faStar} className="text-center" />}
+      </div>
       
       <div className="p-2 w-full sm:w-1/2 mt-10 sm:p-5">
         <img

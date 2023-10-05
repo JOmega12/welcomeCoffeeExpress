@@ -66,13 +66,13 @@
     },
     {
       "userId": 1,
-      "coffeeId": 2,
-      "id": 2
+      "coffeeId": 5,
+      "id": 3
     },
     {
       "userId": 1,
-      "coffeeId": 3,
-      "id": 3
+      "coffeeId": 4,
+      "id": 4
     }
   ],
   "comments": [
