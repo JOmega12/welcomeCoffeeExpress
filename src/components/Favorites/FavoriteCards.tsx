@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import { useFavorite } from "../../providers/FavoriteProvider";
 import { CoffeeType, UserInformation } from "../../types/types";
 import { PreviewCard } from "../PreviewCard";
@@ -54,28 +54,23 @@ export const FavoriteCards = () => {
 
   const { logoutUser, isRegister, user } = useAuth() as LobbyTypes;
 
-  const [favoriteCoffeeData, setFavoriteCoffeeData] = useState<CoffeeType[]>([]);
+  // const [favoriteCoffeeData, setFavoriteCoffeeData] = useState<CoffeeType[]>([]);
+  const [favoriteCoffeeData, setFavoriteCoffeeData] = useState<(CoffeeType | undefined)[]>([]);
+
+
   const navigate = useNavigate();
 
-  const { coffeeId, favoriteId } = useParams()
-
-  const coffeeToNumber = Number(coffeeId);
-  const favToNumber = Number(favoriteId);
-
-  const coffeeItems = coffee[coffeeToNumber];
-  const favoriteItems = favCoffee[favToNumber]
-  // try using the favId and and coffeeId from the coffeeCard 
-  console.log(coffeeItems, 'coffeeItems');
-  console.log(favoriteItems, 'favoriteItems');
+  // try using the favId and and coffeeId from the coffeeCard ==> can be used in favoritecard
 
   //!this works but it's not mapping the other data just one datapoint, how do i map it?
   useEffect(() => {
-    const userFavorites = favCoffee.filter((favItem) => favItem.userId === user.id)
-    console.log(userFavorites, 'userFavorites')
+    //this checks if the userId === current user.id
+    const userFavorites = favCoffee.filter((favItem) => {
+      return favItem.userId === user.id
+    })
 
     const matchedData = userFavorites.map((favItem) => {
-      const matchingCoffee = coffee.find((coffeeItem) => coffeeItem.id === favItem.coffeeId);
-      return matchingCoffee;
+      return coffee.find((coffeeItem) => coffeeItem.id === favItem.coffeeId);
     });
     setFavoriteCoffeeData(matchedData)
   }, [coffee, favCoffee, user.id])
@@ -111,13 +106,15 @@ export const FavoriteCards = () => {
 
           {favoriteCoffeeData.length > 0 ? (
             favoriteCoffeeData.map((item, index) => (
-              <Link
-                to={`/favorite-card/${index}`}
-                className="w-full md:w-1/2 lg:w-1/3 p-2 bg-white rounded-lg shadow-md m-2 hover:cursor-pointer hover:bg-gray-500"
-                key={index}
-              >
-                <PreviewCard item={item} index={index} key={index} />
-              </Link>
+              item? (
+                <Link
+                  to={`/favorite-card/${index}`}
+                  className="w-full md:w-1/2 lg:w-1/3 p-2 bg-white rounded-lg shadow-md m-2 hover:cursor-pointer hover:bg-gray-500"
+                  key={index}
+                >
+                  <PreviewCard item={item} index={index} key={index} />
+                </Link>
+                ) : null
             ))
           ) : (
             <div>No Favorites</div>
