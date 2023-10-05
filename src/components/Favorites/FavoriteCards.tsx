@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 // import { useFavorite } from "../../providers/FavoriteProvider";
 import { CoffeeType, UserInformation } from "../../types/types";
 import { PreviewCard } from "../PreviewCard";
@@ -9,10 +9,26 @@ import { useCoffee } from "../../providers/CoffeeProvider";
 import { useEffect, useState } from "react";
 
 type CoffeeTypes = {
-  favCoffee: CoffeeType[];
-  coffee: CoffeeType[];
+  favCoffee: [{
+    userId: number,
+    coffeeId: number,
+    id: number,
+    favoriteId: number,
+    title: string,
+    description: string,
+    image: string,}
+  ];
+  coffee: [{
+    userId: number,
+    coffeeId: number,
+    id: number,
+    favoriteId: number,
+    title: string,
+    description: string,
+    image: string,}
+  ];
   coffeeToNumber: number;
-  toggleFavorite: () => void;
+  toggleFavorite: (favorite: { coffeeId: number; userId: number }) => void;
 
   userId: UserInformation;
   coffeeId: number;
@@ -41,9 +57,16 @@ export const FavoriteCards = () => {
   const [favoriteCoffeeData, setFavoriteCoffeeData] = useState<CoffeeType[]>([]);
   const navigate = useNavigate();
 
+  const { coffeeId, favoriteId } = useParams()
 
+  const coffeeToNumber = Number(coffeeId);
+  const favToNumber = Number(favoriteId);
+
+  const coffeeItems = coffee[coffeeToNumber];
+  const favoriteItems = favCoffee[favToNumber]
   // try using the favId and and coffeeId from the coffeeCard 
-
+  console.log(coffeeItems, 'coffeeItems');
+  console.log(favoriteItems, 'favoriteItems');
 
   //!this works but it's not mapping the other data just one datapoint, how do i map it?
   useEffect(() => {

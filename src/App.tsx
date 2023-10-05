@@ -43,7 +43,7 @@ function App() {
               ></Route>
               <Route path='favorites' element={<FavoriteCards />}></Route>
               <Route 
-              path='favorite-card/favoriteId' 
+              path='favorite-card/:favoriteId' 
               element={<FavoriteCards />}></Route>
               
               <Route path="create-coffee" element={<CreateCoffeeForm />}></Route>

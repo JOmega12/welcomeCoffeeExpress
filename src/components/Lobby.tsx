@@ -72,9 +72,9 @@ export const Lobby = () => {
         <section className="mt-2 flex flex-col lg:flex-row h-screen sm:flex-col w-screen justify-center gap-20 pb-10 pt-5">
           <div className="bg-yellow-400 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-default hover:text-white  hover:bg-yellow-500 font-semibold">
 
-            {/* <Link to={`/favorites`}>Favorites</Link> */}
-            {/* temporarilydisabled */}
-            <Link to={`/`}>Favorites</Link>
+            <Link to={`/favorites`}>Favorites</Link>
+            {/* temporarilydisabled
+            {/* <Link to={`/`}>Favorites</Link> */}
 
             {/* <button>Favorites</button> */}
           </div>
