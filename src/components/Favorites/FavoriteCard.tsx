@@ -8,79 +8,76 @@ import { useEffect, useState } from "react";
 import { useCoffee } from "../../providers/CoffeeProvider";
 
 type CoffeeTypes = {
-  coffee: [{
-    userId: number,
-    coffeeId: number,
-    id: number,
-    favoriteId: number,
-    title: string,
-    description: string,
-    image: string,}
+  coffee: [
+    {
+      userId: number;
+      coffeeId: number;
+      id: number;
+      favoriteId: number;
+      title: string;
+      description: string;
+      image: string;
+    }
   ];
   favCoffee: [
     {
-    id: number;
-    coffeeId: number;
-    favoriteId: number;
-    userId: number;
-    title: string,
-    description: string,
-    image: string,
+      id: number;
+      coffeeId: number;
+      favoriteId: number;
+      userId: number;
+      title: string;
+      description: string;
+      image: string;
     }
   ];
   toggleFavorite: (favorite: { coffeeId: number; userId: number }) => void;
 };
 
 type userType = {
-  user: UserInformation
-}
+  user: UserInformation;
+};
 
 export const FavoriteCard = () => {
   const navigate = useNavigate();
 
   const { favCoffee, toggleFavorite } = useFavorite() as CoffeeTypes;
 
-  const {coffee} = useCoffee() as CoffeeTypes;
-
-  const {user} = useAuth() as userType;
-
+  const { coffee } = useCoffee() as CoffeeTypes;
+  const { user } = useAuth() as userType;
   const { favoriteId } = useParams();
   const favCoffeeItem = Number(favoriteId);
   const favCoffeeItems = favCoffee[favCoffeeItem];
 
   //this is to check if the item per card number would actually show and show the information per card
-  console.log(favCoffeeItems, 'favCoffeeItems');
+  const coffeeIdItem = favCoffeeItems.coffeeId;
+  const coffeeItem = coffee.find((item) => {
+    return item.id === coffeeIdItem;
+  });
 
   const isFavorite = favCoffee.find((favorite) => {
     // ?check how to mesaure the coffeeId and the favItem is a favorite
-    // !the coffeeId number and favorite number will not be the same to show the card. So would it be better to show the favorite number? How do I make this better for the number alignment? 
-    console.log(favorite.coffeeId, 'coffeeId');
-    // return favorite.userId === user?.id && favorite.coffeeId === favCoffeeItems.id
+    // !the coffeeId number and favorite number will not be the same to show the card. So would it be better to show the favorite number? How do I make this better for the number alignment?
+    return favorite.userId === user?.id && favorite.coffeeId === coffeeIdItem
   });
 
   const [isFavorited, setIsFavorited] = useState(!!isFavorite);
 
   useEffect(() => {
     const isFavorite = favCoffee.find((favorite) => {
-      return favorite.userId === user?.id && favorite.favoriteId === favCoffeeItems.id
+      return favorite.userId === user?.id && favorite.coffeeId === coffeeIdItem
     });
-    // console.log(isFavorite, 'isFavorite');
+    console.log(isFavorite, "isFavorite");
 
     setIsFavorited(!!isFavorite);
-  })
-  //  const isFavorite = favCoffee.find(
-  //   (favorite) =>
-  //     favorite.userId === user?.id && favorite.coffeeId === favCoffeeItems?.id
-  // );
+  }, [coffeeIdItem, favCoffee, user?.id]);
 
+  const onFavoriteClick = async() => {
+    toggleFavorite({
+      coffeeId: coffeeIdItem,
+      userId: user?.id,
+    })
 
-  // const onFavoriteClick = async() => {
-  //   toggleFavorite({
-  //     // coffeeId: 
-  //     // userId: user?.id,
-  //   })
-
-  // };
+  };
 
   return (
     <div
@@ -88,28 +85,30 @@ export const FavoriteCard = () => {
     pb-10 pt-20 md:p-5 sm:p-5
     "
     >
-      <div className="m-3 md:m-5 sm:m-5 hover:cursor-pointer"
-        // onClick={() => onFavoriteClick()}
-      >
-        still working on the backend code
-        <FontAwesomeIcon icon={faStar}
-        className={`text-3xl ${isFavorited ? ' text-yellow-500' : 'text-black'}
-        rounded-lg shadow-lg p-3`}
-        />
-      </div>
-      
       <div className="p-2 w-full sm:w-1/2 mt-10 sm:p-5">
         <img
-          src={favCoffeeItems?.image}
+          src={coffeeItem?.image}
           alt=""
           className="w-full max-h-96 h-auto"
         />
       </div>
+      <div
+        className="m-3 md:m-5 sm:m-5 hover:cursor-pointer"
+        onClick={() => onFavoriteClick()}
+      >
+        <FontAwesomeIcon
+          icon={faStar}
+          className={`text-3xl ${
+            isFavorited ? " text-yellow-500" : "text-black"
+          }
+        rounded-lg shadow-lg p-3`}
+        />
+      </div>
       <div className="md:text-4xl font-bold text-xl text-transform: capitalize sm:3xl">
-        <h2>{favCoffeeItems?.title}</h2>
+        <h2>{coffeeItem?.title}</h2>
       </div>
       <div className="md:text-3xl text-xl sm:3xl mt-3">
-        <p>{favCoffeeItems?.description}</p>
+        <p>{coffeeItem?.description}</p>
       </div>
       <div className="mt-2">
         <ol>
