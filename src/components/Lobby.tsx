@@ -8,7 +8,6 @@ import { useCoffee } from "../providers/CoffeeProvider";
 
 // !need to create another point in the coffee endpoint for image url for a select amount of coffee
 //! OR i could keep it as a string so that the person uploading it can have their customized image
-//!create a favorite container?
 // !add a star to be used as a favorite look at previous iteration for code
 // !put a reseed of information
 type LobbyTypes = {
@@ -20,7 +19,15 @@ type LobbyTypes = {
 };
 
 type CoffeeTypes = {
-  coffee : CoffeeType[];
+  coffee : [{
+    userId: number,
+    coffeeId: number,
+    id: number,
+    favoriteId: number,
+    title: string,
+    description: string,
+    image: string,}
+  ];
   favCoffee : CoffeeType[];
 }
 
@@ -35,7 +42,8 @@ export const Lobby = () => {
 
   // !create a disable button for create coffee until you sign in
 
-
+// !current problem is that the id numbers are not aligned!
+console.log(coffee, 'coffee')
   const handleLogout = () => {
     logoutUser();
     navigate('/');
@@ -61,7 +69,7 @@ export const Lobby = () => {
         </div>
         <div className="flex flex-grow flex-wrap justify-center p-4 lg:justify-evenly">
           {coffee.map((item, index) => (
-            <Link to={`/coffee-card/${index}`}
+            <Link to={`/coffee-card/${item.id}`}
             className="w-full md:w-1/2 lg:w-1/3 p-2 bg-white rounded-lg shadow-md m-2 hover:cursor-pointer hover:bg-gray-500"
             >
               <PreviewCard item={item} index={index}/>
@@ -73,7 +81,7 @@ export const Lobby = () => {
           <div className="bg-yellow-400 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-default hover:text-white  hover:bg-yellow-500 font-semibold">
 
             <Link to={`/favorites`}>Favorites</Link>
-            {/* temporarilydisabled
+            {/* temporarilydisabled */}
             {/* <Link to={`/`}>Favorites</Link> */}
 
             {/* <button>Favorites</button> */}

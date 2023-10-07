@@ -55,8 +55,7 @@ export const FavoriteCard = () => {
   });
 
   const isFavorite = favCoffee.find((favorite) => {
-    // ?check how to mesaure the coffeeId and the favItem is a favorite
-    // !the coffeeId number and favorite number will not be the same to show the card. So would it be better to show the favorite number? How do I make this better for the number alignment?
+
     return favorite.userId === user?.id && favorite.coffeeId === coffeeIdItem
   });
 

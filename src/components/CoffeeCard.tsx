@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from "react-router-dom";
-// import { testCoffeeItems } from "./testCoffeeItems";
 import { useCoffee } from "../providers/CoffeeProvider";
 import { UserInformation } from "../types/types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -44,11 +43,14 @@ export const CoffeeCard = () => {
   const { coffeeId } = useParams();
   const coffeeToNumber = Number(coffeeId);
 
-  const coffeeItems = coffee[coffeeToNumber];
+
+  const coffeeItem = coffee.find((cafe) => {
+    return cafe.id === coffeeToNumber;
+  })
 
   const isFavorite = favCoffee.find(
     (favorite) =>{
-    return favorite.userId === user?.id && favorite.coffeeId === coffeeItems?.id
+    return favorite.userId === user?.id && favorite.coffeeId === coffeeItem?.id
     }
   );
 
@@ -58,11 +60,9 @@ export const CoffeeCard = () => {
   useEffect(() => {
     const isFavorite = favCoffee.find(
       (favorite) =>{
-      return favorite.userId === user?.id && favorite.coffeeId === coffeeItems?.id
+      return favorite.userId === user?.id && favorite.coffeeId === coffeeItem?.id
       }
     );
-    console.log(isFavorite, 'useeffect')
-
     setIsFavorited(!!isFavorite);
 
   }, [])
@@ -70,10 +70,12 @@ export const CoffeeCard = () => {
 
   
   const onFavoriteClick = async() => {
-    toggleFavorite({
-      coffeeId: coffeeItems?.id,
-      userId: user?.id,
-    });
+    if(coffeeItem) {
+      toggleFavorite({
+        coffeeId: coffeeItem?.id,
+        userId: user?.id,
+      });
+    }
 
     setIsFavorited(!isFavorited)
   };
@@ -85,7 +87,7 @@ export const CoffeeCard = () => {
     "
     >
       <div className="p-2 w-full sm:w-1/2 mt-10 sm:p-5">
-        <img src={coffeeItems?.image} alt="" className="w-full max-h-[50vh] h-auto" />
+        <img src={coffeeItem?.image} alt="" className="w-full max-h-[50vh] h-auto" />
       </div>
       <div className="m-3 md:m-5 sm:m-5 hover:cursor-pointer"
         onClick={() => onFavoriteClick()}
@@ -96,10 +98,10 @@ export const CoffeeCard = () => {
         />
       </div>
       <div className="md:text- 4xl font-bold text-xl text-transform: capitalize sm:3xl">
-        <h2>{coffeeItems?.title}</h2>
+        <h2>{coffeeItem?.title}</h2>
       </div>
       <div className="md:text-3xl text-xl sm:2xl mt-3">
-        <p>{coffeeItems?.description}</p>
+        <p>{coffeeItem?.description}</p>
       </div>
       <div className="mt-2">
         <ol>

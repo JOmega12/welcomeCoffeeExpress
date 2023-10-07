@@ -1,9 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-// import { useFavorite } from "../../providers/FavoriteProvider";
 import { CoffeeType, UserInformation } from "../../types/types";
 import { PreviewCard } from "../PreviewCard";
 import { useAuth } from "../../providers/AuthProvider";
-// import { useCoffee } from "../../providers/CoffeeProvider";
 import { useFavorite } from "../../providers/FavoriteProvider";
 import { useCoffee } from "../../providers/CoffeeProvider";
 import { useEffect, useState } from "react";
@@ -56,22 +54,20 @@ export const FavoriteCards = () => {
 
   const [favoriteCoffeeData, setFavoriteCoffeeData] = useState<(CoffeeType | undefined)[]>([]);
 
-
   const navigate = useNavigate();
-
-  // try using the favId and and coffeeId from the coffeeCard ==> can be used in favoritecard
-
   useEffect(() => {
     //this checks if the userId === current user.id
     const userFavorites = favCoffee.filter((favItem) => {
       return favItem.userId === user.id
     })
+    // need to replace the faoriteId with the actual coffeeId from db.json
 
     const matchedData = userFavorites.map((favItem) => {
       return coffee.find((coffeeItem) => coffeeItem.id === favItem.coffeeId);
     });
     setFavoriteCoffeeData(matchedData)
   }, [coffee, favCoffee, user.id])
+
 
 
   console.log(favoriteCoffeeData, 'favCoffeeData')
@@ -101,12 +97,12 @@ export const FavoriteCards = () => {
         </div>
 
         <div className="flex flex-grow flex-wrap justify-center p-4 lg:justify-evenly">
-
+          {/* {favoriteCoffeeData.map((item) => console.log(item, 'item'))} */}
           {favoriteCoffeeData.length > 0 ? (
             favoriteCoffeeData.map((item, index) => (
               item? (
                 <Link
-                  to={`/favorite-card/${index}`}
+                  to={`/coffee-card/${item.id}`}
                   className="w-full md:w-1/2 lg:w-1/3 p-2 bg-white rounded-lg shadow-md m-2 hover:cursor-pointer hover:bg-gray-500"
                   key={index}
                 >

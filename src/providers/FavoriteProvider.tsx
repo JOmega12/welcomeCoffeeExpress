@@ -19,7 +19,6 @@ export const FavoriteProvider = ({children}:FavTypes) => {
       refetch();
    }, []);
 
-   console.log(favCoffee, 'favCoffee');
    const toggleFavorite = async ({userId, coffeeId}: {userId: number, coffeeId: number}) => {
       await toggleFavoriteAPI({ userId, coffeeId });
       return refetch();
