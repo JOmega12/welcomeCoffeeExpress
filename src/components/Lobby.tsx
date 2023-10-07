@@ -6,9 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCoffee } from "../providers/CoffeeProvider";
 
 
-// !need to create another point in the coffee endpoint for image url for a select amount of coffee
-//! OR i could keep it as a string so that the person uploading it can have their customized image
-// !add a star to be used as a favorite look at previous iteration for code
+// !add login/signup into my nav
+//!add error handling into my forms
+// !add landing page coffee shop
 // !put a reseed of information
 type LobbyTypes = {
   logoutUser: () => void;
