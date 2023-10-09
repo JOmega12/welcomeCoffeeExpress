@@ -21,23 +21,13 @@ export const Login = () => {
   const [usernameInput, setUsernameInput] = useState("");
   const [password, setPassword] = useState("");
   // const [error, setError] = useState(false);
-  // const [isSubmit, setIsSubmit] = useState(false);
-
-  // const userMatch = user.find((userData) => userData.username === usernameInput);
-  // console.log(userMatch, 'userMatch')
-
-
-  // const typeOfUser = user.map((item) => {
-  //   return item;
-  // })
-
-  // const usernameValid = usernameInput === 
+  // const [isSubmit, setIsSubmit] = useState(false); 
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // !problem: the user can login without an error issue
+    // !Still need error handling
     // Promise.resolve()
     //   .then(() =>
     //     loginUser({
@@ -58,13 +48,13 @@ export const Login = () => {
         username: usernameInput,
         password: password,
       });
-  
       // Only navigate if login is successful
       console.log(user, 'userin login')
       if(usernameInput === user.username && password === user.password) {
         setIsRegister(true);
         navigate("/lobby");
       } else if(usernameInput !== user.username) {
+        // !!!the isRegister is used for error handling
         setIsRegister(false);
         toast.error('Username is not the same!');
       } else if(password !== user.password) {
@@ -80,14 +70,7 @@ export const Login = () => {
     <form
       className="flex-col items-center"
       onSubmit={(e) => {
-        // if(!user?.username && !user?.password){
-        //   //add error message here
-        // } else {
-        //   handleSubmit(e);
-        // }
-
         handleSubmit(e);
-
       }}
     >
       <div className="text-center text-[#2E1E17] p-5 rounded-xl text-3xl md:text-4xl lg:text-5xl font-bold mb-4">

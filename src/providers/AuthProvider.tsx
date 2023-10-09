@@ -40,7 +40,6 @@ export const AuthProvider = ({ children }: AuthTypes) => {
       localStorage.setItem("user", JSON.stringify(user));
       //this ONLY adds the SPECIFIC USER when you login
       setUser(user);
-      console.log(user, 'loginuserAuthProv');
     } catch (e) {
       console.error("error while logging in");
     }
@@ -62,8 +61,6 @@ export const AuthProvider = ({ children }: AuthTypes) => {
       }
     }
   }, []);
-
-  console.log(user, 'user')
 
   return (
     <AuthContext.Provider

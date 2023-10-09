@@ -63,6 +63,9 @@ export const Signup = () => {
             onChange={(e) => setUsernameInput(e.target.value)}
             value={usernameInput}
           />
+         {error ? (
+            <div className="text-red-500">Username Error</div>
+          ) : null}
         </div>
         <div className="flex flex-row">
           <label htmlFor="" className="w-32 text-lg mb-2 p-3">
@@ -74,6 +77,9 @@ export const Signup = () => {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
+         {error ? (
+            <div className="text-red-500">Password Error!</div>
+          ) : null}
         </div>
         <div className="flex flex-row gap-1">
           <label htmlFor="" className="w-32 text-lg mb-2 p-3">
