@@ -19,25 +19,28 @@ export const AuthProvider = ({ children }: AuthTypes) => {
   const [user, setUser] = useState({});
   const [isRegister, setIsRegister] = useState(false);
   const [error, setError] = useState(false);
+
   //this is used to choose between landing page or login/signup
 //   const [isLogin, setIsLogin] = useState(false);
-  const registerUser = ({ username, password }: UserInformation) => {
-    registerFetch({ username, password }).then((user) => {
+  const registerUser = ({ id, username, password }: UserInformation) => {
+    registerFetch({ id, username, password }).then((user) => {
       localStorage.setItem("user", JSON.stringify(user));
       return setUser(user);
     });
   };
 
-  const loginUser = async ({ username, password }: UserInformation) => {
+  const loginUser = async ({ id, username, password }: UserInformation) => {
     try {
-      const user = await getUserFromServer({ username, password });
+      const user = await getUserFromServer({ id, username, password });
       if (user?.password !== password) {
         toast.error("password not found");
       } else if (user.username !== username) {
         toast.error("username does not exist");
       }
       localStorage.setItem("user", JSON.stringify(user));
+      //this ONLY adds the SPECIFIC USER when you login
       setUser(user);
+      console.log(user, 'loginuserAuthProv');
     } catch (e) {
       console.error("error while logging in");
     }
@@ -59,6 +62,8 @@ export const AuthProvider = ({ children }: AuthTypes) => {
       }
     }
   }, []);
+
+  console.log(user, 'user')
 
   return (
     <AuthContext.Provider
