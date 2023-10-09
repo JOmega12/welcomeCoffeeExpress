@@ -2,6 +2,9 @@ import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
 import { toast } from "react-hot-toast";
+import { isPasswordValid } from "../validations/formValidations";
+
+
 
 type SignupType = {
   registerUser: (userInfo: { username: string; password: string }) => void;
@@ -10,6 +13,9 @@ type SignupType = {
   setError: (error: boolean) => void;
 };
 
+// const usernameErrorMessage = 'Username not found';
+// const passwordErrorMessage = 'Password not found';
+
 export const Signup = () => {
   const { registerUser, setIsRegister, error, setError } =
     useAuth() as SignupType;
@@ -17,15 +23,16 @@ export const Signup = () => {
   const [usernameInput, setUsernameInput] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
-  // const [error, setError] = useState(false);
-
   const navigate = useNavigate();
+
+  const usernameValid = usernameInput.length > 2;
+  const passwordValid = isPasswordValid(password) ;
+  const confirmPasswordValid = password === confirmPass;
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // !error where the user can go in without getting an error
     try {
-      //error is not confirming, try doing the error in the authprovider
       if (confirmPass !== password) {
         setError(true);
       } else if (confirmPass === password) {
@@ -35,7 +42,7 @@ export const Signup = () => {
         });
         setError(false);
         setIsRegister(true);
-        navigate("/lobby");
+        // navigate("/lobby");
       }
     } catch (err) {
       toast.error("Signup Error");

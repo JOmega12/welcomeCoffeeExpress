@@ -18,16 +18,17 @@ type LoginTypes = {
 export const Login = () => {
   const { loginUser, setIsRegister, user } = useAuth() as LoginTypes;
 
+  // ? I dont know why setIsRegister for
+  // !need to do more research
   const [usernameInput, setUsernameInput] = useState("");
   const [password, setPassword] = useState("");
   // const [error, setError] = useState(false);
   // const [isSubmit, setIsSubmit] = useState(false); 
-
   const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // !Still need error handling
+    // !Still need error handling reference signup comp
     // Promise.resolve()
     //   .then(() =>
     //     loginUser({
@@ -54,7 +55,6 @@ export const Login = () => {
         setIsRegister(true);
         navigate("/lobby");
       } else if(usernameInput !== user.username) {
-        // !!!the isRegister is used for error handling
         setIsRegister(false);
         toast.error('Username is not the same!');
       } else if(password !== user.password) {

@@ -42,8 +42,6 @@ export const Lobby = () => {
 
   // !create a disable button for create coffee until you sign in
 
-// !current problem is that the id numbers are not aligned!
-console.log(coffee, 'coffee')
   const handleLogout = () => {
     logoutUser();
     navigate('/');
@@ -81,10 +79,6 @@ console.log(coffee, 'coffee')
           <div className="bg-yellow-400 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-default hover:text-white  hover:bg-yellow-500 font-semibold">
 
             <Link to={`/favorites`}>Favorites</Link>
-            {/* temporarilydisabled */}
-            {/* <Link to={`/`}>Favorites</Link> */}
-
-            {/* <button>Favorites</button> */}
           </div>
           <div className="bg-red-400 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-default hover:bg-red-500 hover:text-white font-semibold">
             <button onClick={() => handleLogout()}>Logout</button>
