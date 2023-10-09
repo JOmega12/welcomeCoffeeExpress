@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCoffee } from "../providers/CoffeeProvider";
 
 
-// !add login/signup into my nav
+// !add login/signup handling into my nav
 //!add error handling into my forms
 // !add landing page coffee shop
 // !put a reseed of information
