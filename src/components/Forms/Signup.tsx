@@ -8,41 +8,53 @@ import { isPasswordValid } from "../validations/formValidations";
 
 type SignupType = {
   registerUser: (userInfo: { username: string; password: string }) => void;
-  setIsRegister: (register: boolean) => void;
+  isRegister: boolean;
+  setIsRegister: (isRegister: boolean) => void;
   error: boolean;
   setError: (error: boolean) => void;
 };
 
-// const usernameErrorMessage = 'Username not found';
-// const passwordErrorMessage = 'Password not found';
+const usernameErrorMessage = 'Username not found';
+const passwordErrorMessage = 'Password not found';
+const confirmPasswordErrorMessage = 'Password not found';
+
 
 export const Signup = () => {
-  const { registerUser, setIsRegister, error, setError } =
+  const { registerUser, isRegister, setIsRegister, 
+    // error, setError 
+  } =
     useAuth() as SignupType;
 
   const [usernameInput, setUsernameInput] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   const usernameValid = usernameInput.length > 2;
   const passwordValid = isPasswordValid(password) ;
   const confirmPasswordValid = password === confirmPass;
 
+  const showUsernameError = !usernameValid && isRegister;
+  const showPasswordError = !passwordValid && isRegister;
+  const showConfirmPasswordError = !confirmPasswordValid && isRegister
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // !error where the user can go in without getting an error
     try {
-      if (confirmPass !== password) {
-        setError(true);
-      } else if (confirmPass === password) {
-        registerUser({
-          username: usernameInput,
-          password: password,
-        });
+      registerUser({
+        username: usernameInput,
+        password: password,
+      });
+      
+      if (!usernameValid || !passwordValid || !confirmPasswordValid) {
+        setIsRegister(false);
+        // setError(true);
+      } else {
         setError(false);
         setIsRegister(true);
-        // navigate("/lobby");
+        navigate("/lobby");
       }
     } catch (err) {
       toast.error("Signup Error");
@@ -70,8 +82,8 @@ export const Signup = () => {
             onChange={(e) => setUsernameInput(e.target.value)}
             value={usernameInput}
           />
-         {error ? (
-            <div className="text-red-500">Username Error</div>
+         {showUsernameError ? (
+            <div className="text-red-500">{usernameErrorMessage}</div>
           ) : null}
         </div>
         <div className="flex flex-row">
@@ -84,8 +96,8 @@ export const Signup = () => {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
-         {error ? (
-            <div className="text-red-500">Password Error!</div>
+         {showPasswordError ? (
+            <div className="text-red-500">{passwordErrorMessage}</div>
           ) : null}
         </div>
         <div className="flex flex-row gap-1">
@@ -98,8 +110,8 @@ export const Signup = () => {
             onChange={(e) => setConfirmPass(e.target.value)}
             value={confirmPass}
           />
-          {error ? (
-            <div className="text-red-500">Passwords are not the same</div>
+          {showConfirmPasswordError ? (
+            <div className="text-red-500">{confirmPasswordErrorMessage}</div>
           ) : null}
         </div>
         <div className="flex flex-row gap-10 text-center">
