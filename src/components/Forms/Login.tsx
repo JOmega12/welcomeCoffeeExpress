@@ -47,6 +47,7 @@ export const Login = () => {
       //   setError(false);
       //   navigate('/lobby');
       // }
+      // !I keep double clicking WHY?!
       await loginUser({
         username: usernameInput,
         password: password,

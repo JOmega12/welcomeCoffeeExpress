@@ -6,6 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCoffee } from "../providers/CoffeeProvider";
 
 //!add error handling into my forms
+// !fix double click in login
+// !fix lobby problem for disabling
+// !maybe a comment section per coffee card
 // !add landing page coffee shop
 // !put a reseed of information
 type LobbyTypes = {
