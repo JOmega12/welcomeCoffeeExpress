@@ -54,11 +54,9 @@ export const Login = () => {
       if(usernameInput === user.username && password === user.password) {
         setIsRegister(true);
         navigate("/lobby");
-      } else if(usernameInput !== user.username) {
+      } else if(usernameInput !== user.username || password!== user.password || usernameInput.length === 0 && password.length === 0) {
         setIsRegister(false);
-        toast.error('Username is not the same!');
-      } else if(password !== user.password) {
-        setIsRegister(false);
+        toast.error('Login Error');
       }
     } catch (err) {
       toast.error("Login error");

@@ -17,11 +17,10 @@ const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }: AuthTypes) => {
   const [user, setUser] = useState({});
+  //isRegister is used for login and logout
   const [isRegister, setIsRegister] = useState(false);
   const [error, setError] = useState(false);
 
-  //this is used to choose between landing page or login/signup
-//   const [isLogin, setIsLogin] = useState(false);
   const registerUser = ({ id, username, password }: UserInformation) => {
     registerFetch({ id, username, password }).then((user) => {
       localStorage.setItem("user", JSON.stringify(user));
@@ -72,8 +71,6 @@ export const AuthProvider = ({ children }: AuthTypes) => {
         registerUser,
         loginUser,
         logoutUser,
-      //   isLogin,
-      //   setIsLogin,
         error,
         setError,
       }}

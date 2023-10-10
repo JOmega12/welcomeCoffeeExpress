@@ -24,6 +24,26 @@
       "username": "james",
       "password": "password",
       "id": 5
+    },
+    {
+      "username": "teeee",
+      "password": "Testt",
+      "id": 6
+    },
+    {
+      "username": "tesss",
+      "password": "tess",
+      "id": 7
+    },
+    {
+      "username": "tesss",
+      "password": "Tess",
+      "id": 8
+    },
+    {
+      "username": "tesss",
+      "password": "Tesss",
+      "id": 9
     }
   ],
   "coffee": [

@@ -15,13 +15,12 @@ type SignupType = {
 };
 
 const usernameErrorMessage = 'Username not found';
-const passwordErrorMessage = 'Password not found';
-const confirmPasswordErrorMessage = 'Password not found';
+const passwordErrorMessage = 'Password must be over 4 characters and one capital letter';
+const confirmPasswordErrorMessage = 'Passwords are not the same';
 
 
 export const Signup = () => {
-  const { registerUser, isRegister, setIsRegister, 
-    // error, setError 
+  const { registerUser, setIsRegister, 
   } =
     useAuth() as SignupType;
 
@@ -35,13 +34,13 @@ export const Signup = () => {
   const passwordValid = isPasswordValid(password) ;
   const confirmPasswordValid = password === confirmPass;
 
-  const showUsernameError = !usernameValid && isRegister;
-  const showPasswordError = !passwordValid && isRegister;
-  const showConfirmPasswordError = !confirmPasswordValid && isRegister
+  const showUsernameError = !usernameValid && error;
+  const showPasswordError = !passwordValid && error;
+  const showConfirmPasswordError = !confirmPasswordValid && error;
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // !error where the user can go in without getting an error
+    // !need to abstract elements
     try {
       registerUser({
         username: usernameInput,
@@ -50,7 +49,7 @@ export const Signup = () => {
       
       if (!usernameValid || !passwordValid || !confirmPasswordValid) {
         setIsRegister(false);
-        // setError(true);
+        setError(true);
       } else {
         setError(false);
         setIsRegister(true);
