@@ -9,6 +9,8 @@ const NavLinks = () => {
     <>
       <NavLink to="/">Home</NavLink>
       <NavLink to="about-us">About Us</NavLink>
+      <NavLink to="login">Login</NavLink>
+      <NavLink to="signup">Signup</NavLink>
     </>
   );
 };

@@ -9,7 +9,6 @@ export const CreateCoffeeForm = () => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
 
-
   const navigate = useNavigate();
 
   return (
@@ -20,6 +19,7 @@ export const CreateCoffeeForm = () => {
           e.preventDefault();
           // !cant use this until styled and using the actual db
           getNewCoffee({
+              id: id,
              title: title,
              description: description,
              image: image

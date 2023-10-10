@@ -15,6 +15,8 @@ type AuthTypes = {
 
 const AuthContext = createContext({});
 
+
+// !when I login i have to DOUBLECLICK 
 export const AuthProvider = ({ children }: AuthTypes) => {
   const [user, setUser] = useState({});
   //isRegister is used for login and logout
@@ -39,6 +41,7 @@ export const AuthProvider = ({ children }: AuthTypes) => {
       localStorage.setItem("user", JSON.stringify(user));
       //this ONLY adds the SPECIFIC USER when you login
       setUser(user);
+      return user;
     } catch (e) {
       console.error("error while logging in");
     }

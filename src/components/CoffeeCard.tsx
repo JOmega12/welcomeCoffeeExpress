@@ -8,76 +8,71 @@ import { useAuth } from "../providers/AuthProvider";
 import { useEffect, useState } from "react";
 
 type CoffeeTypes = {
-  coffee: [{
-    userId: number,
-    coffeeId: number,
-    id: number,
-    favoriteId: number,
-    title: string,
-    description: string,
-    image: string,}
+  coffee: [
+    {
+      userId: number;
+      coffeeId: number;
+      id: number;
+      favoriteId: number;
+      title: string;
+      description: string;
+      image: string;
+    }
   ];
   coffeeToNumber: number;
-  favCoffee:[{ 
-    userId: number,
-   coffeeId: number,
-   id: number,
-   favoriteId: number,
-   title: string,
-   description: string,
-   image: string,}
+  favCoffee: [
+    {
+      userId: number;
+      coffeeId: number;
+      id: number;
+      favoriteId: number;
+      title: string;
+      description: string;
+      image: string;
+    }
   ];
   toggleFavorite: (favorite: { coffeeId: number; userId: number }) => void;
-  
-}
+};
 
 type userType = {
-  user: UserInformation
-}
+  user: UserInformation;
+};
 
 export const CoffeeCard = () => {
   const navigate = useNavigate();
-  const {coffee} = useCoffee() as CoffeeTypes; 
-  const {toggleFavorite, favCoffee} = useFavorite() as CoffeeTypes
-  const { user } = useAuth() as userType
+  const { coffee } = useCoffee() as CoffeeTypes;
+  const { toggleFavorite, favCoffee } = useFavorite() as CoffeeTypes;
+  const { user } = useAuth() as userType;
   const { coffeeId } = useParams();
   const coffeeToNumber = Number(coffeeId);
 
-
   const coffeeItem = coffee.find((cafe) => {
     return cafe.id === coffeeToNumber;
-  })
+  });
 
-  const isFavorite = favCoffee.find(
-    (favorite) =>{
-    return favorite.userId === user?.id && favorite.coffeeId === coffeeItem?.id
-    }
-  );
+  const isFavorite = favCoffee.find((favorite) => {
+    return favorite.userId === user?.id && favorite.coffeeId === coffeeItem?.id;
+  });
 
-  const [isFavorited, setIsFavorited] = useState(!!isFavorite)
-
+  const [isFavorited, setIsFavorited] = useState(!!isFavorite);
 
   useEffect(() => {
-    const isFavorite = favCoffee.find(
-      (favorite) =>{
-      return favorite.userId === user?.id && favorite.coffeeId === coffeeItem?.id
-      }
-    );
+    const isFavorite = favCoffee.find((favorite) => {
+      return (
+        favorite.userId === user?.id && favorite.coffeeId === coffeeItem?.id
+      );
+    });
     setIsFavorited(!!isFavorite);
+  }, [coffeeItem?.id, favCoffee, user?.id]);
 
-  }, [])
-
-
-  
-  const onFavoriteClick = async() => {
-    if(coffeeItem) {
+  const onFavoriteClick = async () => {
+    if (coffeeItem) {
       toggleFavorite({
         coffeeId: coffeeItem?.id,
         userId: user?.id,
       });
     }
-
-    setIsFavorited(!isFavorited)
+    setIsFavorited(!isFavorited);
   };
 
   return (
@@ -87,13 +82,21 @@ export const CoffeeCard = () => {
     "
     >
       <div className="p-2 w-full sm:w-1/2 mt-10 sm:p-5">
-        <img src={coffeeItem?.image} alt="" className="w-full max-h-[50vh] h-auto" />
+        <img
+          src={coffeeItem?.image}
+          alt=""
+          className="w-full max-h-[50vh] h-auto"
+        />
       </div>
-      <div className="m-3 md:m-5 sm:m-5 hover:cursor-pointer"
+      <div
+        className="m-3 md:m-5 sm:m-5 hover:cursor-pointer"
         onClick={() => onFavoriteClick()}
       >
-        <FontAwesomeIcon icon={faStar}
-        className={`text-3xl ${isFavorited ? ' text-yellow-500' : 'text-black'}
+        <FontAwesomeIcon
+          icon={faStar}
+          className={`text-3xl ${
+            isFavorited ? " text-yellow-500" : "text-black"
+          }
         rounded-lg shadow-lg p-3`}
         />
       </div>

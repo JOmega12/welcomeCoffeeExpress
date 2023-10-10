@@ -34,13 +34,23 @@ export const Login = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+
+      // const userExist = await loginUser({
+      //   username: usernameInput,
+      //   password: password,
+      // });
+      // if(!userExist) {
+      //   setError(true);
+      //   toast.error("Login Error");
+      // } else {
+      //   setIsRegister(true);
+      //   setError(false);
+      //   navigate('/lobby');
+      // }
       await loginUser({
         username: usernameInput,
         password: password,
       });
-      // Only navigate if login is successful
-      console.log(user, "userin login");
-
       if (!usernameValid || !passwordValid || !loginValid) {
         setIsRegister(false);
         setError(true);
