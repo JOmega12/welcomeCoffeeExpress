@@ -4,8 +4,6 @@ import { useAuth } from "../../providers/AuthProvider";
 import { toast } from "react-hot-toast";
 import { isPasswordValid } from "../validations/formValidations";
 
-
-
 type SignupType = {
   registerUser: (userInfo: { username: string; password: string }) => void;
   isRegister: boolean;
@@ -14,15 +12,13 @@ type SignupType = {
   setError: (error: boolean) => void;
 };
 
-const usernameErrorMessage = 'Username not found';
-const passwordErrorMessage = 'Password must be over 4 characters and one capital letter';
-const confirmPasswordErrorMessage = 'Passwords are not the same';
-
+const usernameErrorMessage = "Username not found";
+const passwordErrorMessage =
+  "Password must be over 4 characters and one capital letter";
+const confirmPasswordErrorMessage = "Passwords are not the same";
 
 export const Signup = () => {
-  const { registerUser, setIsRegister, 
-  } =
-    useAuth() as SignupType;
+  const { registerUser, setIsRegister } = useAuth() as SignupType;
 
   const [usernameInput, setUsernameInput] = useState("");
   const [password, setPassword] = useState("");
@@ -31,7 +27,7 @@ export const Signup = () => {
   const navigate = useNavigate();
 
   const usernameValid = usernameInput.length > 2;
-  const passwordValid = isPasswordValid(password) ;
+  const passwordValid = isPasswordValid(password);
   const confirmPasswordValid = password === confirmPass;
 
   const showUsernameError = !usernameValid && error;
@@ -46,7 +42,7 @@ export const Signup = () => {
         username: usernameInput,
         password: password,
       });
-      
+
       if (!usernameValid || !passwordValid || !confirmPasswordValid) {
         setIsRegister(false);
         setError(true);
@@ -81,7 +77,7 @@ export const Signup = () => {
             onChange={(e) => setUsernameInput(e.target.value)}
             value={usernameInput}
           />
-         {showUsernameError ? (
+          {showUsernameError ? (
             <div className="text-red-500">{usernameErrorMessage}</div>
           ) : null}
         </div>
@@ -95,7 +91,7 @@ export const Signup = () => {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
-         {showPasswordError ? (
+          {showPasswordError ? (
             <div className="text-red-500">{passwordErrorMessage}</div>
           ) : null}
         </div>

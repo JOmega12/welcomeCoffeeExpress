@@ -10,53 +10,44 @@ type LoginTypes = {
   user: UserInformation;
 };
 
-
-// const usernameErrorMessage = 'Username not found';
-// const passwordErrorMessage = 'Password not found';
-// const loginErrorMessage = 'User is not registered';
+const usernameErrorMessage = "Username not found";
+const passwordErrorMessage = "Password not found";
+const loginErrorMessage = "User is not registered";
 
 export const Login = () => {
   const { loginUser, setIsRegister, user } = useAuth() as LoginTypes;
 
-  // ? I dont know why setIsRegister for
-  // !need to do more research
   const [usernameInput, setUsernameInput] = useState("");
   const [password, setPassword] = useState("");
-  // const [error, setError] = useState(false);
-  // const [isSubmit, setIsSubmit] = useState(false); 
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
+
+  const usernameValid = usernameInput === user.username;
+  const passwordValid = password === user.password;
+  const loginValid = usernameValid && passwordValid;
+
+  const showUsernameError = !usernameValid && error;
+  const showPasswordError = !passwordValid && error;
+  const showLoginError = !loginValid && error;
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // !Still need error handling reference signup comp
-    // Promise.resolve()
-    //   .then(() =>
-    //     loginUser({
-    //       username: usernameInput,
-    //       password: password,
-    //     })
-    //   )
-    //   .then(() => {
-    //     setIsRegister(true);
-    //     navigate("/lobby");
-    //   })
-    //   .catch((err) => {
-    //     toast.error("Login error");
-    //     console.log(err);
-    //   });
     try {
       await loginUser({
         username: usernameInput,
         password: password,
       });
       // Only navigate if login is successful
-      console.log(user, 'userin login')
-      if(usernameInput === user.username && password === user.password) {
-        setIsRegister(true);
-        navigate("/lobby");
-      } else if(usernameInput !== user.username || password!== user.password || usernameInput.length === 0 && password.length === 0) {
+      console.log(user, "userin login");
+
+      if (!usernameValid || !passwordValid || !loginValid) {
         setIsRegister(false);
-        toast.error('Login Error');
+        setError(true);
+        toast.error("Login Error");
+      } else {
+        setIsRegister(true);
+        setError(false);
+        navigate("/lobby");
       }
     } catch (err) {
       toast.error("Login error");
@@ -85,7 +76,9 @@ export const Login = () => {
             onChange={(e) => setUsernameInput(e.target.value)}
             value={usernameInput}
           />
-
+          {showUsernameError ? (
+            <div className="text-red-500">{usernameErrorMessage}</div>
+          ) : null}
         </div>
         <div className="flex flex-row">
           <label htmlFor="" className="w-32 text-lg mb-2 p-3">
@@ -97,7 +90,15 @@ export const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
+          {showPasswordError ? (
+            <div className="text-red-500 items-center ">
+              {passwordErrorMessage}
+            </div>
+          ) : null}
         </div>
+        {showLoginError ? (
+          <div className="text-red-500 text-center">{loginErrorMessage}</div>
+        ) : null}
         <div className="flex flex-row gap-10 text-center">
           <button
             onClick={() => navigate("/")}
@@ -110,7 +111,6 @@ export const Login = () => {
             className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
-        {/* add back button */}
       </div>
     </form>
   );
