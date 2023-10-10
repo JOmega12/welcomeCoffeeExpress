@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
 import { toast } from "react-hot-toast";
 import { UserInformation } from "../../types/types";
+import { TextInputs } from "./TextInputs";
 
 type LoginTypes = {
   loginUser: (userInfo: { username: string; password: string }) => void;
@@ -66,36 +67,20 @@ export const Login = () => {
         <h2>Login</h2>
       </div>
       <div className="flex flex-col space-y-4 ">
-        <div className="flex flex-row">
-          <label htmlFor="" className=" w-32 text-lg mb-2 p-3 ">
-            Username:
-          </label>
-          <input
-            type="text"
-            className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
-            onChange={(e) => setUsernameInput(e.target.value)}
-            value={usernameInput}
-          />
-          {showUsernameError ? (
-            <div className="text-red-500">{usernameErrorMessage}</div>
-          ) : null}
-        </div>
-        <div className="flex flex-row">
-          <label htmlFor="" className="w-32 text-lg mb-2 p-3">
-            Password:
-          </label>
-          <input
-            type="text"
-            className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          />
-          {showPasswordError ? (
-            <div className="text-red-500 items-center ">
-              {passwordErrorMessage}
-            </div>
-          ) : null}
-        </div>
+        <TextInputs 
+          label="Username:"
+          onChange={(e) => setUsernameInput(e.target.value)}
+          value={usernameInput}
+          show={showUsernameError}
+          message={usernameErrorMessage}
+        />
+        <TextInputs 
+          label="Password:"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+          show={showPasswordError}
+          message={passwordErrorMessage}
+        />
         {showLoginError ? (
           <div className="text-red-500 text-center">{loginErrorMessage}</div>
         ) : null}

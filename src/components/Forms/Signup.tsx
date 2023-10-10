@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
 import { toast } from "react-hot-toast";
 import { isPasswordValid } from "../validations/formValidations";
+import { TextInputs } from "./TextInputs";
 
 type SignupType = {
   registerUser: (userInfo: { username: string; password: string }) => void;
@@ -36,7 +37,6 @@ export const Signup = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // !need to abstract elements
     try {
       registerUser({
         username: usernameInput,
@@ -67,48 +67,27 @@ export const Signup = () => {
         <h2>Signup</h2>
       </div>
       <div className="flex flex-col space-y-4 ">
-        <div className="flex flex-row">
-          <label htmlFor="" className=" w-32 text-lg mb-2 p-3 ">
-            Username:
-          </label>
-          <input
-            type="text"
-            className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
-            onChange={(e) => setUsernameInput(e.target.value)}
-            value={usernameInput}
-          />
-          {showUsernameError ? (
-            <div className="text-red-500">{usernameErrorMessage}</div>
-          ) : null}
-        </div>
-        <div className="flex flex-row">
-          <label htmlFor="" className="w-32 text-lg mb-2 p-3">
-            Password:
-          </label>
-          <input
-            type="text"
-            className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          />
-          {showPasswordError ? (
-            <div className="text-red-500">{passwordErrorMessage}</div>
-          ) : null}
-        </div>
-        <div className="flex flex-row gap-1">
-          <label htmlFor="" className="w-32 text-lg mb-2 p-3">
-            Confirm Password:
-          </label>
-          <input
-            type="text"
-            className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
-            onChange={(e) => setConfirmPass(e.target.value)}
-            value={confirmPass}
-          />
-          {showConfirmPasswordError ? (
-            <div className="text-red-500">{confirmPasswordErrorMessage}</div>
-          ) : null}
-        </div>
+        <TextInputs 
+          label="Username:"
+          onChange={(e) => setUsernameInput(e.target.value)}
+          value={usernameInput}
+          show={showUsernameError}
+          message={usernameErrorMessage}
+        />
+        <TextInputs 
+          label="Password:"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+          show={showPasswordError}
+          message={passwordErrorMessage}
+        />
+        <TextInputs 
+          label="Confirm Password:"
+          onChange={(e) => setConfirmPass(e.target.value)}
+          value={confirmPass}
+          show={showConfirmPasswordError}
+          message={confirmPasswordErrorMessage}
+        />
         <div className="flex flex-row gap-10 text-center">
           <button
             onClick={() => navigate("/")}
