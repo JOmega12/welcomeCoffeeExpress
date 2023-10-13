@@ -6,9 +6,10 @@ import { UserInformation } from "../../types/types";
 import { TextInputs } from "./TextInputs";
 
 type LoginTypes = {
-  loginUser: (userInfo: { username: string; password: string }) => void;
+  loginUser: (userInfo: { username: string; password: string }) => boolean;
   setIsRegister: (register: boolean) => void;
   user: UserInformation;
+  
 };
 
 const usernameErrorMessage = "Username not found";
@@ -35,28 +36,20 @@ export const Login = () => {
     e.preventDefault();
     try {
 
-      // const userExist = await loginUser({
-      //   username: usernameInput,
-      //   password: password,
-      // });
-      // if(!userExist) {
-      //   setError(true);
-      //   toast.error("Login Error");
-      // } else {
-      //   setIsRegister(true);
-      //   setError(false);
-      //   navigate('/lobby');
-      // }
-      // !I keep double clicking WHY?!
-      await loginUser({
+      const isLoginValid = await loginUser({
         username: usernameInput,
         password: password,
       });
-      if (!usernameValid || !passwordValid || !loginValid) {
+
+      if (!isLoginValid || !loginValid) {
+        console.log(user, 'user if');
+        console.log(usernameValid, passwordValid, loginValid, 'valid');
         setIsRegister(false);
         setError(true);
         toast.error("Login Error");
       } else {
+        console.log(user, 'user else');
+        console.log(usernameValid, passwordValid, loginValid, 'valid');
         setIsRegister(true);
         setError(false);
         navigate("/lobby");

@@ -16,7 +16,7 @@ type AuthTypes = {
 const AuthContext = createContext({});
 
 
-// !when I login i have to DOUBLECLICK 
+
 export const AuthProvider = ({ children }: AuthTypes) => {
   const [user, setUser] = useState({});
   //isRegister is used for login and logout
