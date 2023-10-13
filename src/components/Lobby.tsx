@@ -6,7 +6,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCoffee } from "../providers/CoffeeProvider";
 
 //!add error handling into my forms
-// !fix double click in login
 // !fix lobby problem for disabling
 // !maybe a comment section per coffee card
 // !add landing page coffee shop
@@ -76,7 +75,7 @@ export const Lobby = () => {
               to={`/coffee-card/${item.id}`}
               className="w-full md:w-1/2 lg:w-1/3 p-2 bg-white rounded-lg shadow-md m-2 hover:cursor-pointer hover:bg-gray-500"
             >
-              <PreviewCard item={item} index={index} />
+              <PreviewCard item={item} index={index}/>
             </Link>
           ))}
         </div>

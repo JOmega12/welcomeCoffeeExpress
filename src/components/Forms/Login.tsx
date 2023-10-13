@@ -18,10 +18,10 @@ const loginErrorMessage = "User is not registered";
 
 export const Login = () => {
   const { loginUser, setIsRegister, user } = useAuth() as LoginTypes;
-
   const [usernameInput, setUsernameInput] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const usernameValid = usernameInput === user.username;
@@ -35,26 +35,62 @@ export const Login = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      setLoading(true);
 
-      const isLoginValid = await loginUser({
-        username: usernameInput,
-        password: password,
+    Promise.resolve()
+      .then(() =>{
+        loginUser({
+          username: usernameInput,
+          password: password,
+        })
+        if (!loginValid) {
+          console.log(user, 'user if');
+          console.log(usernameValid, passwordValid, loginValid, 'valid');
+          setIsRegister(false);
+          setError(true);
+          toast.error("Login Error preev");
+        } else {
+          console.log(user, 'user else');
+          console.log(usernameValid, passwordValid, loginValid, 'valid');
+          setIsRegister(true);
+          setError(false);
+          loginUser({
+            username: usernameInput,
+            password: password,
+          })
+          navigate("/lobby");
+        }
+      })
+      // .then(() => {
+        // setIsRegister(true);
+        // navigate("/lobby");
+      // })
+      .catch((err) => {
+        toast.error("Login error");
+        console.log(err);
       });
+      // const isLoginValid = await loginUser({
+      //   username: usernameInput,
+      //   password: password,
+      // });
 
-      if (!isLoginValid || !loginValid) {
-        console.log(user, 'user if');
-        console.log(usernameValid, passwordValid, loginValid, 'valid');
-        setIsRegister(false);
-        setError(true);
-        toast.error("Login Error");
-      } else {
-        console.log(user, 'user else');
-        console.log(usernameValid, passwordValid, loginValid, 'valid');
-        setIsRegister(true);
-        setError(false);
-        navigate("/lobby");
-      }
+      // setLoading(false);
+
+      // if (!isLoginValid || !loginValid) {
+      //   console.log(user, 'user if');
+      //   console.log(usernameValid, passwordValid, loginValid, 'valid');
+      //   setIsRegister(false);
+      //   setError(true);
+      //   toast.error("Login Error preev");
+      // } else {
+      //   console.log(user, 'user else');
+      //   console.log(usernameValid, passwordValid, loginValid, 'valid');
+      //   setIsRegister(true);
+      //   setError(false);
+      //   navigate("/lobby");
+      // }
     } catch (err) {
+      setLoading(false);
       toast.error("Login error");
       console.log(err);
     }
@@ -98,6 +134,7 @@ export const Login = () => {
           <input
             type="submit"
             className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
+            // disabled={loading}
           />
         </div>
       </div>

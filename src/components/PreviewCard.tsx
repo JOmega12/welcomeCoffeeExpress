@@ -7,6 +7,7 @@ import { CoffeeType } from "../types/types";
 type CoffeeTypes = {
   item: CoffeeType;
   index: number;
+  // disabled: boolean;
 }
 
 export const PreviewCard = ({ item, index }  : 
@@ -15,7 +16,7 @@ export const PreviewCard = ({ item, index }  :
 
   return (
     <>
-      <div key={index} >
+      <div key={index}>
         <div
           className="flex mt-5 p-3"
         >

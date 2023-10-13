@@ -61,13 +61,18 @@
   "favorite": [
     {
       "userId": 1,
-      "coffeeId": 1,
-      "id": 1
+      "coffeeId": 2,
+      "id": 2
     },
     {
       "userId": 1,
-      "coffeeId": 2,
-      "id": 2
+      "coffeeId": 1,
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "coffeeId": 5,
+      "id": 4
     }
   ],
   "comments": [
