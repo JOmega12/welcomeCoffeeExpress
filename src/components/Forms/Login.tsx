@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
 import { toast } from "react-hot-toast";
@@ -21,8 +21,14 @@ export const Login = () => {
   const [usernameInput, setUsernameInput] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+    setUsernameInput(user.username);
+    setPassword(user.password);
+  }, [user]);
 
   const usernameValid = usernameInput === user.username;
   const passwordValid = password === user.password;
@@ -35,7 +41,7 @@ export const Login = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      setLoading(true);
+      // setLoading(true);
 
     Promise.resolve()
       .then(() =>{
@@ -90,7 +96,7 @@ export const Login = () => {
       //   navigate("/lobby");
       // }
     } catch (err) {
-      setLoading(false);
+      // setLoading(false);
       toast.error("Login error");
       console.log(err);
     }
