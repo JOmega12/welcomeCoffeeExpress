@@ -19,7 +19,7 @@ const loginErrorMessage = "User is not registered";
 export const Login = () => {
   const { loginUser, setIsRegister, user } = useAuth() as LoginTypes;
   const [usernameInput, setUsernameInput] = useState("");
-  const [password, setPassword] = useState("");
+  const [passwordInput, setPassword] = useState("");
   const [error, setError] = useState(false);
   // const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ export const Login = () => {
   }, [user]);
 
   const usernameValid = usernameInput === user.username;
-  const passwordValid = password === user.password;
+  const passwordValid = passwordInput === user.password;
   const loginValid = usernameValid && passwordValid;
 
   const showUsernameError = !usernameValid && error;
@@ -47,7 +47,7 @@ export const Login = () => {
       .then(() =>{
         loginUser({
           username: usernameInput,
-          password: password,
+          password: passwordInput
         })
         if (!loginValid) {
           console.log(user, 'user if');
@@ -62,7 +62,7 @@ export const Login = () => {
           setError(false);
           loginUser({
             username: usernameInput,
-            password: password,
+            password: passwordInput,
           })
           navigate("/lobby");
         }
@@ -123,7 +123,7 @@ export const Login = () => {
         <TextInputs 
           label="Password:"
           onChange={(e) => setPassword(e.target.value)}
-          value={password}
+          value={passwordInput}
           show={showPasswordError}
           message={passwordErrorMessage}
         />

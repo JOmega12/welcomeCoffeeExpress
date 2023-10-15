@@ -1,5 +1,7 @@
 import {
+  Dispatch,
   ReactNode,
+  SetStateAction,
   createContext,
   useContext,
   useEffect,
@@ -9,15 +11,28 @@ import { getUserFromServer, registerFetch } from "../api/UserAPI";
 import { UserInformation } from "../types/types";
 import { toast } from "react-hot-toast";
 
-type AuthTypes = {
+type TAuthContext = {
+  user: UserInformation;
+  setUser: Dispatch<SetStateAction<UserInformation | null>>;
+  isRegister: boolean;
+  registerUser: (user: UserInformation) => void;
+  loginUser:(userInfo: { username: string; password: string }) => boolean;
+  logoutUser: () => void;
+  error: boolean;
+  setError: Dispatch<SetStateAction<boolean>>
+}
+
+
+type AuthProviderProps = {
   children: ReactNode;
 };
+
 
 const AuthContext = createContext({});
 
 
 
-export const AuthProvider = ({ children }: AuthTypes) => {
+export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState({});
   //isRegister is used for login and logout
   const [isRegister, setIsRegister] = useState(false);
@@ -86,5 +101,10 @@ export const AuthProvider = ({ children }: AuthTypes) => {
 // eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => {
   const context = useContext(AuthContext);
+  if(!context) {
+    throw new Error(
+      'Please use `useAuth` hook in context of AuthAontext'
+    );
+  }
   return context;
 };
