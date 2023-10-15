@@ -9,49 +9,53 @@ import {
 } from "react";
 import { getUserFromServer, registerFetch } from "../api/UserAPI";
 import { UserInformation } from "../types/types";
-import { toast } from "react-hot-toast";
+// import { toast } from "react-hot-toast";
 
 type TAuthContext = {
-  user: UserInformation;
+  user: UserInformation | null;
   setUser: Dispatch<SetStateAction<UserInformation | null>>;
   isRegister: boolean;
   registerUser: (user: UserInformation) => void;
-  loginUser:(userInfo: { username: string; password: string }) => boolean;
+  loginUser:(
+    userInfo: Pick<UserInformation, 'password' | 'username'>
+  ) => Promise<UserInformation | undefined>;
   logoutUser: () => void;
   error: boolean;
   setError: Dispatch<SetStateAction<boolean>>
 }
 
-
 type AuthProviderProps = {
   children: ReactNode;
 };
 
-
-const AuthContext = createContext({});
-
-
+const AuthContext = createContext<TAuthContext | undefined >(undefined);
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [user, setUser] = useState({});
-  //isRegister is used for login and logout
-  const [isRegister, setIsRegister] = useState(false);
+  const [user, setUser] = useState<UserInformation | null>(null);
+  const isRegister = !!user;
   const [error, setError] = useState(false);
 
-  const registerUser = ({ id, username, password }: UserInformation) => {
-    registerFetch({ id, username, password }).then((user) => {
+  const registerUser = ({ username, password }: UserInformation) => {
+    registerFetch({ username, password }).then((user) => {
       localStorage.setItem("user", JSON.stringify(user));
       return setUser(user);
     });
   };
 
-  const loginUser = async ({ id, username, password }: UserInformation) => {
+  const loginUser = async ({username, password }:
+    Pick<UserInformation, 'username' | 'password'>): Promise<UserInformation | undefined > => {
     try {
-      const user = await getUserFromServer({ id, username, password });
+      const user = await getUserFromServer({username, password }).catch(() => null);
+
+      if(!user) {
+        throw new Error('User not found');
+      }
+
       if (user?.password !== password) {
-        toast.error("password not found");
-      } else if (user.username !== username) {
-        toast.error("username does not exist");
+        throw new Error("Password not Found")
+      }
+      if (user.username !== username) {
+        throw new Error("Incorrect Password");
       }
       localStorage.setItem("user", JSON.stringify(user));
       //this ONLY adds the SPECIFIC USER when you login
@@ -63,9 +67,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const logoutUser = () => {
-    setUser({});
+    setUser(null);
     localStorage.removeItem("user");
-    setIsRegister(false);
   };
 
   useEffect(() => {
@@ -85,7 +88,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         user,
         setUser,
         isRegister,
-        setIsRegister,
+        // setIsRegister,
         registerUser,
         loginUser,
         logoutUser,

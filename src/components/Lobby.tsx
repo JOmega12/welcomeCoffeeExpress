@@ -1,5 +1,5 @@
 import { useAuth } from "../providers/AuthProvider";
-import { CoffeeType, UserInformation } from "../types/types";
+import { CoffeeType } from "../types/types";
 import { PreviewCard } from "./PreviewCard";
 import { Link, useNavigate } from "react-router-dom";
 // import { testCoffeeItems } from "./testCoffeeItems";
@@ -10,13 +10,13 @@ import { useCoffee } from "../providers/CoffeeProvider";
 // !maybe a comment section per coffee card
 // !add landing page coffee shop
 // !put a reseed of information
-type LobbyTypes = {
-  logoutUser: () => void;
-  user: UserInformation;
-  isRegister: boolean;
-  seePreview: boolean;
-  setActiveCard: (bool: boolean) => void;
-};
+// type LobbyTypes = {
+//   logoutUser: () => void;
+//   user: UserInformation | null;
+//   isRegister: boolean;
+//   seePreview: boolean;
+//   setActiveCard: (bool: boolean) => void;
+// };
 
 type CoffeeTypes = {
   coffee: [
@@ -34,7 +34,7 @@ type CoffeeTypes = {
 };
 
 export const Lobby = () => {
-  const { logoutUser, isRegister, user } = useAuth() as LobbyTypes;
+  const { logoutUser, isRegister, user } = useAuth();
   const { coffee } = useCoffee() as CoffeeTypes;
   const navigate = useNavigate();
 
@@ -49,7 +49,7 @@ export const Lobby = () => {
       <div className="flex flex-col h-screen mt-10">
         {isRegister ? (
           <div className="w-full mb-2 p-3 mt-3 text-center font-bold text-xl md:text-4xl lg:text-4xl">
-            <h3>Hello! {user.username}</h3>
+            <h3>Hello! {user?.username}</h3>
             <h4>There are coffees to try!</h4>
           </div>
         ) : (
