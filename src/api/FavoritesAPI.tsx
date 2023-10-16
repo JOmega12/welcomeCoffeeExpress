@@ -4,7 +4,6 @@ import { API_CONFIG } from "./config";
 export type FavoriteIDs= {
    userId: number,
    coffeeId: number,
-   // id: number,
 }
 
 export const getAllFavorites = () => {

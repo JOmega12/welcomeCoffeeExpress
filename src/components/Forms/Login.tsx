@@ -2,15 +2,7 @@ import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
 import { toast } from "react-hot-toast";
-// import { UserInformation } from "../../types/types";
 import { TextInputs } from "./TextInputs";
-
-// type LoginTypes = {
-//   loginUser: (userInfo: { username: string; password: string }) => boolean;
-//   setIsRegister: (register: boolean) => void;
-//   user: UserInformation;
-  
-// };
 
 const usernameErrorMessage = "Username not found";
 const passwordErrorMessage = "Password not found";
@@ -21,14 +13,7 @@ export const Login = () => {
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPassword] = useState("");
   const [error, setError] = useState(false);
-  // const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
-
-  // useEffect(() => {
-  //   setUsernameInput(user?.username);
-  //   setPassword(user?.password);
-  // }, [user]);
 
   const usernameValid = usernameInput === user?.username;
   const passwordValid = passwordInput === user?.password;

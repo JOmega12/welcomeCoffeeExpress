@@ -33,24 +33,24 @@ type CoffeeTypes = {
   id: number;
 };
 
-type LobbyTypes = {
-  logoutUser: () => void;
-  user: {
-    username: string,
-    password: string,
-    id: number,
-  };
-  isRegister: boolean;
-  seePreview: boolean;
-  setActiveCard: (bool: boolean) => void;
-};
+// type LobbyTypes = {
+//   logoutUser: () => void;
+//   user: {
+//     username: string,
+//     password: string,
+//     id: number,
+//   };
+//   isRegister: boolean;
+//   seePreview: boolean;
+//   setActiveCard: (bool: boolean) => void;
+// };
 
 export const FavoriteCards = () => {
   const { favCoffee } = useFavorite() as CoffeeTypes;
 
   const {coffee} = useCoffee() as CoffeeTypes; 
 
-  const { logoutUser, isRegister, user } = useAuth() as LobbyTypes;
+  const { logoutUser, isRegister, user } = useAuth();
 
   const [favoriteCoffeeData, setFavoriteCoffeeData] = useState<(CoffeeType | undefined)[]>([]);
 
@@ -58,17 +58,14 @@ export const FavoriteCards = () => {
   useEffect(() => {
     //this checks if the userId === current user.id
     const userFavorites = favCoffee.filter((favItem) => {
-      return favItem.userId === user.id
+      return favItem.userId === user?.id
     })
-    // need to replace the faoriteId with the actual coffeeId from db.json
 
     const matchedData = userFavorites.map((favItem) => {
       return coffee.find((coffeeItem) => coffeeItem.id === favItem.coffeeId);
     });
     setFavoriteCoffeeData(matchedData)
-  }, [coffee, favCoffee, user.id])
-
-
+  }, [coffee, favCoffee, user?.id])
 
   console.log(favoriteCoffeeData, 'favCoffeeData')
 
@@ -83,7 +80,7 @@ export const FavoriteCards = () => {
         {isRegister ? (
           <>
           <div className="w-full mb-2 p-3 mt-3 text-center font-bold text-xl md:text-4xl lg:text-4xl">
-            <h3>Hello! {user.username}</h3>
+            <h3>Hello! {user?.username}</h3>
             <h4>Your Favorites</h4>
           </div>
 

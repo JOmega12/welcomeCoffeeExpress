@@ -9,19 +9,18 @@ import {
 } from "react";
 import { getUserFromServer, registerFetch } from "../api/UserAPI";
 import { UserInformation } from "../types/types";
-// import { toast } from "react-hot-toast";
 
 type TAuthContext = {
   user: UserInformation | null;
   setUser: Dispatch<SetStateAction<UserInformation | null>>;
   isRegister: boolean;
   registerUser: (user: UserInformation) => void;
+
+
   loginUser:(
     userInfo: Pick<UserInformation, 'password' | 'username'>
   ) => Promise<UserInformation | undefined>;
   logoutUser: () => void;
-  error: boolean;
-  setError: Dispatch<SetStateAction<boolean>>
 }
 
 type AuthProviderProps = {
@@ -33,7 +32,7 @@ const AuthContext = createContext<TAuthContext | undefined >(undefined);
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<UserInformation | null>(null);
   const isRegister = !!user;
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
 
   const registerUser = ({ username, password }: UserInformation) => {
     registerFetch({ username, password }).then((user) => {
@@ -88,12 +87,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         user,
         setUser,
         isRegister,
-        // setIsRegister,
         registerUser,
         loginUser,
         logoutUser,
-        error,
-        setError,
       }}
     >
       {children}

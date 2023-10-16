@@ -5,13 +5,6 @@ import { toast } from "react-hot-toast";
 import { isPasswordValid } from "../validations/formValidations";
 import { TextInputs } from "./TextInputs";
 
-type SignupType = {
-  registerUser: (userInfo: { username: string; password: string }) => void;
-  isRegister: boolean;
-  setIsRegister: (isRegister: boolean) => void;
-  error: boolean;
-  setError: (error: boolean) => void;
-};
 
 const usernameErrorMessage = "Username not found";
 const passwordErrorMessage =
@@ -19,7 +12,7 @@ const passwordErrorMessage =
 const confirmPasswordErrorMessage = "Passwords are not the same";
 
 export const Signup = () => {
-  const { registerUser, setIsRegister } = useAuth() as SignupType;
+  const { registerUser } = useAuth();
 
   const [usernameInput, setUsernameInput] = useState("");
   const [password, setPassword] = useState("");
@@ -44,11 +37,9 @@ export const Signup = () => {
       });
 
       if (!usernameValid || !passwordValid || !confirmPasswordValid) {
-        setIsRegister(false);
         setError(true);
       } else {
         setError(false);
-        setIsRegister(true);
         navigate("/lobby");
       }
     } catch (err) {

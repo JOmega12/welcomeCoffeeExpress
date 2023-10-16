@@ -13,13 +13,11 @@ export const CreateCoffeeForm = () => {
 
   return (
     <>
-    {/* how to keep the user logged in?  */}
       <form
         onSubmit={(e) => {
           e.preventDefault();
           // !cant use this until styled and using the actual db
           getNewCoffee({
-              id: id,
              title: title,
              description: description,
              image: image

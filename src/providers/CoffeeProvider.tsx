@@ -3,14 +3,16 @@ import { ReactNode, createContext, useContext, useEffect, useState } from "react
 import { CoffeeType } from "../types/types";
 import { getAllCoffee, getNewCoffee } from "../api/GetCoffeeAPI";
 
-type CoffeeProviderProps = {
+type TCoffeeContext = {
    children: ReactNode;
-
+  createCoffee: (
+    newCoffee: Pick<CoffeeType, 'title' | 'description' | 'image'>
+    ) => Promise<CoffeeType | undefined>;
 }
 
 export const CoffeeContext = createContext({});
 
-export const CoffeeProvider = ({children}: CoffeeProviderProps) => {
+export const CoffeeProvider = ({children}: TCoffeeContext) => {
   const [coffee, setCoffee] = useState<CoffeeType | []>([]);
   
   const refetch = () => {

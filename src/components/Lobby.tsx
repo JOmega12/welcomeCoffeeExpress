@@ -10,13 +10,6 @@ import { useCoffee } from "../providers/CoffeeProvider";
 // !maybe a comment section per coffee card
 // !add landing page coffee shop
 // !put a reseed of information
-// type LobbyTypes = {
-//   logoutUser: () => void;
-//   user: UserInformation | null;
-//   isRegister: boolean;
-//   seePreview: boolean;
-//   setActiveCard: (bool: boolean) => void;
-// };
 
 type CoffeeTypes = {
   coffee: [
