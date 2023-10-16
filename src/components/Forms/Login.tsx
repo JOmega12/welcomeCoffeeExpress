@@ -17,10 +17,10 @@ const passwordErrorMessage = "Password not found";
 const loginErrorMessage = "User is not registered";
 
 export const Login = () => {
-  const { loginUser, user, error, setError } = useAuth();
+  const { loginUser, user } = useAuth();
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPassword] = useState("");
-  // const [error, setError] = useState(false);
+  const [error, setError] = useState(false);
   // const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -38,21 +38,23 @@ export const Login = () => {
   const showPasswordError = !passwordValid && error;
   const showLoginError = !loginValid && error;
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async(e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-      // setLoading(true);
+    
     loginUser({
       password: passwordInput,
       username: usernameInput,
     })
-    .then(() => {
-      if(!loginValid){
+    .then((user) => {
+      if(!user) {
         setError(true);
+        return
+      } else {
+        localStorage.setItem("user", JSON.stringify(user));
+        setError(false);
+        toast.success('Login complete');
+        navigate('/lobby');
       }
-      setError(false);
-      toast.success('Login complete');
-      navigate('/lobby');
     })
     .catch((err) => {
       toast.error(err.message)

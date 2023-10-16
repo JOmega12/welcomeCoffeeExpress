@@ -51,11 +51,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         throw new Error('User not found');
       }
 
-      if (user?.password !== password) {
-        throw new Error("Password not Found")
-      }
       if (user.username !== username) {
         throw new Error("Incorrect Password");
+      }
+      if (user?.password !== password) {
+        throw new Error("Password not Found")
       }
       localStorage.setItem("user", JSON.stringify(user));
       //this ONLY adds the SPECIFIC USER when you login
