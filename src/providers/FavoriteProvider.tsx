@@ -1,15 +1,22 @@
-import { ReactNode, createContext, useContext, useEffect, useState } from "react"
+import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useEffect, useState } from "react"
 import { getAllFavorites, toggleFavoriteAPI } from "../api/FavoritesAPI";
+import { CoffeeType } from "../types/types";
 
-type FavTypes = {
+type TFavContext = {
+   toggleFavorite: ({userId, coffeeId}: {userId: number, coffeeId: number}) => void;
+   favCoffee: CoffeeType | null;
+   setFavCoffee: Dispatch<SetStateAction<CoffeeType | null>>
+}
+
+type FavContextProps = {
    children: ReactNode;
 }
 
-const FavoriteContext = createContext({});
+const FavoriteContext = createContext<TFavContext | undefined>(undefined);
 
-export const FavoriteProvider = ({children}:FavTypes) => {
+export const FavoriteProvider = ({children}:FavContextProps) => {
 
-   const [favCoffee, setFavCoffee] = useState([]);
+   const [favCoffee, setFavCoffee] = useState<CoffeeType | null>(null);
 
    const refetch = () => {
       getAllFavorites().then(setFavCoffee);
@@ -40,5 +47,10 @@ export const FavoriteProvider = ({children}:FavTypes) => {
 // eslint-disable-next-line react-refresh/only-export-components
 export const useFavorite = () => {
    const context = useContext(FavoriteContext);
+   if(!context) {
+      throw new Error(
+         'Please use the useFavorite Context'
+      )
+   }
    return context;
 } 

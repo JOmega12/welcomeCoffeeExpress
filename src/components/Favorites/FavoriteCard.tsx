@@ -7,31 +7,31 @@ import { useAuth } from "../../providers/AuthProvider";
 import { useEffect, useState } from "react";
 import { useCoffee } from "../../providers/CoffeeProvider";
 
-type CoffeeTypes = {
-  coffee: [
-    {
-      userId: number;
-      coffeeId: number;
-      id: number;
-      favoriteId: number;
-      title: string;
-      description: string;
-      image: string;
-    }
-  ];
-  favCoffee: [
-    {
-      id: number;
-      coffeeId: number;
-      favoriteId: number;
-      userId: number;
-      title: string;
-      description: string;
-      image: string;
-    }
-  ];
-  toggleFavorite: (favorite: { coffeeId: number; userId: number }) => void;
-};
+// type CoffeeTypes = {
+//   coffee: [
+//     {
+//       userId: number;
+//       coffeeId: number;
+//       id: number;
+//       favoriteId: number;
+//       title: string;
+//       description: string;
+//       image: string;
+//     }
+//   ];
+//   favCoffee: [
+//     {
+//       id: number;
+//       coffeeId: number;
+//       favoriteId: number;
+//       userId: number;
+//       title: string;
+//       description: string;
+//       image: string;
+//     }
+//   ];
+//   toggleFavorite: (favorite: { coffeeId: number; userId: number }) => void;
+// };
 
 type userType = {
   user: UserInformation;
@@ -40,21 +40,21 @@ type userType = {
 export const FavoriteCard = () => {
   const navigate = useNavigate();
 
-  const { favCoffee, toggleFavorite } = useFavorite() as CoffeeTypes;
+  const { favCoffee, toggleFavorite } = useFavorite();
 
-  const { coffee } = useCoffee() as CoffeeTypes;
+  const { coffee } = useCoffee();
   const { user } = useAuth() as userType;
   const { favoriteId } = useParams();
   const favCoffeeItem = Number(favoriteId);
   const favCoffeeItems = favCoffee[favCoffeeItem];
-
+  console.log(favCoffeeItems, 'favCoffeeItems')
   //this is to check if the item per card number would actually show and show the information per card
   const coffeeIdItem = favCoffeeItems.coffeeId;
-  const coffeeItem = coffee.find((item) => {
+  const coffeeItem = coffee.find((item: { id: number; }) => {
     return item.id === coffeeIdItem;
   });
 
-  const isFavorite = favCoffee.find((favorite) => {
+  const isFavorite = favCoffee.find((favorite: { userId: number | undefined; coffeeId: number; }) => {
 
     return favorite.userId === user?.id && favorite.coffeeId === coffeeIdItem
   });
@@ -62,7 +62,7 @@ export const FavoriteCard = () => {
   const [isFavorited, setIsFavorited] = useState(!!isFavorite);
 
   useEffect(() => {
-    const isFavorite = favCoffee.find((favorite) => {
+    const isFavorite = favCoffee.find((favorite: { userId: number | undefined; coffeeId: number; }) => {
       return favorite.userId === user?.id && favorite.coffeeId === coffeeIdItem
     });
     console.log(isFavorite, "isFavorite");

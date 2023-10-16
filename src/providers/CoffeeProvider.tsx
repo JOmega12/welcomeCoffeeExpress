@@ -1,19 +1,24 @@
 /* eslint-disable react-refresh/only-export-components */
-import { ReactNode, createContext, useContext, useEffect, useState } from "react";
+import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useEffect, useState } from "react";
 import { CoffeeType } from "../types/types";
 import { getAllCoffee, getNewCoffee } from "../api/GetCoffeeAPI";
 
 type TCoffeeContext = {
-   children: ReactNode;
   createCoffee: (
     newCoffee: Pick<CoffeeType, 'title' | 'description' | 'image'>
     ) => Promise<CoffeeType | undefined>;
+    coffee: CoffeeType | null;
+    setCoffee: Dispatch<SetStateAction<CoffeeType | null>>
 }
 
-export const CoffeeContext = createContext({});
+type CoffeeProviderProps = {
+  children: ReactNode;
+}
 
-export const CoffeeProvider = ({children}: TCoffeeContext) => {
-  const [coffee, setCoffee] = useState<CoffeeType | []>([]);
+export const CoffeeContext = createContext<TCoffeeContext | undefined>(undefined);
+
+export const CoffeeProvider = ({children}: CoffeeProviderProps) => {
+  const [coffee, setCoffee] = useState<CoffeeType | null>(null);
   
   const refetch = () => {
     getAllCoffee().then(setCoffee);
@@ -23,11 +28,18 @@ export const CoffeeProvider = ({children}: TCoffeeContext) => {
     refetch();
   }, []);
 
-  // console.log(coffee, 'coffee');
-  const createCoffee = async ({ title, description, image }: CoffeeType) => {
+  const createCoffee = async ({ title, description, image }: Pick<CoffeeType, 'title' | 'description' | 'image'>): Promise<CoffeeType | undefined > => {
     try {
     await getNewCoffee({ title, description, image });
       await refetch();
+
+      const newCoffee = coffee;
+      if(newCoffee) {
+        return newCoffee;
+      } else {
+        return undefined
+      }
+      // return coffee;
     } catch (err) {
       console.log("Error cannot create new coffee", err);
     }
@@ -39,14 +51,17 @@ export const CoffeeProvider = ({children}: TCoffeeContext) => {
         coffee,
         setCoffee,
         createCoffee,
-        // favCoffee,
-        // setFavCoffee,
       }}
     >{children}</CoffeeContext.Provider>
   );
 };
 
 export const useCoffee = () => {
-   const context = useContext(CoffeeContext)
+   const context = useContext(CoffeeContext);
+   if(!context) {
+    throw new Error(
+      'Please use the useCoffee Context'
+    )
+   }
    return context;
 }

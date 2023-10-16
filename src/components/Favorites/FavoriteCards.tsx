@@ -1,70 +1,42 @@
 import { Link, useNavigate } from "react-router-dom";
-import { CoffeeType, UserInformation } from "../../types/types";
+import { CoffeeType } from "../../types/types";
 import { PreviewCard } from "../PreviewCard";
 import { useAuth } from "../../providers/AuthProvider";
 import { useFavorite } from "../../providers/FavoriteProvider";
 import { useCoffee } from "../../providers/CoffeeProvider";
 import { useEffect, useState } from "react";
 
-type CoffeeTypes = {
-  favCoffee: [{
-    userId: number,
-    coffeeId: number,
-    id: number,
-    favoriteId: number,
-    title: string,
-    description: string,
-    image: string,}
-  ];
-  coffee: [{
-    userId: number,
-    coffeeId: number,
-    id: number,
-    favoriteId: number,
-    title: string,
-    description: string,
-    image: string,}
-  ];
-  coffeeToNumber: number;
-  toggleFavorite: (favorite: { coffeeId: number; userId: number }) => void;
-
-  userId: UserInformation;
-  coffeeId: number;
-  id: number;
-};
-
-// type LobbyTypes = {
-//   logoutUser: () => void;
-//   user: {
-//     username: string,
-//     password: string,
-//     id: number,
-//   };
-//   isRegister: boolean;
-//   seePreview: boolean;
-//   setActiveCard: (bool: boolean) => void;
-// };
 
 export const FavoriteCards = () => {
-  const { favCoffee } = useFavorite() as CoffeeTypes;
+  const favContext = useFavorite();
+  const favCoffee = favContext?.favCoffee;
+  // const { favCoffee } = useFavorite();
 
-  const {coffee} = useCoffee() as CoffeeTypes; 
+  const {coffee} = useCoffee(); 
 
   const { logoutUser, isRegister, user } = useAuth();
 
   const [favoriteCoffeeData, setFavoriteCoffeeData] = useState<(CoffeeType | undefined)[]>([]);
-
   const navigate = useNavigate();
-  useEffect(() => {
-    //this checks if the userId === current user.id
-    const userFavorites = favCoffee.filter((favItem) => {
-      return favItem.userId === user?.id
-    })
 
-    const matchedData = userFavorites.map((favItem) => {
-      return coffee.find((coffeeItem) => coffeeItem.id === favItem.coffeeId);
-    });
-    setFavoriteCoffeeData(matchedData)
+
+  useEffect(() => {
+    // Array.isArray checks if there is an array of favCoffee
+    if(Array.isArray(favCoffee)) {
+      //this checks if the userId === current user.id
+      const userFavorites = favCoffee.filter((favItem: { userId: number | undefined; }) => {
+        return favItem.userId === user?.id
+      })
+      
+      if(Array.isArray(coffee)) {
+        const matchedData = userFavorites.map((favItem: { coffeeId: number; }) => {
+          return coffee.find((coffeeItem) => coffeeItem.id === favItem.coffeeId);
+        });
+        setFavoriteCoffeeData(matchedData)
+      }
+    } else {
+      null
+    }
   }, [coffee, favCoffee, user?.id])
 
   console.log(favoriteCoffeeData, 'favCoffeeData')

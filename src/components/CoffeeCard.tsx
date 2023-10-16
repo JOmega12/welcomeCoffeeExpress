@@ -1,6 +1,6 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useCoffee } from "../providers/CoffeeProvider";
-import { UserInformation } from "../types/types";
+// import { UserInformation } from "../types/types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useFavorite } from "../providers/FavoriteProvider";
@@ -34,15 +34,15 @@ type CoffeeTypes = {
   toggleFavorite: (favorite: { coffeeId: number; userId: number }) => void;
 };
 
-type userType = {
-  user: UserInformation;
-};
+// type userType = {
+//   user: UserInformation;
+// };
 
 export const CoffeeCard = () => {
   const navigate = useNavigate();
   const { coffee } = useCoffee() as CoffeeTypes;
   const { toggleFavorite, favCoffee } = useFavorite() as CoffeeTypes;
-  const { user } = useAuth() as userType;
+  const { user } = useAuth();
   const { coffeeId } = useParams();
   const coffeeToNumber = Number(coffeeId);
 
@@ -117,7 +117,8 @@ export const CoffeeCard = () => {
           <button onClick={() => navigate(-1)}>Back</button>
         </div>
         <div className="bg-yellow-400 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-default hover:text-white  hover:bg-yellow-500 font-semibold">
-          <button>Favorites</button>
+          <Link to={`/favorites`}>Favorites</Link>
+          {/* <button>Favorites</button> */}
         </div>
       </section>
     </div>

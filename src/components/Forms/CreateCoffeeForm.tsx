@@ -2,8 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getNewCoffee } from "../../api/GetCoffeeAPI";
 
-// !style on this page
-
 export const CreateCoffeeForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -16,7 +14,6 @@ export const CreateCoffeeForm = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          // !cant use this until styled and using the actual db
           getNewCoffee({
              title: title,
              description: description,
@@ -67,7 +64,6 @@ export const CreateCoffeeForm = () => {
         </div>
         <section className="mb-4 flex flex-col md:flex-row justify-center gap-10 pb-10 pt-5">
          <div
-         //  className="bg-blue-500 hover:text-white py-2 px-4 rounded-lg hover:bg-blue-600 text-center"
           className="bg-blue-500 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-auto hover:bg-blue-600 text-white font-semibold
           "
          >

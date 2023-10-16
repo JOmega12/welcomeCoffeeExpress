@@ -5,7 +5,8 @@ export type CoffeeType = {
    title: string,
    description: string,
    image: string,
-}
+};
+
 
 export type CoffeeCardProps = {
    item: {

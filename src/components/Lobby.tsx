@@ -1,37 +1,25 @@
 import { useAuth } from "../providers/AuthProvider";
-import { CoffeeType } from "../types/types";
+// import { CoffeeType } from "../types/types";
 import { PreviewCard } from "./PreviewCard";
 import { Link, useNavigate } from "react-router-dom";
-// import { testCoffeeItems } from "./testCoffeeItems";
+import DefaultCoffee from '../images/coffee1.jpeg'
 import { useCoffee } from "../providers/CoffeeProvider";
 
-//!add error handling into my forms
+// !handle type issue with favorite and coffee context
+//!add error handling into create coffee form
 // !fix lobby problem for disabling
 // !maybe a comment section per coffee card
 // !add landing page coffee shop
 // !put a reseed of information
 
-type CoffeeTypes = {
-  coffee: [
-    {
-      userId: number;
-      coffeeId: number;
-      id: number;
-      favoriteId: number;
-      title: string;
-      description: string;
-      image: string;
-    }
-  ];
-  favCoffee: CoffeeType[];
-};
 
 export const Lobby = () => {
   const { logoutUser, isRegister, user } = useAuth();
-  const { coffee } = useCoffee() as CoffeeTypes;
+  const { coffee } = useCoffee();
   const navigate = useNavigate();
 
   // !create a disable button for create coffee until you sign in
+  // ! or write something to see if user is logged in
 
   const handleLogout = () => {
     logoutUser();
@@ -63,14 +51,27 @@ export const Lobby = () => {
           </Link>
         </div>
         <div className="flex flex-grow flex-wrap justify-center p-4 lg:justify-evenly">
-          {coffee.map((item, index) => (
-            <Link
-              to={`/coffee-card/${item.id}`}
-              className="w-full md:w-1/2 lg:w-1/3 p-2 bg-white rounded-lg shadow-md m-2 hover:cursor-pointer hover:bg-gray-500"
-            >
-              <PreviewCard item={item} index={index}/>
-            </Link>
-          ))}
+          {/* If coffee exists and is in Array and isRegistered, show this UI */}
+          { coffee &&Array.isArray(coffee) && isRegister ? (
+            coffee.map((item: { id: number; title?: string; description?: string; image?: string; }, index: number) => (
+              <Link
+                to={`/coffee-card/${item.id}`}
+                className="w-full md:w-1/2 lg:w-1/3 p-2 bg-white rounded-lg shadow-md m-2 hover:cursor-pointer hover:bg-gray-500"
+              >
+                <PreviewCard item={{
+                  id: item.id,
+                  title: item?.title || 'Default Title',
+                description: item?.description || "Default Description",
+                image: item?.image || DefaultCoffee
+                }} index={index}/>
+              </Link>
+            ))
+          ): (
+            <>
+              <div>No coffees available. Please Login</div>
+              <Link to={`/login`}>Login</Link>
+          </>
+          )}
         </div>
         <section className="mt-2 flex flex-col lg:flex-row h-screen sm:flex-col w-screen justify-center gap-20 pb-10 pt-5">
           <div className="bg-yellow-400 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-default hover:text-white  hover:bg-yellow-500 font-semibold">

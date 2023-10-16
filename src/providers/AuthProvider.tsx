@@ -15,8 +15,6 @@ type TAuthContext = {
   setUser: Dispatch<SetStateAction<UserInformation | null>>;
   isRegister: boolean;
   registerUser: (user: UserInformation) => void;
-
-
   loginUser:(
     userInfo: Pick<UserInformation, 'password' | 'username'>
   ) => Promise<UserInformation | undefined>;
