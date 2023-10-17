@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import DefaultCoffee from '../images/coffee1.jpeg'
 import { useCoffee } from "../providers/CoffeeProvider";
 
-// !handle type issue with favorite and coffee context
 //!add error handling into create coffee form
 // !fix lobby problem for disabling
 // !maybe a comment section per coffee card
@@ -17,9 +16,6 @@ export const Lobby = () => {
   const { logoutUser, isRegister, user } = useAuth();
   const { coffee } = useCoffee();
   const navigate = useNavigate();
-
-  // !create a disable button for create coffee until you sign in
-  // ! or write something to see if user is logged in
 
   const handleLogout = () => {
     logoutUser();
@@ -61,8 +57,8 @@ export const Lobby = () => {
                 <PreviewCard item={{
                   id: item.id,
                   title: item?.title || 'Default Title',
-                description: item?.description || "Default Description",
-                image: item?.image || DefaultCoffee
+                  description: item?.description || "Default Description",
+                  image: item?.image || DefaultCoffee
                 }} index={index}/>
               </Link>
             ))

@@ -1,6 +1,7 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useCoffee } from "../providers/CoffeeProvider";
 // import { UserInformation } from "../types/types";
+import DefaultCoffee from '../images/coffee1.jpeg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useFavorite } from "../providers/FavoriteProvider";
@@ -8,36 +9,6 @@ import { useAuth } from "../providers/AuthProvider";
 import { useEffect, useState } from "react";
 import { CoffeeType } from "../types/types";
 
-// type CoffeeTypes = {
-//   coffee: [
-//     {
-//       userId: number;
-//       coffeeId: number;
-//       id: number;
-//       favoriteId: number;
-//       title: string;
-//       description: string;
-//       image: string;
-//     }
-//   ];
-//   coffeeToNumber: number;
-//   favCoffee: [
-//     {
-//       userId: number;
-//       coffeeId: number;
-//       id: number;
-//       favoriteId: number;
-//       title: string;
-//       description: string;
-//       image: string;
-//     }
-//   ];
-//   toggleFavorite: (favorite: { coffeeId: number; userId: number }) => void;
-// };
-
-// type userType = {
-//   user: UserInformation;
-// };
 
 export const CoffeeCard = () => {
   const navigate = useNavigate();
@@ -46,13 +17,6 @@ export const CoffeeCard = () => {
   const { user } = useAuth();
   const { coffeeId } = useParams();
   const coffeeToNumber = Number(coffeeId);
-
-  // const coffeeItem = coffee.find((cafe) => {
-  //   return cafe.id === coffeeToNumber;
-  // });
-  // const isFavorite = favCoffee.find((favorite) => {
-  //   return favorite.userId === user?.id && favorite.coffeeId === coffeeItem?.id;
-  // });
 
   const [coffeeItem, setCoffeeItem] = useState<CoffeeType | undefined> (undefined)
   const [isFavorited, setIsFavorited] = useState(false);
@@ -97,7 +61,7 @@ export const CoffeeCard = () => {
     >
       <div className="p-2 w-full sm:w-1/2 mt-10 sm:p-5">
         <img
-          src={coffeeItem?.image}
+          src={coffeeItem?.image || DefaultCoffee}
           alt=""
           className="w-full max-h-[50vh] h-auto"
         />
@@ -115,10 +79,10 @@ export const CoffeeCard = () => {
         />
       </div>
       <div className="md:text- 4xl font-bold text-xl text-transform: capitalize sm:3xl">
-        <h2>{coffeeItem?.title}</h2>
+        <h2>{coffeeItem?.title || "Default Title"}</h2>
       </div>
       <div className="md:text-3xl text-xl sm:2xl mt-3">
-        <p>{coffeeItem?.description}</p>
+        <p>{coffeeItem?.description || "Default Description"}</p>
       </div>
       <div className="mt-2">
         <ol>

@@ -1,5 +1,6 @@
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CoffeeType } from "../types/types";
+import DefaultCoffee from '../images/coffee1.jpeg';
 // import { faStar } from "@fortawesome/free-solid-svg-icons";
 // import { useAuth } from "../providers/AuthProvider";
 // import { useFavorite } from "../providers/FavoriteProvider";
@@ -7,7 +8,6 @@ import { CoffeeType } from "../types/types";
 type CoffeeTypes = {
   item: CoffeeType;
   index: number;
-  // disabled: boolean;
 }
 
 export const PreviewCard = ({ item, index }  : 
@@ -22,11 +22,11 @@ export const PreviewCard = ({ item, index }  :
         >
         </div>
         <div className="p-4">
-          <img src={item.image} alt="" className="w-full h-40 md:h-48 lg:h-56" />
+          <img src={item.image || DefaultCoffee} alt="" className="w-full h-40 md:h-48 lg:h-56" />
         </div>
         <div className="text-center gap-3">
-          <h3 className="text-lg font-semibold">{item.title}</h3>
-          <p>{item.description}</p>
+          <h3 className="text-lg font-semibold">{item.title || "Default Title"}</h3>
+          <p>{item.description || "Default Description"}</p>
         </div>
       </div>
     </>

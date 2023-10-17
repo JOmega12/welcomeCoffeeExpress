@@ -10,15 +10,12 @@ import { useEffect, useState } from "react";
 export const FavoriteCards = () => {
   const favContext = useFavorite();
   const favCoffee = favContext?.favCoffee;
-  // const { favCoffee } = useFavorite();
-
   const {coffee} = useCoffee(); 
 
   const { logoutUser, isRegister, user } = useAuth();
 
   const [favoriteCoffeeData, setFavoriteCoffeeData] = useState<(CoffeeType | undefined)[]>([]);
   const navigate = useNavigate();
-
 
   useEffect(() => {
     // Array.isArray checks if there is an array of favCoffee
