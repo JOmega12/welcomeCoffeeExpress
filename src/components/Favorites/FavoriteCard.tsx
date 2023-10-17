@@ -33,9 +33,9 @@ import { useCoffee } from "../../providers/CoffeeProvider";
 //   toggleFavorite: (favorite: { coffeeId: number; userId: number }) => void;
 // };
 
-type userType = {
-  user: UserInformation;
-};
+// type userType = {
+//   user: UserInformation;
+// };
 
 export const FavoriteCard = () => {
   const navigate = useNavigate();
@@ -43,16 +43,25 @@ export const FavoriteCard = () => {
   const { favCoffee, toggleFavorite } = useFavorite();
 
   const { coffee } = useCoffee();
-  const { user } = useAuth() as userType;
+  const { user } = useAuth();
   const { favoriteId } = useParams();
   const favCoffeeItem = Number(favoriteId);
   const favCoffeeItems = favCoffee[favCoffeeItem];
   console.log(favCoffeeItems, 'favCoffeeItems')
   //this is to check if the item per card number would actually show and show the information per card
   const coffeeIdItem = favCoffeeItems.coffeeId;
+  console.log(coffeeIdItem, 'cofffeeIdItem');
+
   const coffeeItem = coffee.find((item: { id: number; }) => {
     return item.id === coffeeIdItem;
   });
+  
+  if(Array.isArray(coffee)){
+    const coffeeItem = coffee.find((item: { id: number; }) => {
+      return item.id === coffeeIdItem;
+    });
+    return coffeeItem;
+  }
 
   const isFavorite = favCoffee.find((favorite: { userId: number | undefined; coffeeId: number; }) => {
 

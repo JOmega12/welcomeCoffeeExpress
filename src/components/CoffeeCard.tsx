@@ -6,33 +6,34 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useFavorite } from "../providers/FavoriteProvider";
 import { useAuth } from "../providers/AuthProvider";
 import { useEffect, useState } from "react";
+import { CoffeeType } from "../types/types";
 
-type CoffeeTypes = {
-  coffee: [
-    {
-      userId: number;
-      coffeeId: number;
-      id: number;
-      favoriteId: number;
-      title: string;
-      description: string;
-      image: string;
-    }
-  ];
-  coffeeToNumber: number;
-  favCoffee: [
-    {
-      userId: number;
-      coffeeId: number;
-      id: number;
-      favoriteId: number;
-      title: string;
-      description: string;
-      image: string;
-    }
-  ];
-  toggleFavorite: (favorite: { coffeeId: number; userId: number }) => void;
-};
+// type CoffeeTypes = {
+//   coffee: [
+//     {
+//       userId: number;
+//       coffeeId: number;
+//       id: number;
+//       favoriteId: number;
+//       title: string;
+//       description: string;
+//       image: string;
+//     }
+//   ];
+//   coffeeToNumber: number;
+//   favCoffee: [
+//     {
+//       userId: number;
+//       coffeeId: number;
+//       id: number;
+//       favoriteId: number;
+//       title: string;
+//       description: string;
+//       image: string;
+//     }
+//   ];
+//   toggleFavorite: (favorite: { coffeeId: number; userId: number }) => void;
+// };
 
 // type userType = {
 //   user: UserInformation;
@@ -40,36 +41,49 @@ type CoffeeTypes = {
 
 export const CoffeeCard = () => {
   const navigate = useNavigate();
-  const { coffee } = useCoffee() as CoffeeTypes;
-  const { toggleFavorite, favCoffee } = useFavorite() as CoffeeTypes;
+  const { coffee } = useCoffee();
+  const { toggleFavorite, favCoffee } = useFavorite();
   const { user } = useAuth();
   const { coffeeId } = useParams();
   const coffeeToNumber = Number(coffeeId);
 
-  const coffeeItem = coffee.find((cafe) => {
-    return cafe.id === coffeeToNumber;
-  });
+  // const coffeeItem = coffee.find((cafe) => {
+  //   return cafe.id === coffeeToNumber;
+  // });
+  // const isFavorite = favCoffee.find((favorite) => {
+  //   return favorite.userId === user?.id && favorite.coffeeId === coffeeItem?.id;
+  // });
 
-  const isFavorite = favCoffee.find((favorite) => {
-    return favorite.userId === user?.id && favorite.coffeeId === coffeeItem?.id;
-  });
-
-  const [isFavorited, setIsFavorited] = useState(!!isFavorite);
+  const [coffeeItem, setCoffeeItem] = useState<CoffeeType | undefined> (undefined)
+  const [isFavorited, setIsFavorited] = useState(false);
 
   useEffect(() => {
-    const isFavorite = favCoffee.find((favorite) => {
-      return (
-        favorite.userId === user?.id && favorite.coffeeId === coffeeItem?.id
-      );
-    });
-    setIsFavorited(!!isFavorite);
-  }, [coffeeItem?.id, favCoffee, user?.id]);
+    if (
+      coffee &&
+      favCoffee &&
+      Array.isArray(coffee) &&
+      Array.isArray(favCoffee)
+    ) {
+      const foundCoffeeItem = coffee.find((cafe) => {
+        return cafe.id === coffeeToNumber});
+      if(foundCoffeeItem) {
+        setCoffeeItem(foundCoffeeItem);
+        const isFavorite = favCoffee.find((favorite) => {
+          return (
+            favorite.userId === user?.id && 
+            favorite.coffeeId === coffeeItem?.id
+          );
+        });
+        setIsFavorited(!!isFavorite);
+      }
+    }
+  }, [coffee, coffeeItem?.id, coffeeToNumber, favCoffee, user?.id]);
 
   const onFavoriteClick = async () => {
     if (coffeeItem) {
       toggleFavorite({
-        coffeeId: coffeeItem?.id,
-        userId: user?.id,
+        coffeeId: coffeeItem.id ?? 0,
+        userId: user?.id ?? 0,
       });
     }
     setIsFavorited(!isFavorited);
