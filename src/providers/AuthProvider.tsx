@@ -15,22 +15,21 @@ type TAuthContext = {
   setUser: Dispatch<SetStateAction<UserInformation | null>>;
   isRegister: boolean;
   registerUser: (user: UserInformation) => void;
-  loginUser:(
-    userInfo: Pick<UserInformation, 'password' | 'username'>
+  loginUser: (
+    userInfo: Pick<UserInformation, "password" | "username">
   ) => Promise<UserInformation | undefined>;
   logoutUser: () => void;
-}
+};
 
 type AuthProviderProps = {
   children: ReactNode;
 };
 
-const AuthContext = createContext<TAuthContext | undefined >(undefined);
+const AuthContext = createContext<TAuthContext | undefined>(undefined);
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<UserInformation | null>(null);
   const isRegister = !!user;
-  // const [error, setError] = useState(false);
 
   const registerUser = ({ username, password }: UserInformation) => {
     registerFetch({ username, password }).then((user) => {
@@ -39,20 +38,26 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     });
   };
 
-  const loginUser = async ({username, password }:
-    Pick<UserInformation, 'username' | 'password'>): Promise<UserInformation | undefined > => {
+  const loginUser = async ({
+    username,
+    password,
+  }: Pick<UserInformation, "username" | "password">): Promise<
+    UserInformation | undefined
+  > => {
     try {
-      const user = await getUserFromServer({username, password }).catch(() => null);
+      const user = await getUserFromServer({ username, password }).catch(
+        () => null
+      );
 
-      if(!user) {
-        throw new Error('User not found');
+      if (!user) {
+        throw new Error("User not found");
       }
 
       if (user.username !== username) {
         throw new Error("Incorrect Password");
       }
       if (user?.password !== password) {
-        throw new Error("Password not Found")
+        throw new Error("Password not Found");
       }
       localStorage.setItem("user", JSON.stringify(user));
       //this ONLY adds the SPECIFIC USER when you login
@@ -98,10 +103,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 // eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  if(!context) {
-    throw new Error(
-      'Please use `useAuth` hook in context of AuthAontext'
-    );
+  if (!context) {
+    throw new Error("Please use `useAuth` hook in context of AuthAontext");
   }
   return context;
 };

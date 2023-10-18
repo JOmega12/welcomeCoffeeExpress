@@ -5,8 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import DefaultCoffee from '../images/coffee1.jpeg'
 import { useCoffee } from "../providers/CoffeeProvider";
 
-// !maybe a comment section per coffee card
 // !add landing page coffee shop
+// !maybe a comment section per coffee card
 // !put a reseed of information
 
 

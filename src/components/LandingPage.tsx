@@ -1,13 +1,8 @@
 // import {  useState } from "react"
 // import { useAuth } from "../providers/AuthProvider";
 import { Link } from "react-router-dom";
+import CoffeeLander from '../images/coffeePNG.jpeg'
 import "../custom.css";
-// type LandingPagesProps = {
-//    Login: ReactNode;
-//    Signup: ReactNode;
-//    bool: boolean;
-//    isLoginClick: () => void;
-// }
 
 export const LandingPage = () => {
   return (
@@ -18,6 +13,15 @@ export const LandingPage = () => {
       <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4">
         Would you like some coffee?
       </h2>
+      <div>
+        <div className="left"></div>
+        <div className="right">
+          <div>
+            <img src={CoffeeLander} alt="" />
+          </div>
+        </div>
+
+      </div>
       <div className="flex flex-col md:flex-row gap-10 justify-center">
         <Link
           to="login"
