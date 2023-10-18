@@ -70,21 +70,6 @@
   ],
   "favorite": [
     {
-      "userId": 1,
-      "coffeeId": 2,
-      "id": 2
-    },
-    {
-      "userId": 1,
-      "coffeeId": 1,
-      "id": 3
-    },
-    {
-      "userId": 1,
-      "coffeeId": 5,
-      "id": 4
-    },
-    {
       "userId": 5,
       "coffeeId": 1,
       "id": 5
@@ -93,6 +78,16 @@
       "userId": 5,
       "coffeeId": 4,
       "id": 6
+    },
+    {
+      "userId": 1,
+      "coffeeId": 1,
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "coffeeId": 2,
+      "id": 8
     }
   ],
   "comments": [

@@ -23,27 +23,27 @@ export const Login = () => {
   const showPasswordError = !passwordValid && error;
   const showLoginError = !loginValid && error;
 
-  const handleSubmit = async(e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     loginUser({
       password: passwordInput,
       username: usernameInput,
     })
-    .then((user) => {
-      if(!user) {
-        setError(true);
-        return
-      } else {
-        localStorage.setItem("user", JSON.stringify(user));
-        setError(false);
-        toast.success('Login complete');
-        navigate('/lobby');
-      }
-    })
-    .catch((err) => {
-      toast.error(err.message)
-    })
+      .then((user) => {
+        if (!user) {
+          setError(true);
+          return;
+        } else {
+          localStorage.setItem("user", JSON.stringify(user));
+          setError(false);
+          toast.success("Login complete");
+          navigate("/lobby");
+        }
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
   };
 
   return (
@@ -57,14 +57,14 @@ export const Login = () => {
         <h2>Login</h2>
       </div>
       <div className="flex flex-col space-y-4 ">
-        <TextInputs 
+        <TextInputs
           label="Username:"
           onChange={(e) => setUsernameInput(e.target.value)}
           value={usernameInput}
           show={showUsernameError}
           message={usernameErrorMessage}
         />
-        <TextInputs 
+        <TextInputs
           label="Password:"
           onChange={(e) => setPassword(e.target.value)}
           value={passwordInput}
@@ -78,7 +78,6 @@ export const Login = () => {
           <input
             type="submit"
             className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
-            // disabled={loading}
           />
           <button
             onClick={() => navigate("/")}
