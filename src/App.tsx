@@ -25,7 +25,7 @@ function App() {
     <>
     <Navbar/>
     {/*     bg-[#f4f4ec] */}
-    <div className="flex justify-center items-center lg:p-20 md:p-10 w-screen h-screen
+    <div className="flex justify-center items-center lg:p-20 md:p-10 w-screen h-screen bg-[#f4f4ec]
     ">
       <AuthProvider>
         <CoffeeProvider>
