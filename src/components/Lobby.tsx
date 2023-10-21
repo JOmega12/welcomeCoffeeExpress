@@ -21,7 +21,7 @@ export const Lobby = () => {
   };
   return (
     <>
-      <div className="flex flex-col h-screen mt-10">
+      <div className="flex flex-col h-screen mt-10 font-serif">
         {isRegister ? (
           <>
             <div className="w-full mb-2 p-3 mt-3 text-center font-bold text-xl md:text-4xl lg:text-4xl">
@@ -74,7 +74,7 @@ export const Lobby = () => {
           </>
           )}
         </div>
-        <section className="mt-2 flex flex-col lg:flex-row h-screen sm:flex-col w-screen justify-center gap-20 pb-10 pt-5">
+        <section className="mt-2 flex flex-col lg:flex-row h-screen sm:flex-col w-screen justify-center gap-20 pb-10 pt-5 bg-[#f4f4ec]">
           <div className="flex justify-between h-[70px]"> 
             <div className="bg-yellow-400 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-default hover:text-white  hover:bg-yellow-500 font-semibold">
               <Link to={`/favorites`}>Favorites</Link>
