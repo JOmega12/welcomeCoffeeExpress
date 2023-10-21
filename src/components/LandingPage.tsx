@@ -69,50 +69,45 @@ export const LandingPage = () => {
             </div>
           </div>
         </div>
-        {/* <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4">
-          Would you like some coffee?
-        </h2> */}
-        <div className="flex flex-col md:flex-row gap-10 justify-center">
+        </div>
+        <div className="flex flex-col lg:flex-col md:flex-row gap-10 justify-center">
           <h2>Our Coffees</h2>
-          <div>
+          <div className="flex flex-row justify-center">
             <>
               {coffee && Array.isArray(coffee)
                 ? coffee
-                    .slice(0, 4)
+                    .slice(0, 3)
                     .map(
                       (item: {
-                        image: string | undefined;
+                        image: string;
                         title: string;
                         description: string;
-                      }) => {
-                        {console.log(item)}
-
-                      }
+                      }) => (
+                        <div>
+                          <div className="flex mt-5 p-3"></div>
+                          <div className="p-4">
+                            <img
+                              src={item.image}
+                              alt=""
+                              className="w-full h-40 md:h-48 lg:h-56"
+                            />
+                          </div>
+                          <div className="text-center gap-3">
+                            <h3 className="text-lg font-semibold">
+                              {item.title || "Default Title"}
+                            </h3>
+                            <p>{item.description || "Default Description"}</p>
+                          </div>
+                        </div>
+                      )
                     )
                 : null}
             </>
           </div>
         </div>
-      </div>
+
     </div>
   );
 };
 
-
 // this is used for the map
-{/* <div>
-<div className="flex mt-5 p-3"></div>
-<div className="p-4">
-  <img
-    src={item.image}
-    alt=""
-    className="w-full h-40 md:h-48 lg:h-56"
-  />
-</div>
-<div className="text-center gap-3">
-  <h3 className="text-lg font-semibold">
-    {item.title || "Default Title"}
-  </h3>
-  <p>{item.description || "Default Description"}</p>
-</div>
-</div>; */}

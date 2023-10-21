@@ -18,7 +18,6 @@ import { MultipleLogin } from "./components/MultipleLogin";
 
 function App() {
   return (
-    // !need to fetch actual coffee data
     //!add the star favorites as being favorited
     // ! about us page needs sample info at a later time 
     <>
