@@ -14,18 +14,17 @@ import { AboutUs } from "./components/Navbar/AboutUs";
 import { Navbar } from "./components/Navbar/Navbar";
 import { FavoriteProvider } from "./providers/FavoriteProvider";
 import { FavoriteCards } from "./components/Favorites/FavoriteCards";
+import { MultipleLogin } from "./components/MultipleLogin";
 
 function App() {
   return (
-    // ! about us page needs sample info at a later time 
     // !need to fetch actual coffee data
-    // !how to create the favorite component where it shows your favorites
     //!add the star favorites as being favorited
-    // !need to create more error handling on signup and login and create form
+    // ! about us page needs sample info at a later time 
     <>
     <Navbar/>
     {/*     bg-[#f4f4ec] */}
-    <div className="flex justify-center items-center lg:p-20 md:p-10 w-screen h-screen bg-[#f4f4ec]
+    <div className="flex justify-center items-center lg:p-20 md:p-10 w-screen h-screen bg-[#f4f4ec] space-y-5
     ">
       <AuthProvider>
         <CoffeeProvider>
@@ -34,6 +33,7 @@ function App() {
             <Routes>
               <Route path="/" element={<LandingPage />}></Route>
               <Route path="about-us" element={<AboutUs />}></Route>
+              <Route path="multi-login" element={<MultipleLogin/>}></Route>
               <Route path="login" element={<Login />}></Route>
               <Route path="signup" element={<Signup />}></Route>
               <Route path="lobby" element={<Lobby />}></Route>

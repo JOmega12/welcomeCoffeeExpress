@@ -1,7 +1,7 @@
 // import {  useState } from "react"
 // import { useAuth } from "../providers/AuthProvider";
 import { Link } from "react-router-dom";
-import CoffeeLander from "../images/coffeePNG.jpeg";
+import CoffeeLander from "../images/coffeeSVG2.svg";
 import "../custom.css";
 
 // bg color : rgb(244,244,236)
@@ -32,20 +32,41 @@ import "../custom.css";
 export const LandingPage = () => {
   return (
     <div className=" min-h-screen flex flex-col justify-center items-center">
-      <div className="text-center space-y-10">
-        <div className="bg-[#2E1E17] p-5 rounded-xl text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+      <div className="text-center font-serif">
+
+
+        <div className="bg-[#2E1E17] p-5 rounded-xl text-3xl md:text-4xl lg:text-6xl font-extrabold mb-4">
           <h1 className=" animate-fade-in text-white">Hello Welcome!</h1>
         </div>
-        <div className="flex flex-row">
-          <div className="flex flex-col">
-            <h1 className="">Enjoy User Created Coffee</h1>
-            <div className="">
-              <button>Get Coffee Now</button>
+
+
+        <div className="flex flex-row justify-center items-center text-center animate-fade-in">
+
+          <div className="flex flex-col items-center justify-center ">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl mb-4 mx-32">Enjoy User Created Coffee</h1>
+            <div className="mx-4">
+              <Link
+              to={'multi-login'}
+              className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none
+              text-black
+              hover:bg-[#2E1E17]
+              hover:text-white
+              hover:border-8 
+            focus:border-blue-500"
+              >Get Coffee Now</Link>
+              {/* <button className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none
+              text-black
+              hover:bg-[#2E1E17]
+              hover:text-white
+              hover:border-8 
+            focus:border-blue-500">Get Coffee Now</button> */}
+
             </div>
           </div>
-          <div className="right ">
-            <div className="">
-              <img className="w-full h-30"
+
+          <div className="flex justify-center w-3/4">
+            <div className="w-9/12 max-w-[80%]">
+              <img className=" w-full h-auto"
               src={CoffeeLander} alt="" />
             </div>
           </div>
@@ -54,20 +75,13 @@ export const LandingPage = () => {
           Would you like some coffee?
         </h2> */}
         <div className="flex flex-col md:flex-row gap-10 justify-center">
-          <Link
-            to="login"
-            className="text-blue-500 group hover:text-blue-700 text-2xl rounded-xl hover:border-blue-700 hover:border-2 hover:border-opacity-50 p-2"
-          >
-            Login
-          </Link>
-          <Link
-            to="signup"
-            className="text-blue-500 group hover:text-blue-700 text-2xl rounded-xl hover:border-blue-700 hover:border-2 hover:border-opacity-50
-            p-2"
-          >
-            Signup
-          </Link>
+          <h2>Our Coffees</h2>
+          <div>
+
+          </div>
         </div>
+
+
       </div>
     </div>
   );
