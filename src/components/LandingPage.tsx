@@ -6,32 +6,7 @@ import "../custom.css";
 import { useCoffee } from "../providers/CoffeeProvider";
 
 // bg color : rgb(244,244,236)
-{
-  /* <div className="bg-gray-100 min-h-screen flex flex-col justify-center items-center">
-<div className="text-center space-y-10">
-  <div className="flex flex-col md:flex-row items-center">
-    <div className="text-center md:text-left">
-      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
-        Enjoy User Created Coffee
-      </h1>
-      <div className="mb-8">
-        <Link
-          to="/coffee" // Specify the correct route
-          className="bg-blue-500 hover:bg-blue-700 text-white text-2xl md:text-3xl lg:text-4xl py-2 px-6 rounded-full transition duration-300 ease-in-out"
-        >
-          Get Coffee Now
-        </Link>
-      </div>
-    </div>
-    <div className="md:ml-8">
-      <img
-        className="w-full max-w-md md:max-w-lg lg:max-w-xl"
-        src={CoffeeLander} // Make sure to provide the correct image source
-        alt="Coffee"
-      />
-    </div>
-  </div> */
-}
+
 export const LandingPage = () => {
   const { coffee } = useCoffee();
 
@@ -70,11 +45,12 @@ export const LandingPage = () => {
           </div>
         </div>
         </div>
+
         <div className="flex flex-col lg:flex-col gap-10 justify-center font-serif">
           <h2 className="lg:text-6xl 
           md:text-3xl sm:text-4xl
-          font-bold text-center mt-[100px]">Our Coffees</h2>
-          <div className="flex flex-row lg:flex-col md:flex-row sm:flex-row justify-center">
+          font-bold text-center mt-[100px] underline underline-offset-4">Our Coffees</h2>
+          <div className="flex lg:flex-row md:flex-col sm:flex-col justify-center">
             <>
               {coffee && Array.isArray(coffee)
                 ? coffee
@@ -109,5 +85,6 @@ export const LandingPage = () => {
         </div>
 
     </div>
+
   );
 };
