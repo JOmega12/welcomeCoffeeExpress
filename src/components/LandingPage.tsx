@@ -36,7 +36,7 @@ export const LandingPage = () => {
   const { coffee } = useCoffee();
 
   return (
-    <div className=" min-h-screen flex flex-col justify-center items-center">
+    <div className=" min-h-screen flex flex-col justify-center items-center font-serif">
       <div className="text-center font-serif">
         <div className="bg-[#2E1E17] p-5 rounded-xl text-3xl md:text-4xl lg:text-6xl font-extrabold mb-4">
           <h1 className=" animate-fade-in text-white">Hello Welcome!</h1>
@@ -70,9 +70,11 @@ export const LandingPage = () => {
           </div>
         </div>
         </div>
-        <div className="flex flex-col lg:flex-col md:flex-row gap-10 justify-center">
-          <h2>Our Coffees</h2>
-          <div className="flex flex-row justify-center">
+        <div className="flex flex-col lg:flex-col gap-10 justify-center font-serif">
+          <h2 className="lg:text-6xl 
+          md:text-3xl sm:text-4xl
+          font-bold text-center mt-[100px]">Our Coffees</h2>
+          <div className="flex flex-row lg:flex-col md:flex-row sm:flex-row justify-center">
             <>
               {coffee && Array.isArray(coffee)
                 ? coffee
@@ -109,5 +111,3 @@ export const LandingPage = () => {
     </div>
   );
 };
-
-// this is used for the map
