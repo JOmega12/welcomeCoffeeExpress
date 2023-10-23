@@ -81,12 +81,12 @@
     },
     {
       "userId": 1,
-      "coffeeId": 1,
+      "coffeeId": 4,
       "id": 7
     },
     {
       "userId": 1,
-      "coffeeId": 2,
+      "coffeeId": 5,
       "id": 8
     }
   ],

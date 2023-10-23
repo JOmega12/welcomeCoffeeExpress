@@ -20,15 +20,17 @@ function App() {
   return (
     //!add the star favorites as being favorited
     // ! about us page needs sample info at a later time 
+    // !try to map into object
     <>
     <Navbar/>
     {/*     bg-[#f4f4ec] */}
-    <div className="flex justify-center items-center lg:p-20 md:p-10 w-screen bg-[#f4f4ec] space-y-5
+    {/* min-h-screen flex flex-col justify-center items-center font-serif */}
+    <div className="flex justify-center items-center lg:p-20 md:p-10 w-screen bg-[#f4f4ec] space-y-5 min-h-screen
     ">
       <AuthProvider>
         <CoffeeProvider>
           <FavoriteProvider>
-            <Toaster />
+            {/* <Toaster /> */}
             <Routes>
               <Route path="/" element={<LandingPage />}></Route>
               <Route path="about-us" element={<AboutUs />}></Route>

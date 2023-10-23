@@ -49,10 +49,10 @@ export const FavoriteCards = () => {
     logoutUser();
     navigate("/");
   };
-
+  // min-h-screen flex flex-col justify-center items-center font-serif
   return (
     <>
-      <div className="flex flex-col h-screen mt-10">
+      <div className="flex flex-col min-h-full mt-10">
         {isRegister ? (
           <>
             <div className="w-full mb-2 p-3 mt-3 text-center font-bold text-xl md:text-4xl lg:text-4xl">

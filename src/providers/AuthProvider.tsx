@@ -52,7 +52,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       if (!user) {
         throw new Error("User not found");
       }
-
       if (user.username !== username) {
         throw new Error("Incorrect Password");
       }
