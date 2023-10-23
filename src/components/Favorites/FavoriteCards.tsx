@@ -6,6 +6,7 @@ import { useFavorite } from "../../providers/FavoriteProvider";
 import { useCoffee } from "../../providers/CoffeeProvider";
 import { useEffect, useState } from "react";
 
+// !fix height of code
 export const FavoriteCards = () => {
   const favContext = useFavorite();
   const favCoffee = favContext?.favCoffee;
@@ -52,7 +53,7 @@ export const FavoriteCards = () => {
   // min-h-screen flex flex-col justify-center items-center font-serif
   return (
     <>
-      <div className="flex flex-col min-h-full mt-10">
+      <div className="flex flex-col min-h-screen mt-10">
         {isRegister ? (
           <>
             <div className="w-full mb-2 p-3 mt-3 text-center font-bold text-xl md:text-4xl lg:text-4xl">
@@ -86,8 +87,7 @@ export const FavoriteCards = () => {
                 <div>No Favorites</div>
               )}
             </div>
-
-            <section className="mt-2 flex flex-col lg:flex-row h-screen sm:flex-col w-screen justify-center gap-20 pb-10 pt-5">
+            <section className="mt-2 flex flex-col lg:flex-row sm:flex-col w-screen justify-center gap-20 pb-10 pt-5">
               <div className="flex justify-between h-[70px]">
                 <div className="bg-yellow-400 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-default hover:text-white  hover:bg-yellow-500 font-semibold">
                   <Link to={`/lobby`}>Lobby</Link>
