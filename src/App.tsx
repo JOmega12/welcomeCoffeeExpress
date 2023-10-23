@@ -30,7 +30,7 @@ function App() {
       <AuthProvider>
         <CoffeeProvider>
           <FavoriteProvider>
-            {/* <Toaster /> */}
+            <Toaster />
             <Routes>
               <Route path="/" element={<LandingPage />}></Route>
               <Route path="about-us" element={<AboutUs />}></Route>
