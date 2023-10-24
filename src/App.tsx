@@ -19,12 +19,9 @@ import { MultipleLogin } from "./components/MultipleLogin";
 function App() {
   return (
     //!add the star favorites as being favorited
-    // ! about us page needs sample info at a later time 
     // !try to map into object
     <>
     <Navbar/>
-    {/*     bg-[#f4f4ec] */}
-    {/* min-h-screen flex flex-col justify-center items-center font-serif */}
     <div className="flex justify-center items-center lg:p-20 md:p-10 w-screen bg-[#f4f4ec] space-y-5 min-h-screen
     ">
       <AuthProvider>

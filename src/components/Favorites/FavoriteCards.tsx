@@ -50,7 +50,6 @@ export const FavoriteCards = () => {
     logoutUser();
     navigate("/");
   };
-  // min-h-screen flex flex-col justify-center items-center font-serif
   return (
     <>
       <div className="flex flex-col min-h-screen mt-10">
@@ -88,7 +87,7 @@ export const FavoriteCards = () => {
               )}
             </div>
             <section className="mt-2 flex flex-col lg:flex-row sm:flex-col w-screen justify-center gap-20 pb-10 pt-5">
-              <div className="flex justify-between h-[70px]">
+              <div className="flex justify-center gap-20 h-[70px]">
                 <div className="bg-yellow-400 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-default hover:text-white  hover:bg-yellow-500 font-semibold">
                   <Link to={`/lobby`}>Lobby</Link>
                 </div>

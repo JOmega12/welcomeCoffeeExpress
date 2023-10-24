@@ -5,12 +5,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faTimes, faMugHot} from '@fortawesome/free-solid-svg-icons';
 
 const NavLinks = () => {
+  const activeUnderline = 'active:underline hover:underline';
+
+
   return (
     <>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="about-us">About Us</NavLink>
-      <NavLink to="login">Login</NavLink>
-      <NavLink to="signup">Signup</NavLink>
+      <NavLink to="/" className={activeUnderline}>Home</NavLink>
+      <NavLink to="about-us" className={activeUnderline}>About Us</NavLink>
+      <NavLink to="lobby" className={activeUnderline}>Coffee</NavLink>
+      <NavLink to="login" className={activeUnderline}>Login</NavLink>
+      <NavLink to="signup" className={activeUnderline}>Signup</NavLink>
     </>
   );
 };

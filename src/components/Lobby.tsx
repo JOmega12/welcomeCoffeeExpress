@@ -6,8 +6,6 @@ import DefaultCoffee from '../images/coffee1.jpeg'
 import { useCoffee } from "../providers/CoffeeProvider";
 
 // !add about page
-// !fix mobile view for:
-  // ?favoritecard and other comps
 
 // !maybe a comment section per coffee card
 // !put a reseed of information
@@ -17,14 +15,14 @@ export const Lobby = () => {
   const { logoutUser, isRegister, user } = useAuth();
   const { coffee } = useCoffee();
   const navigate = useNavigate();
-
+  console.log(user, 'userlobby')
   const handleLogout = () => {
     logoutUser();
     navigate("/");
   };
   return (
     <>
-      <div className="flex flex-col h-screen mt-10 font-serif">
+      <div className="flex flex-col min-h-screen mt-10 font-serif">
         {isRegister ? (
           <>
             <div className="w-full mb-2 p-3 mt-3 text-center font-bold text-xl md:text-4xl lg:text-4xl">
@@ -52,7 +50,7 @@ export const Lobby = () => {
         )}
         <div className="flex flex-grow flex-wrap justify-center p-4 lg:justify-evenly">
           {/* If coffee exists and is in Array and isRegistered, show this UI */}
-          { coffee &&Array.isArray(coffee) && isRegister ? (
+          { coffee &&Array.isArray(coffee) && isRegister && user ? (
             coffee.map((item: { id: number; title?: string; description?: string; image?: string; }, index: number) => (
               <Link
                 to={`/coffee-card/${item.id}`}
@@ -71,14 +69,14 @@ export const Lobby = () => {
               <div className="flex flex-col justify-center items-center">
                 <h2 className="w-full mb-2 p-3 mt-3 text-center font-bold text-xl md:text-4xl lg:text-4xl">No coffees available. Please Login</h2>
                 <div className="bg-green-400 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-default hover:text-white  hover:bg-green-500 font-semibold">
-                  <Link to={`/login`}>Login</Link>
+                  <Link to={`/multi-login`}>Login</Link>
                 </div>
               </div>
           </>
           )}
         </div>
-        <section className="mt-2 flex flex-col lg:flex-row h-screen sm:flex-col w-screen justify-center gap-20 pb-10 pt-5 bg-[#f4f4ec]">
-          <div className="flex justify-between h-[70px]"> 
+        <section className="mt-2 flex flex-col lg:flex-row sm:flex-col w-screen justify-center gap-20 pb-10 pt-5 bg-[#f4f4ec]">
+          <div className="flex justify-center gap-20 h-[70px]"> 
             <div className="bg-yellow-400 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-default hover:text-white  hover:bg-yellow-500 font-semibold">
               <Link to={`/favorites`}>Favorites</Link>
             </div>

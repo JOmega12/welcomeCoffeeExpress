@@ -81,7 +81,7 @@ export const Signup = () => {
         />
         <div className="flex flex-row gap-10 text-center">
           <button
-            onClick={() => navigate("/")}
+            onClick={() => navigate("multi-login")}
             className="w-32 text-lg mb-2 p-3"
           >
             Back

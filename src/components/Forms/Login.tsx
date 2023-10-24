@@ -80,7 +80,7 @@ export const Login = () => {
             className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
           />
           <button
-            onClick={() => navigate("/")}
+            onClick={() => navigate("multi-login")}
             className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
           >
             Back
