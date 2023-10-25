@@ -1,34 +1,8 @@
-import {writeFileSync} from 'fs';
+import { writeFileSync, readFileSync} from 'fs';
 
+const existingData = JSON.parse(readFileSync('db.json', 'utf-8'));
 
 const newData = {
-   "app-users": [
-     {
-       "username": "test",
-       "password": "testP",
-       "id": 1
-     },
-     {
-       "username": "jen",
-       "password": "password",
-       "id": 2
-     },
-     {
-       "username": "testt",
-       "password": "testee",
-       "id": 3
-     },
-     {
-       "username": "adf",
-       "password": "asdf",
-       "id": 4
-     },
-     {
-       "username": "james",
-       "password": "Password",
-       "id": 5
-     }
-   ],
    "coffee": [
      {
        "title": "Oatmilk Latte ",
@@ -82,23 +56,9 @@ const newData = {
        "coffeeId": 5,
        "id": 8
      }
-   ],
-   "comments": [
-     {
-       "id": 1,
-       "userId": 1,
-       "coffeeId": 3,
-       "name": "jacksonHoovile",
-       "text": "I teenage daughters loves the Brown Sugar matcha Dream!"
-     },
-     {
-       "id": 2,
-       "userId": 1,
-       "coffeeId": 2,
-       "name": "jacksonHoovile",
-       "text": "Too sweet"
-     }
    ]
  }
 
- writeFileSync('db.json', JSON.stringify(newData), {encoding: "utf-8"});
+existingData.coffee = newData.coffee;
+existingData.favorite = newData.favorite;
+writeFileSync('db.json', JSON.stringify(existingData), 'utf-8');

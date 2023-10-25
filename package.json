@@ -9,7 +9,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "serve": "npx json-server --watch db.json",
-    "seed": "node reseed-db.js"
+    "seed": "node reseed.js"
+
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
