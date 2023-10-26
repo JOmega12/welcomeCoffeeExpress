@@ -1,14 +1,10 @@
 import { useAuth } from "../providers/AuthProvider";
-// import { CoffeeType } from "../types/types";
 import { PreviewCard } from "./PreviewCard";
 import { Link, useNavigate } from "react-router-dom";
 import DefaultCoffee from '../images/coffee1.jpeg'
 import { useCoffee } from "../providers/CoffeeProvider";
 
-// !about page mobile
-
-// !maybe an  section per coffee card
-
+// !maybe an instructions?
 
 export const Lobby = () => {
   const { logoutUser, isRegister, user } = useAuth();

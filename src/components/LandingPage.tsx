@@ -1,11 +1,7 @@
-// import {  useState } from "react"
-// import { useAuth } from "../providers/AuthProvider";
 import { Link } from "react-router-dom";
 import CoffeeLander from "../images/coffeeSVG2.svg";
 import "../custom.css";
 import { useCoffee } from "../providers/CoffeeProvider";
-
-// bg color : rgb(244,244,236)
 
 export const LandingPage = () => {
   const { coffee } = useCoffee();
@@ -26,10 +22,11 @@ export const LandingPage = () => {
               <Link
                 to={"multi-login"}
                 className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none
-              text-black
-              hover:bg-[#2E1E17]
-              hover:text-white
+              text-white bg-[#2E1E17]
+              hover:bg-white
+              hover:text-[#2E1E17]
               hover:border-8 
+              hover:border-[#2E1E17]
             focus:border-blue-500
                "
               >
@@ -50,7 +47,7 @@ export const LandingPage = () => {
           <h2 className="lg:text-6xl 
           md:text-3xl sm:text-4xl
           font-bold text-center mt-[100px] underline underline-offset-4">Our Coffees</h2>
-          <div className="flex lg:flex-row md:flex-col sm:flex-col justify-center">
+          <div className="flex lg:flex-row md:flex-col min-[320px]:flex-col justify-center">
             <>
               {coffee && Array.isArray(coffee)
                 ? coffee
@@ -70,7 +67,7 @@ export const LandingPage = () => {
                               className="w-full h-40 md:h-48 lg:h-56"
                             />
                           </div>
-                          <div className="text-center gap-3">
+                          <div className="text-center gap-3 min-[320px]:p-4">
                             <h3 className="text-lg font-semibold">
                               {item.title || "Default Title"}
                             </h3>

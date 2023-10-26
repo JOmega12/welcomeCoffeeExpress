@@ -1,9 +1,5 @@
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CoffeeType } from "../types/types";
 import DefaultCoffee from '../images/coffee1.jpeg';
-// import { faStar } from "@fortawesome/free-solid-svg-icons";
-// import { useAuth } from "../providers/AuthProvider";
-// import { useFavorite } from "../providers/FavoriteProvider";
 
 type CoffeeTypes = {
   item: CoffeeType;
