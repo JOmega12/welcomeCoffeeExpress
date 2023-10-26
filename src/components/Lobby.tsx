@@ -5,17 +5,15 @@ import { Link, useNavigate } from "react-router-dom";
 import DefaultCoffee from '../images/coffee1.jpeg'
 import { useCoffee } from "../providers/CoffeeProvider";
 
-// !add about page
+// !about page mobile
 
-// !maybe a comment section per coffee card
-// !put a reseed of information
+// !maybe an  section per coffee card
 
 
 export const Lobby = () => {
   const { logoutUser, isRegister, user } = useAuth();
   const { coffee } = useCoffee();
   const navigate = useNavigate();
-  console.log(user, 'userlobby')
   const handleLogout = () => {
     logoutUser();
     navigate("/");
