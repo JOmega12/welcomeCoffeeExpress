@@ -5,6 +5,7 @@ export type CoffeeType = {
    title: string,
    description: string,
    image: string,
+   instructions: string,
 };
 
 
@@ -13,6 +14,7 @@ export type CoffeeCardProps = {
       title: string;
       imageURL: string;
       description: string;
+      instructions: string;
     };
     index: number;
     onClick: () => void;

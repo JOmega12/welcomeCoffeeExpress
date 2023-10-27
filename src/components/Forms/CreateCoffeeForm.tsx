@@ -11,21 +11,25 @@ import toast from "react-hot-toast";
 const titleErrorMessage = "Title needs to be more than 3 words";
 const descriptionErrorMessage = "Description needs to be more than a word";
 const imageErrorMessage = "Image must be an address";
+const instructionsErrorMessage = "Instructions must be more than a word";
 
 export const CreateCoffeeForm = () => {
   const [titleInput, setTitleInput] = useState("");
   const [descriptionInput, setDescriptionInput] = useState("");
   const [imageInput, setImageInput] = useState("");
+  const [instructionsInput, setInstructionsInput] = useState("");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   const titleValid = titleInput.length > 2;
   const descriptionValid = isDescriptionValid(descriptionInput);
   const imageValid = isImageAddressValid(imageInput);
+  const instructionsValid = isDescriptionValid(instructionsInput)
 
   const showTitleError = !titleValid && error;
   const showDescriptionError = !descriptionValid && error;
   const showImageError = !imageValid && error;
+  const showInstructionsError = !instructionsValid && error
 
   return (
     <>
@@ -40,6 +44,7 @@ export const CreateCoffeeForm = () => {
               title: titleInput,
               description: descriptionInput,
               image: imageInput,
+              instructions: instructionsInput,
             });
             toast.success("Coffee Created!");
             setTitleInput("");
@@ -48,7 +53,7 @@ export const CreateCoffeeForm = () => {
             navigate("/lobby");
           }
         }}
-        className="flex flex-col justify-center items-center max-w-full h-screen p-10 shadow-lg rounded-xl"
+        className="flex flex-col justify-center items-center max-w-full min-h-screen p-10 shadow-lg rounded-xl bg-[#ecf0f4]"
       >
         <h3 className="mb-4 text-center text-3xl font-bold md:text-4xl sm:text-5xl">
           Create Your Coffee!
@@ -69,10 +74,25 @@ export const CreateCoffeeForm = () => {
             }}
             className="w-full border rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
           ></textarea>
-        </div>
+        </div>  
         {showDescriptionError ? (
           <div className="text-red-500">{descriptionErrorMessage}</div>
         ) : null}
+        
+        <div className="mb-4 w-full">
+          <label htmlFor="">Coffee Instructions:</label>
+          <textarea
+            value={instructionsInput}
+            onChange={(e) => {
+              setInstructionsInput(e.target.value);
+            }}
+            className="w-full border rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
+          ></textarea>
+        </div>
+        {showInstructionsError ? (
+          <div className="text-red-500">{instructionsErrorMessage}</div>
+        ) : null}
+
         <CreateCafeInputs
           label={`Upload Image: (Copy/Paste Image Address)`}
           value={imageInput}

@@ -13,7 +13,7 @@ import { getAllCoffee, getNewCoffee } from "../api/GetCoffeeAPI";
 
 type TCoffeeContext = {
   createCoffee: (
-    newCoffee: Pick<CoffeeType, "title" | "description" | "image">
+    newCoffee: Pick<CoffeeType, "title" | "description" | "image" | "instructions">
   ) => Promise<CoffeeType | undefined>;
   coffee: CoffeeType | null;
   setCoffee: Dispatch<SetStateAction<CoffeeType | null>>;
@@ -42,11 +42,12 @@ export const CoffeeProvider = ({ children }: CoffeeProviderProps) => {
     title,
     description,
     image,
-  }: Pick<CoffeeType, "title" | "description" | "image">): Promise<
+    instructions,
+  }: Pick<CoffeeType, "title" | "description" | "image" | "instructions">): Promise<
     CoffeeType | undefined
   > => {
     try {
-      await getNewCoffee({ title, description, image });
+      await getNewCoffee({ title, description, image, instructions });
       await refetch();
 
       const newCoffee = coffee;

@@ -45,7 +45,7 @@ export const Lobby = () => {
         <div className="flex flex-grow flex-wrap justify-center p-4 lg:justify-evenly">
           {/* If coffee exists and is in Array and isRegistered, show this UI */}
           { coffee &&Array.isArray(coffee) && isRegister && user ? (
-            coffee.map((item: { id: number; title?: string; description?: string; image?: string; }, index: number) => (
+            coffee.map((item: { id: number; title?: string; description?: string; image?: string; instructions?:string;}, index: number) => (
               <Link
                 to={`/coffee-card/${item.id}`}
                 className="w-full md:w-1/2 lg:w-1/3 p-2 bg-white rounded-lg shadow-md m-2 hover:cursor-pointer hover:bg-gray-500"
@@ -54,7 +54,8 @@ export const Lobby = () => {
                   id: item.id,
                   title: item?.title || 'Default Title',
                   description: item?.description || "Default Description",
-                  image: item?.image || DefaultCoffee
+                  image: item?.image || DefaultCoffee,
+                  instructions: item?.instructions || "Defauly Instructions"
                 }} index={index}/>
               </Link>
             ))

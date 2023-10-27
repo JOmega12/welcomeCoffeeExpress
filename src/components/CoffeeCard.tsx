@@ -55,7 +55,7 @@ export const CoffeeCard = () => {
 
   return (
     <div
-      className="flex flex-col h-screen flex-grow justify-center items-center
+      className="flex flex-col min-h-screen flex-grow justify-center items-center
     pb-10 pt-20 md:p-5 sm:p-5
     "
     >
@@ -81,16 +81,14 @@ export const CoffeeCard = () => {
       <div className="md:text- 4xl font-bold text-xl text-transform: capitalize sm:3xl">
         <h2>{coffeeItem?.title || "Default Title"}</h2>
       </div>
-      <div className="md:text-3xl text-xl sm:2xl mt-3">
+      <div className="md:text-2xl text-xl sm:2xl mt-3">
         <p>{coffeeItem?.description || "Default Description"}</p>
       </div>
-      <div className="mt-2">
-        <ol>
-          <li></li>
-          <li></li>
-        </ol>
+      <div className="m-10 flex flex-col text-center ">
+        <h1 className="text-6xl font-extrabold mb-5">Instructions</h1>
+        <p className="md:text-2xl text-xl sm:2xl">{coffeeItem?.instructions || "Default Instructions card"}</p>
       </div>
-      <section className="mt-2 flex flex-col md:flex-row h-screen sm:flex-col w-screen justify-center gap-10 pb-10 pt-5">
+      <section className="mt-2 flex flex-col md:flex-row sm:flex-col w-screen justify-center gap-10 pb-10 pt-5">
         <div className="bg-red-400 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-default hover:bg-red-500 hover:text-white font-semibold">
           <button onClick={() => navigate(-1)}>Back</button>
         </div>
