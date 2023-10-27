@@ -51,6 +51,7 @@ export const CreateCoffeeForm = () => {
             setDescriptionInput("");
             setImageInput("");
             navigate("/lobby");
+            window.location.reload();
           }
         }}
         className="flex flex-col justify-center items-center max-w-full min-h-screen p-10 shadow-lg rounded-xl bg-[#ecf0f4]"
