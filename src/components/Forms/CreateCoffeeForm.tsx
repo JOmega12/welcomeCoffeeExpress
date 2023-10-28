@@ -50,7 +50,7 @@ export const CreateCoffeeForm = () => {
             setTitleInput("");
             setDescriptionInput("");
             setImageInput("");
-            navigate("/lobby");
+            navigate("/coffee");
             window.location.reload();
           }
         }}

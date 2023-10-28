@@ -38,7 +38,7 @@ export const Login = () => {
           localStorage.setItem("user", JSON.stringify(user));
           setError(false);
           toast.success("Login complete");
-          navigate("/lobby");
+          navigate("/coffee");
         }
       })
       .catch((err) => {
@@ -48,11 +48,18 @@ export const Login = () => {
 
   return (
     <form
-      className="flex-col items-center"
+      className="flex flex-col min-[320px]:h-screen"
       onSubmit={(e) => {
         handleSubmit(e);
       }}
     >
+      <button
+        onClick={() => navigate("/multi-login")}
+        className="h-14 w-1/8 max-w-sm border border-gray-300 rounded-lg py-2 px-3 focus:outline-none bg-blue-500 focus:border-blue-500 text-white hover:bg-blue-700"
+        style={{ alignSelf: "flex-start" }}
+      >
+        Back
+      </button>
       <div className="text-center text-[#2E1E17] p-5 rounded-xl text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
         <h2>Login</h2>
       </div>
@@ -74,17 +81,11 @@ export const Login = () => {
         {showLoginError ? (
           <div className="text-red-500 text-center">{loginErrorMessage}</div>
         ) : null}
-        <div className="flex flex-row gap-10 text-center">
+        <div className="flex flex-row gap-10 text-center cursor-pointer">
           <input
             type="submit"
-            className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
+            className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500 bg-green-500 hover:bg-green-600"
           />
-          <button
-            onClick={() => navigate("multi-login")}
-            className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
-          >
-            Back
-          </button>
         </div>
       </div>
     </form>

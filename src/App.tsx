@@ -6,7 +6,7 @@ import { AuthProvider } from "./providers/AuthProvider";
 import { CoffeeProvider } from "./providers/CoffeeProvider";
 import { Login } from "./components/Forms/Login";
 import { Signup } from "./components/Forms/Signup";
-import { Lobby } from "./components/Lobby";
+import { Coffee } from "./components/Coffee";
 import { Toaster } from "react-hot-toast";
 import { CoffeeCard } from "./components/CoffeeCard";
 import { CreateCoffeeForm } from "./components/Forms/CreateCoffeeForm";
@@ -18,8 +18,6 @@ import { MultipleLogin } from "./components/MultipleLogin";
 
 function App() {
   return (
-    //!add the star favorites as being favorited
-    // !try to map into object
     <>
     <Navbar/>
     <div className="flex justify-center items-center lg:p-20 md:p-10 w-screen bg-[#f4f4ec] space-y-5 min-h-screen
@@ -34,7 +32,7 @@ function App() {
               <Route path="multi-login" element={<MultipleLogin/>}></Route>
               <Route path="login" element={<Login />}></Route>
               <Route path="signup" element={<Signup />}></Route>
-              <Route path="lobby" element={<Lobby />}></Route>
+              <Route path="coffee" element={<Coffee />}></Route>
               <Route
                 path="coffee-card/:coffeeId"
                 element={<CoffeeCard />}
