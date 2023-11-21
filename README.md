@@ -6,6 +6,8 @@ to spin up the backend:
 - npm run serve
 
 to spin up the frontend: 
+-  git clone
+-  npm i
 -  npm run dev
 -  then press " o "
 
