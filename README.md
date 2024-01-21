@@ -1,6 +1,9 @@
 HI there! This is Coffee site that has user generated content of coffee. 
 Coffee Recipes are created and favorited to the user 
 
+To login: 
+username: test
+password: testP
 
 to spin up the backend: 
 - npm run serve
