@@ -17,6 +17,3 @@ to spin up the frontend:
 to reload a new data: 
 - npm run seed
 
-
-Test1mobile
-Test2homee
