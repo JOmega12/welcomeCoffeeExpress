@@ -5,6 +5,11 @@ To login:
 username: test
 password: testP
 
+Current Goal: 
+- set up dependencies (express and prisma)
+- figure out out how to get the express server running
+
+
 to spin up the backend: 
 - npm run serve
 
