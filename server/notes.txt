@@ -5,3 +5,13 @@ WHen starting a backend end server:
    - model the data on prisma then migrate the dev
 
 - after then create a seed file where you can create the prisma dummy database
+
+- then after you write your seed queries in your seed file, run your seed file through `npx ts-node prisma/seed.ts`
+
+-then to double check `npx prisma studio` is the information is seeded from the query
+
+
+
+
+What I learned so far:
+-when I am creating a backend using prisma, do the quick start guide, then 
