@@ -4,4 +4,4 @@ WHen starting a backend end server:
 - install prisma using the quick start guide
    - model the data on prisma then migrate the dev
 
-- after 
+- after then create a seed file where you can create the prisma dummy database
