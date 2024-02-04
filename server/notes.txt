@@ -1,6 +1,6 @@
 
 
-WHen starting a backend end server:
+WHen starting a backend end server from scratch:
 - install prisma using the quick start guide
    - model the data on prisma then migrate the dev
 
@@ -16,5 +16,8 @@ WHen starting a backend end server:
 What I learned so far:
 -when I am creating a backend using prisma, do the quick start guide, then 
 - create the REST endpoints in the server/app file then implement the prisma create, change, get, and delete functions using express js
+- Used middleware zod for variables typescripting to prevent extensive if statements for typeof string
+- also used the coffeeRouter to route the coffee and tied it back to server.ts
+-next i would go to middleware video and write down error handling to prevent the server shutdown if there is an error
 -next i would try to implement the JWT token/ Bcrypt with zod
 -then I would try to connect the backend server to communicate the frontend server
