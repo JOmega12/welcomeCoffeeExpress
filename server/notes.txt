@@ -16,5 +16,13 @@ What I learned so far:
    - when creating the router, don't put the endpoint until it is being used in the server and in the router use the "/" and have the end point "/coffee", for example, in the server.ts
    -naming convention for router is name.router.ts
 -next i would go to middleware video and write down error handling to prevent the server shutdown if there is an error
--next i would try to implement the JWT token/ Bcrypt with zod
+
+-i created db.setup in prisma folder to have an automatic file to access prisma for the AuthRouter and future folder structures
+
+-i created an authRouter and auth.utils.ts file 
+   -in the auth.utils file i used a function that uses saltRounds to create a crypt token for a passwordHash for the associated user
+      -in the seed file i refactored the testUsernames to use that uses the encrypt function from auth.utils
+   -in the authRouter file i used zod and zod middleware to take care of my requirements if there is no information which can be shown when using POST in postman
+      - i used validateRequest middleware for the login enpoint and use the bcrypt compare function to the password that i used to login and the passwordHash associated with it
+-next i would try to implement the JWT token to identify me as the desired user 
 -then I would try to connect the backend server to communicate the frontend server

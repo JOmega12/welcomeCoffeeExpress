@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { encryptPassword } from '../src/auth.utils';
 
 const prisma = new PrismaClient()
 
@@ -10,14 +11,14 @@ async function main() {
   const testUsername = await prisma.user.create({
     data: {
         username: 'tester',
-        password: "testP"
+        passwordHash: await encryptPassword('testPass'),
     }
   })
 
   const jenUser = await prisma.user.create({
     data: {
         username: 'jen',
-        password: "password"
+        passwordHash: await encryptPassword('jenHash'),
     }
   })
 
