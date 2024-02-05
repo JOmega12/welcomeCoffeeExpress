@@ -54,8 +54,20 @@
       "import": "./wasm.js",
       "default": "./wasm.js"
     },
+    "./runtime/library": {
+      "types": "./runtime/library.d.ts",
+      "require": "./runtime/library.js",
+      "import": "./runtime/library.js",
+      "default": "./runtime/library.js"
+    },
+    "./runtime/binary": {
+      "types": "./runtime/binary.d.ts",
+      "require": "./runtime/binary.js",
+      "import": "./runtime/binary.js",
+      "default": "./runtime/binary.js"
+    },
     "./*": "./*"
   },
-  "version": "5.9.0",
+  "version": "5.9.1",
   "sideEffects": false
 }
