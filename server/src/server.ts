@@ -15,6 +15,4 @@ app.use("/users", userRouter)
 
 
 // this launches the port 3000
-app.listen(3000, () => {
-  console.log('Server ready at port 3000')
-});
+app.listen(3000);

@@ -2,6 +2,7 @@ import { Router } from "express";
 import { PrismaClient } from "@prisma/client";
 import { z } from "zod";
 import { validateRequest } from "zod-express-middleware";
+import { getDataFromAuthToken } from "../src/auth.utils";
 
 const prisma = new PrismaClient();
 const coffeeRouter = Router();
@@ -76,7 +77,27 @@ coffeeRouter.post(
     }),
   }),
   async (req, res) => {
-    //   const body = req.body;
+    // this finds the token from the user when trying to create a coffee
+
+    // *JWT HANDLING STUFF BELOW
+    const [, token] = req.headers.authorization?.split?.(" ") || [];
+    const myJWTData = getDataFromAuthToken(token);
+    if(!myJWTData) {
+      return res.status(401).json({message: "Invalid Token"})
+    }
+    const userFromJWt = await prisma.user.findFirst({
+      where: {
+        username: myJWTData.username,
+      }
+    }) 
+    // console.log(userFromJWt, 'userFromJWT');
+    if(!userFromJWt){
+      return res.status(401).json({message: "User not Found"})
+
+    }
+
+    // *JWT HANDLING STUFF ABOVE
+
     try {
       const newCoffee = await prisma.coffee.create({
         data: {

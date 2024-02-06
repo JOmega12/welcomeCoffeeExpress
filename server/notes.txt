@@ -24,5 +24,15 @@ What I learned so far:
       -in the seed file i refactored the testUsernames to use that uses the encrypt function from auth.utils
    -in the authRouter file i used zod and zod middleware to take care of my requirements if there is no information which can be shown when using POST in postman
       - i used validateRequest middleware for the login enpoint and use the bcrypt compare function to the password that i used to login and the passwordHash associated with it
--next i would try to implement the JWT token to identify me as the desired user 
+
+- i implemented a function that takes the user's username and then created a function `createTokenForUser()` to create a jwt token using the `jwt.sign()` method that takes on 2-3 params, first one for the information of the user, the second one for the SECRET PASSWORD/ PRIVATE KEY, the last one being options of the algorithm
+
+
+
+- when creating a coffee you need to signin, and use the token from the auth router to be able to create a coffee in the coffee router to beu sed in the headers for authorization
+- in the coffeeRouter I created JWT token that takes in the header for reqest and authroization when logged in for creating the coffee
+-then create the get Data From AuthToken which gets the information from loggin in and checks if user is actually the user when creating the coffee 
+
+
+-next i would try to connect this to a frontend endpoint
 -then I would try to connect the backend server to communicate the frontend server
