@@ -3,7 +3,7 @@ import { z } from "zod";
 import { validateRequest } from "zod-express-middleware";
 import { prisma } from "../prisma/db.setup";
 import bcrypt from 'bcrypt';
-import { createTokenForUser, createUnsecuredUserInformation } from "../src/auth.utils";
+import {  createTokenForUser, createUnsecuredUserInformation } from "../src/auth.utils";
 
 const authController = Router();
 
@@ -14,8 +14,8 @@ authController.post("/auth/login",
             username: z.string(),
             password: z.string(),
         })
-    })
-,async ({body: {username: bodyUsername, password:bodyPassword}  },res) => {
+    }),
+async ({body: {username: bodyUsername, password:bodyPassword}  },res) => {
     const user = await prisma.user.findFirst({
         where: {
             username: bodyUsername

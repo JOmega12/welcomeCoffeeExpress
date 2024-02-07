@@ -29,10 +29,12 @@ What I learned so far:
 
 
 
-- when creating a coffee you need to signin, and use the token from the auth router to be able to create a coffee in the coffee router to beu sed in the headers for authorization
-- in the coffeeRouter I created JWT token that takes in the header for reqest and authroization when logged in for creating the coffee
+- when creating a coffee you need to signin, and use the token from the auth router to be able to create a coffee in the coffee router to be used in the headers for authorization
 -then create the get Data From AuthToken which gets the information from loggin in and checks if user is actually the user when creating the coffee 
+- in the coffeeRouter I created JWT token that takes in the header for reqest and authroization when logged in for creating the Auth Middleware that recycles code from the above text for other routers to be used
 
+-I created a type system in the server.ts file for the dotenv. I also downloaded dotenv to be able to access the .env files for secret JWT token I created and then reseeded the prisma schema
+- I also made the authMiddleware to be accessible to other router and be used as a guide to whoever is authorized to have a patch change on their personal favorites
 
 -next i would try to connect this to a frontend endpoint
 -then I would try to connect the backend server to communicate the frontend server

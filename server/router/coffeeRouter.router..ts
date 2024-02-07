@@ -2,7 +2,7 @@ import { Router } from "express";
 import { PrismaClient } from "@prisma/client";
 import { z } from "zod";
 import { validateRequest } from "zod-express-middleware";
-import { getDataFromAuthToken } from "../src/auth.utils";
+import { authMiddleware, getDataFromAuthToken } from "../src/auth.utils";
 
 const prisma = new PrismaClient();
 const coffeeRouter = Router();
@@ -66,38 +66,19 @@ coffeeRouter.delete("/:id", async (req, res) => {
   return res.status(200).send("Coffee Deleted!");
 });
 
+
 // POST REQUEST AKA CREATING A COFFEE
 coffeeRouter.post(
   "/",
-  validateRequest({
+validateRequest({
     body: z.object({
       title: z.string(),
       instructions: z.string(),
       image: z.string(),
     }),
   }),
+  authMiddleware,
   async (req, res) => {
-    // this finds the token from the user when trying to create a coffee
-
-    // *JWT HANDLING STUFF BELOW
-    const [, token] = req.headers.authorization?.split?.(" ") || [];
-    const myJWTData = getDataFromAuthToken(token);
-    if(!myJWTData) {
-      return res.status(401).json({message: "Invalid Token"})
-    }
-    const userFromJWt = await prisma.user.findFirst({
-      where: {
-        username: myJWTData.username,
-      }
-    }) 
-    // console.log(userFromJWt, 'userFromJWT');
-    if(!userFromJWt){
-      return res.status(401).json({message: "User not Found"})
-
-    }
-
-    // *JWT HANDLING STUFF ABOVE
-
     try {
       const newCoffee = await prisma.coffee.create({
         data: {
