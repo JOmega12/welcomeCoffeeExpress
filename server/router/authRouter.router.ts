@@ -3,10 +3,12 @@ import { z } from "zod";
 import { validateRequest } from "zod-express-middleware";
 import { prisma } from "../prisma/db.setup";
 import bcrypt from 'bcrypt';
-import {  createTokenForUser, createUnsecuredUserInformation } from "../src/auth.utils";
+import {  createTokenForUser, createUnsecuredUserInformation, encryptPassword } from "../src/auth.utils";
 
 const authController = Router();
 
+
+// this logins
 authController.post("/auth/login", 
     // this makes sure that there is both username and password as well as it being strictly string and not a number
     validateRequest({
@@ -30,6 +32,41 @@ async ({body: {username: bodyUsername, password:bodyPassword}  },res) => {
     if(!isPasswordCorrect){
         return res.status(401).json({message: "Invalid credentials"})
     }
+    //this creates the user information that is being put
+    const userInformation = createUnsecuredUserInformation(user);
+
+    // this creates the token for the user
+    const token = createTokenForUser(user);
+
+    return res.status(200).json({token, userInformation})
+})
+
+
+// this signups
+authController.post("/auth/login", 
+    // this makes sure that there is both username and password as well as it being strictly string and not a number
+    validateRequest({
+        body: z.object({
+            username: z.string(),
+            password: z.string(),
+        })
+    }),
+async ({body: {username: bodyUsername, password:bodyPassword}  },res) => {
+    
+    // this takes on the password that is being written
+    const passwordHash = await encryptPassword(bodyPassword);
+
+    const user = await prisma.user.create({
+        data: {
+            username: bodyUsername,
+            passwordHash: passwordHash
+        }
+    })
+  
+    if(!user) {
+        return res.status(404).json({message: "User cannot be created"})
+    }
+
     //this creates the user information that is being put
     const userInformation = createUnsecuredUserInformation(user);
 

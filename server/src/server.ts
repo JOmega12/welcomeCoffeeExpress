@@ -4,6 +4,8 @@ import { userRouter } from '../router/userRouter.router';
 import { authController } from '../router/authRouter.router';
 import { User } from '@prisma/client';
 // import { PrismaClient } from "@prisma/client";
+// import { createProxyMiddleware } from "http-proxy-middleware";
+
 
 const app = express();
 
@@ -29,9 +31,11 @@ app.use(express.json());
 
 
 app.use(authController);
-app.use("/coffee", coffeeRouter);
-app.use("/users", userRouter)
+app.use("/coffee",coffeeRouter);
+// app.use("/coffee", createProxyMiddleware({target: 'http://localhost:4000', changeOrigin: true}) ,coffeeRouter);
+app.use("/users", userRouter); 
 
 
-// this launches the port 3000
-app.listen(3000);
+
+// this launches the port 4000
+app.listen(4000);

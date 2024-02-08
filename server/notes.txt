@@ -38,3 +38,7 @@ What I learned so far:
 
 -next i would try to connect this to a frontend endpoint
 -then I would try to connect the backend server to communicate the frontend server
+
+
+
+I tried to cross connect fodlers using a proxy but it still seems like it wont connect and i need a hint
