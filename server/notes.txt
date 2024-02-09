@@ -36,9 +36,12 @@ What I learned so far:
 -I created a type system in the server.ts file for the dotenv. I also downloaded dotenv to be able to access the .env files for secret JWT token I created and then reseeded the prisma schema
 - I also made the authMiddleware to be accessible to other router and be used as a guide to whoever is authorized to have a patch change on their personal favorites
 
+
+I Finally connected on the front end endpoint and connecting to the backend! 
+What Ilearned: 
+-make sure to launch the json server first and implement each endpoint one by one so to not overwhelm yourself with having to make changes
+-use cors (cross origin resource sharing) in the backend express to make the localhost accesible to the front-end:
+   - use `app.use(cors())` and call the cors function out
+
 -next i would try to connect this to a frontend endpoint
 -then I would try to connect the backend server to communicate the frontend server
-
-
-
-I tried to cross connect fodlers using a proxy but it still seems like it wont connect and i need a hint

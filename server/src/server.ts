@@ -5,11 +5,10 @@ import { authController } from '../router/authRouter.router';
 import { User } from '@prisma/client';
 // import { PrismaClient } from "@prisma/client";
 // import { createProxyMiddleware } from "http-proxy-middleware";
-
+import cors from 'cors'
 
 const app = express();
-
-
+app.use(cors());
 // uses the type system for authMid
 declare global {
     namespace Express {
@@ -31,7 +30,7 @@ app.use(express.json());
 
 
 app.use(authController);
-app.use("/coffee",coffeeRouter);
+app.use("/coffee", coffeeRouter);
 // app.use("/coffee", createProxyMiddleware({target: 'http://localhost:4000', changeOrigin: true}) ,coffeeRouter);
 app.use("/users", userRouter); 
 
