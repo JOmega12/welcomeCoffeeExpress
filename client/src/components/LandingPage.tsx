@@ -2,9 +2,25 @@ import { Link } from "react-router-dom";
 import CoffeeLander from "../images/coffeeSVG2.svg";
 import "../custom.css";
 import { useCoffee } from "../providers/CoffeeProvider";
+// import { SetStateAction, useEffect, useState } from "react";
+// import { API_CONFIG } from "../api/config";
 
 export const LandingPage = () => {
   const { coffee } = useCoffee();
+
+  // const [testBackend, setTestBackend] = useState([]);
+
+
+  // useEffect(() => {
+  //   fetch(API_CONFIG + '/coffee').then((response) => {
+  //     response.json()
+  //   }).then(() => {
+  //     (      data: SetStateAction<never[]>) => {
+  //       setTestBackend(data)
+  //     }
+  //   })
+  // }, [])
+  // console.log(testBackend, 'testbackend')
 
   return (
     <div className=" min-h-screen flex flex-col justify-center items-center font-serif">
@@ -20,7 +36,8 @@ export const LandingPage = () => {
             </h1>
             <div className="mx-4 mt-10 text-2xl">
               <Link
-                to={"multi-login"}
+                // to={"multi-login"}
+                to={"coffee"}
                 className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none
               text-white bg-[#2E1E17]
               hover:bg-white

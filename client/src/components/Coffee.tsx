@@ -64,7 +64,7 @@ export const Coffee = () => {
                     item={{
                       id: item.id,
                       title: item?.title || "Default Title",
-                      description: item?.description || "Default Description",
+                      // description: item?.description || "Default Description",
                       image: item?.image || DefaultCoffee,
                       instructions:
                         item?.instructions || "Defauly Instructions",

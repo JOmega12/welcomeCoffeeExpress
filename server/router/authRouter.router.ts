@@ -8,7 +8,7 @@ import {  createTokenForUser, createUnsecuredUserInformation, encryptPassword } 
 const authController = Router();
 
 
-// this logins
+// !this logins
 authController.post("/auth/login", 
     // this makes sure that there is both username and password as well as it being strictly string and not a number
     validateRequest({
@@ -17,7 +17,7 @@ authController.post("/auth/login",
             password: z.string(),
         })
     }),
-async ({body: {username: bodyUsername, password:bodyPassword}  },res) => {
+async ( {body: {username: bodyUsername, password:bodyPassword} },res) => {
     const user = await prisma.user.findFirst({
         where: {
             username: bodyUsername
@@ -42,8 +42,8 @@ async ({body: {username: bodyUsername, password:bodyPassword}  },res) => {
 })
 
 
-// this signups
-authController.post("/auth/login", 
+// !this signups
+authController.post("/auth/signup", 
     // this makes sure that there is both username and password as well as it being strictly string and not a number
     validateRequest({
         body: z.object({
@@ -53,6 +53,17 @@ authController.post("/auth/login",
     }),
 async ({body: {username: bodyUsername, password:bodyPassword}  },res) => {
     
+
+    const existingUser = await prisma.user.findFirst({
+        where: {
+            username: bodyUsername
+        }
+    })
+    
+    if(existingUser) {
+        return res.status(404).json({message: "Username is already registered"})
+    }
+
     // this takes on the password that is being written
     const passwordHash = await encryptPassword(bodyPassword);
 
@@ -67,10 +78,8 @@ async ({body: {username: bodyUsername, password:bodyPassword}  },res) => {
         return res.status(404).json({message: "User cannot be created"})
     }
 
-    //this creates the user information that is being put
+    //this creates the user information and token
     const userInformation = createUnsecuredUserInformation(user);
-
-    // this creates the token for the user
     const token = createTokenForUser(user);
 
     return res.status(200).json({token, userInformation})
