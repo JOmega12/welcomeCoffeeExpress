@@ -9,6 +9,7 @@ import {
 } from "react";
 import { getUserFromServer, registerFetch } from "../api/UserAPI";
 import { UserInformation } from "../types/types";
+import { EXPRESS_API_CONFIG } from "../api/config";
 
 type TAuthContext = {
   user: UserInformation | null;
@@ -45,23 +46,52 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     UserInformation | undefined
   > => {
     try {
-      const user = await getUserFromServer({ username, password }).catch(
+      const getToken = (): string | null => {
+        // .getItem(key)
+        return localStorage.getItem("token_auth")
+     };
+      if(getToken === null) {
+         throw new Error("No token available");
+      }
+      const response =  await fetch(EXPRESS_API_CONFIG.baseUrl + "/auth/login", {
+        method: "POST",
+        Authorization: `Bearer ${getToken}`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({username, password})
+      }as RequestInit);
+
+      if(!response.ok) {
+        throw new Error("Invalid credentials");
+      }
+
+      const { token, userInformation } = await response.json();
+
+      localStorage.setItem("token_auth", token);
+
+      const existingUser = await getUserFromServer({ username, password }).catch(
         () => null
       );
+      
+      console.log({'username': username, 'password': password})
+      console.log({token}, token)
+      console.log({existingUser})
 
-      if (!user) {
+      if (!userInformation.username) {
         throw new Error("User not found");
       }
-      if (user.username !== username) {
-        throw new Error("Incorrect Password");
-      }
-      if (user?.password !== password) {
-        throw new Error("Password not Found");
+
+      const isPasswordCorrect = existingUser.password === password;
+      // const isPasswordCorrect = userInformation.password === password;
+
+      if (!isPasswordCorrect) {
+        throw new Error("Password not Correct");
       }
       localStorage.setItem("user", JSON.stringify(user));
       //this ONLY adds the SPECIFIC USER when you login
-      setUser(user);
-      return user;
+      setUser(userInformation.username);
+      return userInformation.username;
     } catch (e) {
       console.error("error while logging in");
     }
@@ -69,7 +99,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const logoutUser = () => {
     setUser(null);
-    localStorage.removeItem("user");
+    localStorage.removeItem("token_auth");
   };
 
   useEffect(() => {
@@ -107,3 +137,8 @@ export const useAuth = () => {
   }
   return context;
 };
+
+
+// currently struggling with having to login
+// this is more of a client issue than backend issue
+// im trying to find the way to login that gets the token as well as getting the password from the hashedPassword from the backend without having to write it in the front end

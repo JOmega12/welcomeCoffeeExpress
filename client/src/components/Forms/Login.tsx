@@ -35,7 +35,8 @@ export const Login = () => {
           setError(true);
           return;
         } else {
-          localStorage.setItem("user", JSON.stringify(user));
+          // it used to be "user for setItem"
+          localStorage.setItem("token_auth", JSON.stringify(user));
           setError(false);
           toast.success("Login complete");
           navigate("/coffee");

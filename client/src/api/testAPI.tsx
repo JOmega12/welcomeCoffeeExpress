@@ -22,12 +22,12 @@ const TestComponent = () => {
 
       // !this grabs the userinformation and logsin
     
-    fetch("http://localhost:4000/auth/login").then((res) => {
-      return res.json();
-    }).then((data) => {
-      console.log(data);
-      setInfoData(data);
-    })
+    // fetch("http://localhost:4000/auth/login").then((res) => {
+    //   return res.json();
+    // }).then((data) => {
+    //   console.log(data);
+    //   setInfoData(data);
+    // })
   }, []);
 
   return (
