@@ -32,36 +32,10 @@ export const getToken = (): string | null => {
 //    })
 // }
 
-//this logs in the user
-// export const getUserFromServer = ({username}: UserInformation) => {
-//    return fetch(API_CONFIG.baseUrl + "/app-users")
-//       .then((res) => {
-//          if(!res.ok) {
-//             throw new Error("Could not get user")
-//          }
-//          return res.json();
-//       })
-//       .then((users) => users.find((user: UserInformation) => user.username === username))
-//       .then((user) => {
-//          if(!user) {
-//             throw new Error("user not found")
-//          }
-//          return user
-//       })
-// }
-
-
-export const getUserFromServer = async ({username}: UserInformation) => {
-
-   const token = getToken();
-   if(token === null) {
-      throw new Error("No token available");
-   }
-   return fetch(EXPRESS_API_CONFIG.baseUrl + "/auth/login", {
-      method: "POST",
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-   } as RequestInit)
+// only useful for JSON server
+// this logs in the user
+export const getUserFromServer = ({username}: UserInformation) => {
+   return fetch(API_CONFIG.baseUrl + "/app-users")
       .then((res) => {
          if(!res.ok) {
             throw new Error("Could not get user")
@@ -78,9 +52,37 @@ export const getUserFromServer = async ({username}: UserInformation) => {
 }
 
 
+// export const getUserFromServer = async ({username}: UserInformation) => {
+
+//    const token = getToken();
+//    if(token === null) {
+//       throw new Error("No token available");
+//    }
+//    console.log({token}, 'token userAPI')
+//    return fetch(EXPRESS_API_CONFIG.baseUrl + "/auth/login", {
+//       method: "POST",
+//       Authorization: `Bearer ${token}`,
+//       "Content-Type": "application/json",
+//    } as RequestInit)
+//       .then((res) => {
+//          if(!res.ok) {
+//             throw new Error("Could not get user")
+//          }
+//          return res.json();
+//       })
+//       .then((users) => users.find((user: UserInformation) => user.username === username))
+//       .then((user) => {
+//          if(!user) {
+//             throw new Error("user not found")
+//          }
+//          return user
+//       })
+// }
+
+
 //this registers the user
 export const registerFetch = ({username, password}: UserInformation) => {
-   return fetch(API_CONFIG.baseUrl + "/app-users", {
+   return fetch(EXPRESS_API_CONFIG.baseUrl + "/auth/signup", {
       method: "POST",
       headers: {
          "Content-Type": "application/json",
@@ -90,6 +92,6 @@ export const registerFetch = ({username, password}: UserInformation) => {
       if(!res.ok) {
          throw new Error("Registering has failed")
       }
-      return res.json();
+      return res.json({token, userInformation});
    })
 }

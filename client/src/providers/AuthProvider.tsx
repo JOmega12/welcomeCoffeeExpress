@@ -7,7 +7,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { getUserFromServer, registerFetch } from "../api/UserAPI";
+import {registerFetch } from "../api/UserAPI";
 import { UserInformation } from "../types/types";
 import { EXPRESS_API_CONFIG } from "../api/config";
 
@@ -32,13 +32,28 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<UserInformation | null>(null);
   const isRegister = !!user;
 
-  const registerUser = ({ username, password }: UserInformation) => {
-    registerFetch({ username, password }).then((user) => {
-      localStorage.setItem("user", JSON.stringify(user));
-      return setUser(user);
-    });
+  // const registerUser = ({ username, password }: UserInformation) => {
+  //   registerFetch({ username, password }).then((user) => {
+  //     localStorage.setItem("user", JSON.stringify(user));
+  //     return setUser(user);
+  //   });
+  // };
+
+  const registerUser = async ({ username, password }: UserInformation) => {
+    // registerFetch({ username, password }).then((user) => {
+    //   localStorage.setItem("user", JSON.stringify(user));
+    //   return setUser(user);
+    // });
+
+    try {
+      const response = await 
+    } catch(e) {
+      console.error("Something Went Wrong")
+    }
+
   };
 
+  
   const loginUser = async ({
     username,
     password,
@@ -69,26 +84,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const { token, userInformation } = await response.json();
 
       localStorage.setItem("token_auth", token);
-
-      const existingUser = await getUserFromServer({ username, password }).catch(
-        () => null
-      );
       
       console.log({'username': username, 'password': password})
       console.log({token}, token)
-      console.log({existingUser})
 
       if (!userInformation.username) {
         throw new Error("User not found");
       }
 
-      const isPasswordCorrect = existingUser.password === password;
-      // const isPasswordCorrect = userInformation.password === password;
-
-      if (!isPasswordCorrect) {
-        throw new Error("Password not Correct");
-      }
-      localStorage.setItem("user", JSON.stringify(user));
+      // this sets the item for token auth
+      // localStorage.setItem("token_auth", token);
       //this ONLY adds the SPECIFIC USER when you login
       setUser(userInformation.username);
       return userInformation.username;
@@ -137,8 +142,3 @@ export const useAuth = () => {
   }
   return context;
 };
-
-
-// currently struggling with having to login
-// this is more of a client issue than backend issue
-// im trying to find the way to login that gets the token as well as getting the password from the hashedPassword from the backend without having to write it in the front end

@@ -53,7 +53,6 @@ authController.post("/auth/signup",
     }),
 async ({body: {username: bodyUsername, password:bodyPassword}  },res) => {
     
-
     const existingUser = await prisma.user.findFirst({
         where: {
             username: bodyUsername
