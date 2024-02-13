@@ -4,9 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import DefaultCoffee from "../images/coffee1.jpeg";
 import { useCoffee } from "../providers/CoffeeProvider";
 
-// !redesign back button on all components
-// !change lobby name to coffee or change it to lobby
-
 export const Coffee = () => {
   const { logoutUser, isRegister, user } = useAuth();
   const { coffee } = useCoffee();
@@ -50,7 +47,7 @@ export const Coffee = () => {
                 item: {
                   id: number;
                   title?: string;
-                  description?: string;
+                  // description?: string;
                   image?: string;
                   instructions?: string;
                 },
@@ -67,7 +64,7 @@ export const Coffee = () => {
                       // description: item?.description || "Default Description",
                       image: item?.image || DefaultCoffee,
                       instructions:
-                        item?.instructions || "Defauly Instructions",
+                        item?.instructions || "Default Instructions",
                     }}
                     index={index}
                   />

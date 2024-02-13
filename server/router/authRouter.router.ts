@@ -81,6 +81,8 @@ async ({body: {username: bodyUsername, password:bodyPassword}  },res) => {
     const userInformation = createUnsecuredUserInformation(user);
     const token = createTokenForUser(user);
 
+
+    // return res.status(200).json({ userInformation})
     return res.status(200).json({token, userInformation})
 })
 

@@ -1,5 +1,5 @@
 import { CoffeeType } from "../types/types";
-import { API_CONFIG, EXPRESS_API_CONFIG } from "./config"
+import { EXPRESS_API_CONFIG } from "./config"
 
 
 

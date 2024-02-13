@@ -90,9 +90,9 @@ export const CoffeeCard = () => {
       <div className="md:text- 4xl font-bold text-xl text-transform: capitalize sm:3xl">
         <h2>{coffeeItem?.title || "Default Title"}</h2>
       </div>
-      <div className="md:text-2xl text-xl sm:2xl mt-3">
+      {/* <div className="md:text-2xl text-xl sm:2xl mt-3">
         <p>{coffeeItem?.description || "Default Description"}</p>
-      </div>
+      </div> */}
       <div className="m-10 flex flex-col text-center ">
         <h1 className="text-6xl font-extrabold mb-5">Instructions</h1>
         <p className="md:text-2xl text-xl sm:2xl">

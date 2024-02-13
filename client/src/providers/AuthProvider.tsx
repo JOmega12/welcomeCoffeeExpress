@@ -46,7 +46,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     // });
 
     try {
-      const response = await 
+      const { token, userInformation }= await registerFetch({username, password});
+      console.log({userInformation})
+      localStorage.setItem("token_auth", token)
+      setUser(userInformation);
     } catch(e) {
       console.error("Something Went Wrong")
     }

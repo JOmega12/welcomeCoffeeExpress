@@ -92,6 +92,6 @@ export const registerFetch = ({username, password}: UserInformation) => {
       if(!res.ok) {
          throw new Error("Registering has failed")
       }
-      return res.json({token, userInformation});
+      return res.json();
    })
 }
