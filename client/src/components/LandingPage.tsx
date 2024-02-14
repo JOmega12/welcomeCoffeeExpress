@@ -74,8 +74,8 @@ export const LandingPage = () => {
                         image: string;
                         title: string;
                         description: string;
-                      }) => (
-                        <div>
+                      }, index) => (
+                        <div key={index}>
                           <div className="flex mt-5 p-3"></div>
                           <div className="p-4">
                             <img

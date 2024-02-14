@@ -6,6 +6,7 @@ import { User } from '@prisma/client';
 // import { PrismaClient } from "@prisma/client";
 // import { createProxyMiddleware } from "http-proxy-middleware";
 import cors from 'cors'
+import { favoriteRouter } from '../router/favRouter.router';
 
 const app = express();
 app.use(cors());
@@ -33,6 +34,7 @@ app.use(authController);
 app.use("/coffee", coffeeRouter);
 // app.use("/coffee", createProxyMiddleware({target: 'http://localhost:4000', changeOrigin: true}) ,coffeeRouter);
 app.use("/users", userRouter); 
+app.use("/favorites", favoriteRouter);
 
 
 
