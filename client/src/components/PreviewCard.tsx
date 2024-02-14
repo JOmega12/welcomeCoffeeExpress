@@ -22,7 +22,7 @@ export const PreviewCard = ({ item, index }  :
         </div>
         <div className="text-center gap-3">
           <h3 className="text-lg font-semibold">{item.title || "Default Title"}</h3>
-          <p>{item.description || "Default Description"}</p>
+          {/* <p>{item.description || "Default Description"}</p> */}
         </div>
       </div>
     </>

@@ -88,7 +88,7 @@ export const LandingPage = () => {
                             <h3 className="text-lg font-semibold">
                               {item.title || "Default Title"}
                             </h3>
-                            <p>{item.description || "Default Description"}</p>
+                            {/* <p>{item.description || "Default Description"}</p> */}
                           </div>
                         </div>
                       )

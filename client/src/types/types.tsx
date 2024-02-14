@@ -13,7 +13,7 @@ export type CoffeeCardProps = {
    item: {
       title: string;
       imageURL: string;
-      description: string;
+      // description: string;
       instructions: string;
     };
     index: number;
