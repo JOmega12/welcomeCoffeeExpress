@@ -32,6 +32,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<UserInformation | null>(null);
   const isRegister = !!user;
 
+  console.log(user?.id, 'user from AuthContext')
+
   // const registerUser = ({ username, password }: UserInformation) => {
   //   registerFetch({ username, password }).then((user) => {
   //     localStorage.setItem("user", JSON.stringify(user));

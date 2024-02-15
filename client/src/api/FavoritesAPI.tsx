@@ -1,4 +1,6 @@
-import { API_CONFIG } from "./config";
+// import { API_CONFIG } from "./config";
+
+import { EXPRESS_API_CONFIG } from "./config";
 
 
 export type FavoriteIDs= {
@@ -7,7 +9,7 @@ export type FavoriteIDs= {
 }
 
 export const getAllFavorites = () => {
-   return fetch(API_CONFIG.baseUrl + "/favorite")
+   return fetch(EXPRESS_API_CONFIG.baseUrl + "/favorites")
       .then((res) => {
          if(!res.ok) {
             throw new Error('Failed to get favorites')
@@ -17,7 +19,7 @@ export const getAllFavorites = () => {
 }
 
 export const createFavorite = ({userId, coffeeId}: FavoriteIDs) => {
-   return fetch(API_CONFIG.baseUrl + '/favorite', {
+   return fetch(EXPRESS_API_CONFIG.baseUrl + '/favorites', {
       method: "POST",
       headers: {
          "Content-Type": "application/json",
@@ -32,7 +34,7 @@ export const createFavorite = ({userId, coffeeId}: FavoriteIDs) => {
 }
 
 const deleteFavorite = async(id: number) => {
-   return fetch(API_CONFIG.baseUrl + "/favorite/" + id, {
+   return fetch(EXPRESS_API_CONFIG.baseUrl + "/favorites/" + id, {
       method: "DELETE",
    }).then((res) => {
       if(!res.ok) {

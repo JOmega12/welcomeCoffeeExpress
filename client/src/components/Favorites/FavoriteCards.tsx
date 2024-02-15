@@ -13,7 +13,6 @@ export const FavoriteCards = () => {
   const { coffee } = useCoffee();
 
   const { logoutUser, isRegister, user } = useAuth();
-
   const [favoriteCoffeeData, setFavoriteCoffeeData] = useState<
     (CoffeeType | undefined)[]
   >([]);
@@ -25,9 +24,15 @@ export const FavoriteCards = () => {
       //this checks if the userId === current user.id
       const userFavorites = favCoffee.filter(
         (favItem: { userId: number | undefined }) => {
+
+          console.log(user?.id, 'user.id');
+          console.log(favItem.userId, 'favItemuserId');
+
           return favItem.userId === user?.id;
         }
       );
+      // !userFavorites is not being registered.Why?
+      // console.log(userFavorites, 'userFavorites')
 
       if (Array.isArray(coffee)) {
         const matchedData = userFavorites.map(
@@ -44,7 +49,12 @@ export const FavoriteCards = () => {
     }
   }, [coffee, favCoffee, user?.id]);
 
-  console.log(favoriteCoffeeData, "favCoffeeData");
+
+  // !ConsoleLOG
+  console.log(coffee , 'coffee FC')
+  console.log(favCoffee, 'favCoffee From context')
+  // ?this is not being setting the state
+  console.log(favoriteCoffeeData, "favCoffeeData FC");
 
   const handleLogout = () => {
     logoutUser();
@@ -110,3 +120,8 @@ export const FavoriteCards = () => {
     </>
   );
 };
+
+
+// currently user.id when trying to get from the auth always shows the first number which im not trying to have
+// I want the user.id to match with the current id in the prisma file
+// so I want user.id, for example, to be 11 to match the favItem.id of 11
