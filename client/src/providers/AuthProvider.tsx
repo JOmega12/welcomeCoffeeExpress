@@ -32,7 +32,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<UserInformation | null>(null);
   const isRegister = !!user;
 
-  console.log(user?.id, 'user from AuthContext')
+  // !the user id from the backend is not being showed. Why? And how do I get there? 
+  console.log(user, 'user from AuthContext')
 
   // const registerUser = ({ username, password }: UserInformation) => {
   //   registerFetch({ username, password }).then((user) => {
@@ -100,8 +101,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       // this sets the item for token auth
       // localStorage.setItem("token_auth", token);
       //this ONLY adds the SPECIFIC USER when you login
-      setUser(userInformation.username);
-      return userInformation.username;
+      setUser(userInformation);
+      return userInformation;
     } catch (e) {
       console.error("error while logging in");
     }

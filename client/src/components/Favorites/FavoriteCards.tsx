@@ -32,6 +32,8 @@ export const FavoriteCards = () => {
         }
       );
       // !userFavorites is not being registered.Why?
+      // !user.id is always showing to 1
+      // !it's showing user.id === 1 because test/testP is showing and it's in the authProvider
       // console.log(userFavorites, 'userFavorites')
 
       if (Array.isArray(coffee)) {
