@@ -18,3 +18,6 @@ export const getNewCoffee = ({title, image, instructions}: CoffeeType) => {
       body: JSON.stringify({title, image, instructions}),
    });
 }
+
+// the coffee is not being added because it needs the token to be approved by the user first in the api. How do i put that into the api?
+// you need the bearer token to be approved to create the coffee

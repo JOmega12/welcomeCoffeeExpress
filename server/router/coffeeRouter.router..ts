@@ -145,7 +145,7 @@ coffeeRouter.patch(
       res.status(201).send(updateCoffee);
     } catch (e) {
       console.error(e);
-      res.status(500).send({ erro: "error 500 Internal Server" });
+      res.status(500).send({ error: "error 500 Internal Server" });
     }
   }
 );

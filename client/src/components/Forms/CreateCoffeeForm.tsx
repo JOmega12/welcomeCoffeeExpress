@@ -9,25 +9,25 @@ import { CreateCafeInputs } from "./CreateCafeInputs";
 import toast from "react-hot-toast";
 
 const titleErrorMessage = "Title needs to be more than 3 words";
-const descriptionErrorMessage = "Description needs to be more than a word";
+// const descriptionErrorMessage = "Description needs to be more than a word";
 const imageErrorMessage = "Image must be an address";
 const instructionsErrorMessage = "Instructions must be more than a word";
 
 export const CreateCoffeeForm = () => {
   const [titleInput, setTitleInput] = useState("");
-  const [descriptionInput, setDescriptionInput] = useState("");
+  // const [descriptionInput, setDescriptionInput] = useState("");
   const [imageInput, setImageInput] = useState("");
   const [instructionsInput, setInstructionsInput] = useState("");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   const titleValid = titleInput.length > 2;
-  const descriptionValid = isDescriptionValid(descriptionInput);
+  // const descriptionValid = isDescriptionValid(descriptionInput);
   const imageValid = isImageAddressValid(imageInput);
   const instructionsValid = isDescriptionValid(instructionsInput)
 
   const showTitleError = !titleValid && error;
-  const showDescriptionError = !descriptionValid && error;
+  // const showDescriptionError = !descriptionValid && error;
   const showImageError = !imageValid && error;
   const showInstructionsError = !instructionsValid && error
 
@@ -36,21 +36,22 @@ export const CreateCoffeeForm = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          if (!titleValid || !descriptionValid || !imageValid) {
+          if (!titleValid || !imageValid) {
             setError(true);
             return;
           } else {
             getNewCoffee({
               title: titleInput,
-              description: descriptionInput,
+              // description: descriptionInput,
               image: imageInput,
               instructions: instructionsInput,
             });
             toast.success("Coffee Created!");
             setTitleInput("");
-            setDescriptionInput("");
+            // setDescriptionInput("");
             setImageInput("");
-            navigate("/coffee");
+            setInstructionsInput("");
+            // navigate("/coffee");
             window.location.reload();
           }
         }}
@@ -66,7 +67,7 @@ export const CreateCoffeeForm = () => {
           show={showTitleError}
           message={titleErrorMessage}
         />
-        <div className="mb-4 w-full">
+        {/* <div className="mb-4 w-full">
           <label htmlFor="">Coffee Description:</label>
           <textarea
             value={descriptionInput}
@@ -75,10 +76,10 @@ export const CreateCoffeeForm = () => {
             }}
             className="w-full border rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
           ></textarea>
-        </div>  
-        {showDescriptionError ? (
+        </div>   */}
+        {/* {showDescriptionError ? (
           <div className="text-red-500">{descriptionErrorMessage}</div>
-        ) : null}
+        ) : null} */}
         
         <div className="mb-4 w-full">
           <label htmlFor="">Coffee Instructions:</label>
@@ -119,3 +120,9 @@ export const CreateCoffeeForm = () => {
     </>
   );
 };
+
+
+
+// trying to add into create coffee:
+
+// https://hips.hearstapps.com/hmg-prod/images/directly-above-shot-of-cappuccino-served-on-table-royalty-free-image-769817517-1564602749.jpg?resize=1200:*

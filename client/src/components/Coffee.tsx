@@ -56,6 +56,7 @@ export const Coffee = () => {
                 <Link
                   to={`/coffee-card/${item.id}`}
                   className="w-full md:w-1/2 lg:w-1/3 p-2 bg-white rounded-lg shadow-md m-2 hover:cursor-pointer hover:bg-gray-500"
+                  key={index}
                 >
                   <PreviewCard
                     item={{
