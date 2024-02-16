@@ -32,25 +32,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<UserInformation | null>(null);
   const isRegister = !!user;
 
-  // !the user id from the backend is not being showed. Why? And how do I get there? 
-  console.log(user, 'user from AuthContext')
-
-  // const registerUser = ({ username, password }: UserInformation) => {
-  //   registerFetch({ username, password }).then((user) => {
-  //     localStorage.setItem("user", JSON.stringify(user));
-  //     return setUser(user);
-  //   });
-  // };
-
   const registerUser = async ({ username, password }: UserInformation) => {
-    // registerFetch({ username, password }).then((user) => {
-    //   localStorage.setItem("user", JSON.stringify(user));
-    //   return setUser(user);
-    // });
 
     try {
       const { token, userInformation }= await registerFetch({username, password});
-      console.log({userInformation})
       localStorage.setItem("token_auth", token)
       setUser(userInformation);
     } catch(e) {
@@ -90,16 +75,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const { token, userInformation } = await response.json();
 
       localStorage.setItem("token_auth", token);
-      
-      console.log({'username': username, 'password': password})
-      console.log({token}, token)
 
       if (!userInformation.username) {
         throw new Error("User not found");
       }
 
-      // this sets the item for token auth
-      // localStorage.setItem("token_auth", token);
       //this ONLY adds the SPECIFIC USER when you login
       setUser(userInformation);
       return userInformation;
@@ -114,7 +94,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   useEffect(() => {
-    const maybeUser = localStorage.getItem("user");
+    const maybeUser = localStorage.getItem("token_auth");
     if (maybeUser) {
       try {
         setUser(JSON.parse(maybeUser));

@@ -15,7 +15,7 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { FavoriteProvider } from "./providers/FavoriteProvider";
 import { FavoriteCards } from "./components/Favorites/FavoriteCards";
 import { MultipleLogin } from "./components/MultipleLogin";
-import TestComponent from "./api/testAPI";
+// import TestComponent from "./api/testAPI";
 
 function App() {
 
@@ -23,7 +23,7 @@ function App() {
 
   return (
     <>
-    <TestComponent/>
+    {/* <TestComponent/> */}
     <Navbar/>
     <div className="flex justify-center items-center lg:p-20 md:p-10 w-screen bg-[#f4f4ec] space-y-5 min-h-screen
     ">

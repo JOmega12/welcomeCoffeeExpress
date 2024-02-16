@@ -6,7 +6,6 @@ import { useFavorite } from "../../providers/FavoriteProvider";
 import { useCoffee } from "../../providers/CoffeeProvider";
 import { useEffect, useState } from "react";
 
-// !fix height of code
 export const FavoriteCards = () => {
   const favContext = useFavorite();
   const favCoffee = favContext?.favCoffee;
@@ -24,17 +23,9 @@ export const FavoriteCards = () => {
       //this checks if the userId === current user.id
       const userFavorites = favCoffee.filter(
         (favItem: { userId: number | undefined }) => {
-
-          console.log(user?.id, 'user.id');
-          console.log(favItem.userId, 'favItemuserId');
-
           return favItem.userId === user?.id;
         }
       );
-      // !userFavorites is not being registered.Why?
-      // !user.id is always showing to 1
-      // !it's showing user.id === 1 because test/testP is showing and it's in the authProvider
-      // console.log(userFavorites, 'userFavorites')
 
       if (Array.isArray(coffee)) {
         const matchedData = userFavorites.map(
@@ -50,13 +41,6 @@ export const FavoriteCards = () => {
       null;
     }
   }, [coffee, favCoffee, user?.id]);
-
-
-  // !ConsoleLOG
-  console.log(coffee , 'coffee FC')
-  console.log(favCoffee, 'favCoffee From context')
-  // ?this is not being setting the state
-  console.log(favoriteCoffeeData, "favCoffeeData FC");
 
   const handleLogout = () => {
     logoutUser();

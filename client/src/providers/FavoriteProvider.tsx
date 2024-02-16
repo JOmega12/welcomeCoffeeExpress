@@ -31,7 +31,7 @@ export const FavoriteProvider = ({children}:FavContextProps) => {
       return refetch();
    }
 
-   console.log(favCoffee, 'favCoffee Provider')
+   // console.log(favCoffee, 'favCoffee Provider')
    return(
       <FavoriteContext.Provider 
          value={{

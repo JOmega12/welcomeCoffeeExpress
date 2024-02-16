@@ -19,6 +19,7 @@ export const encryptPassword = (password: string) => {
 
 export const createUnsecuredUserInformation = (user: User) => ({
   username: user.username,
+  id: user.id
 });
 
 export const createTokenForUser = (user: User) => {
