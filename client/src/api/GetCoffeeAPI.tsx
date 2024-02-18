@@ -1,23 +1,31 @@
 import { CoffeeType } from "../types/types";
-import { EXPRESS_API_CONFIG } from "./config"
+import { EXPRESS_API_CONFIG } from "./config";
 
+const getToken = (): string | null => {
+  // .getItem(key)
+  return localStorage.getItem("token_auth_coffee");
+};
 
 
 //this fetches coffee
 export const getAllCoffee = () => {
-   return fetch(EXPRESS_API_CONFIG.baseUrl + "/coffee").then((res) => res.json());
-}
+  return fetch(EXPRESS_API_CONFIG.baseUrl + "/coffee").then((res) =>
+    res.json()
+  );
+};
 
-
-//this creates the coffee 
-export const getNewCoffee = ({title, image, instructions}: CoffeeType) => {
-   fetch(EXPRESS_API_CONFIG.baseUrl + "/coffee", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"
-      },
-      body: JSON.stringify({title, image, instructions}),
-   });
-}
+//this creates the coffee
+export const getNewCoffee = ({ title, image, instructions }: CoffeeType) => {
+   const token = getToken();
+  fetch(EXPRESS_API_CONFIG.baseUrl + "/coffee", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+   },
+    body: JSON.stringify({ title, image, instructions }),
+  } as RequestInit );
+};
 
 // the coffee is not being added because it needs the token to be approved by the user first in the api. How do i put that into the api?
 // you need the bearer token to be approved to create the coffee

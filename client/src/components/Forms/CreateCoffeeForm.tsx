@@ -51,7 +51,7 @@ export const CreateCoffeeForm = () => {
             // setDescriptionInput("");
             setImageInput("");
             setInstructionsInput("");
-            // navigate("/coffee");
+            navigate("/coffee");
             window.location.reload();
           }
         }}
@@ -121,8 +121,3 @@ export const CreateCoffeeForm = () => {
   );
 };
 
-
-
-// trying to add into create coffee:
-
-// https://hips.hearstapps.com/hmg-prod/images/directly-above-shot-of-cappuccino-served-on-table-royalty-free-image-769817517-1564602749.jpg?resize=1200:*

@@ -59,6 +59,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       if(getToken === null) {
          throw new Error("No token available");
       }
+      
       const response =  await fetch(EXPRESS_API_CONFIG.baseUrl + "/auth/login", {
         method: "POST",
         Authorization: `Bearer ${getToken}`,
@@ -74,7 +75,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
       const { token, userInformation } = await response.json();
 
-      localStorage.setItem("token_auth", token);
+      localStorage.setItem("token_auth_coffee", token);
 
       if (!userInformation.username) {
         throw new Error("User not found");
@@ -91,6 +92,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const logoutUser = () => {
     setUser(null);
     localStorage.removeItem("token_auth");
+    localStorage.removeItem("token_auth_coffee");
   };
 
   useEffect(() => {
