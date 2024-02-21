@@ -50,15 +50,12 @@ What I learned:
 
 Feedback:
 -implement image upload
--fix the coffee lobby favorites and logout buttons to be centered
--change the about us
 -change the navbar login/signup if youre loggedin
 -write a better README
    -Coffee App 
    -set up
       -then add your stuff for instructions
 -delete messaround.ts code and encryption test
--fix the formats for routers
 - the toggleFavoriteAPI() should be
    -fetch the favorites from the backend
    -grab the user using the auth

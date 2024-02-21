@@ -85,12 +85,12 @@ export const Coffee = () => {
             </>
           )}
         </div>
-        <section className="mt-2 flex flex-col lg:flex-row sm:flex-col w-screen justify-center gap-20 pb-10 pt-5 bg-[#f4f4ec]">
-          <div className="flex justify-center gap-20 h-[70px]">
-            <div className="bg-yellow-400 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-default hover:text-white  hover:bg-yellow-500 font-semibold">
+        <section className="mt-2 flex flex-col lg:flex-row sm:flex-col w-screen justify-center items-center gap-20 pb-2 pt-2 bg-[#f4f4ec]">
+          <div className="flex justify-center items-center gap-20 h-[70px]">
+            <div className="bg-yellow-400 rounded-lg shadow-lg m-2 sm:p-3 text-center hover:cursor-default hover:text-white  hover:bg-yellow-500 font-semibold">
               <Link to={`/favorites`}>Favorites</Link>
             </div>
-            <div className="bg-red-400 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-default hover:bg-red-500 hover:text-white font-semibold">
+            <div className="bg-red-400 rounded-lg shadow-lg m-2 sm:p-3 text-center hover:cursor-default hover:bg-red-500 hover:text-white font-semibold">
               <button onClick={() => handleLogout()}>Logout</button>
             </div>
           </div>

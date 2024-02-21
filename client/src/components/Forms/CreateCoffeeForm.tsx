@@ -16,40 +16,53 @@ const instructionsErrorMessage = "Instructions must be more than a word";
 export const CreateCoffeeForm = () => {
   const [titleInput, setTitleInput] = useState("");
   // const [descriptionInput, setDescriptionInput] = useState("");
-  const [imageInput, setImageInput] = useState("");
+  const [imageInput, setImageInput] = useState<File | undefined>();
   const [instructionsInput, setInstructionsInput] = useState("");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   const titleValid = titleInput.length > 2;
   // const descriptionValid = isDescriptionValid(descriptionInput);
-  const imageValid = isImageAddressValid(imageInput);
-  const instructionsValid = isDescriptionValid(instructionsInput)
+  // const imageValid = isImageAddressValid(imageInput);
+  const instructionsValid = isDescriptionValid(instructionsInput);
 
   const showTitleError = !titleValid && error;
   // const showDescriptionError = !descriptionValid && error;
-  const showImageError = !imageValid && error;
-  const showInstructionsError = !instructionsValid && error
+  // const showImageError = !imageValid && error;
+  const showInstructionsError = !instructionsValid && error;
+
+
+
+  // !still struggling on how to write the code
+  const handleImageOnChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement & {
+      files: FileList;
+    }
+    console.log('target', target)
+
+    setImageInput(target.files[0])
+  }
 
   return (
     <>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          if (!titleValid || !imageValid) {
+          if (!titleValid) {
             setError(true);
             return;
           } else {
             getNewCoffee({
               title: titleInput,
               // description: descriptionInput,
+              // image: imageInput,
               image: imageInput,
               instructions: instructionsInput,
             });
             toast.success("Coffee Created!");
             setTitleInput("");
             // setDescriptionInput("");
-            setImageInput("");
+            setImageInput(undefined);
             setInstructionsInput("");
             navigate("/coffee");
             window.location.reload();
@@ -80,7 +93,7 @@ export const CreateCoffeeForm = () => {
         {/* {showDescriptionError ? (
           <div className="text-red-500">{descriptionErrorMessage}</div>
         ) : null} */}
-        
+
         <div className="mb-4 w-full">
           <label htmlFor="">Coffee Instructions:</label>
           <textarea
@@ -95,13 +108,27 @@ export const CreateCoffeeForm = () => {
           <div className="text-red-500">{instructionsErrorMessage}</div>
         ) : null}
 
-        <CreateCafeInputs
+        {/* <CreateCafeInputs
           label={`Upload Image: (Copy/Paste Image Address)`}
           value={imageInput}
           onChange={(e) => setImageInput(e.target.value)}
           show={showImageError}
-          message={imageErrorMessage}
-        />
+        /> */}
+        <div className="mb-4 w-full">
+          <label htmlFor="">Upload Image:</label>
+          <input
+            className="w-full border rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
+            type="file"
+            name="image"
+            // onChange={(e) => setImageInput(e.target.value)}
+            onChange={(e) => handleImageOnChange(e.target)}
+            value={undefined}
+          />
+          {/* {imageErrorMessage ? (
+            <div className="text-red-500">{showImageError}</div>
+          ) : null} */}
+        </div>
+
         <section className="mb-4 flex flex-col md:flex-row justify-center gap-10 pb-10 pt-5">
           <div
             className="bg-blue-500 rounded-lg shadow-lg m-2 p-3 sm:p-5 text-center hover:cursor-auto hover:bg-blue-600 text-white font-semibold
@@ -120,4 +147,3 @@ export const CreateCoffeeForm = () => {
     </>
   );
 };
-
