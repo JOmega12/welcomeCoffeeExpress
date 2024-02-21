@@ -4,6 +4,7 @@ import { useAuth } from "../../providers/AuthProvider";
 import { toast } from "react-hot-toast";
 import { isPasswordValid } from "../validations/formValidations";
 import { TextInputs } from "./TextInputs";
+import SignupCoffeeImage from "../../images/SignupImage.jpg";
 
 const usernameErrorMessage = "Username not found";
 const passwordErrorMessage =
@@ -53,43 +54,52 @@ export const Signup = () => {
         handleSubmit(e);
       }}
     >
-      <button
-        onClick={() => navigate("/multi-login")}
-        className="h-14 w-1/8 max-w-sm border border-gray-300 rounded-lg py-2 px-3 focus:outline-none bg-blue-500 focus:border-blue-500 text-white hover:bg-blue-700"
-        style={{ alignSelf: "flex-start" }}
-      >
-        Back
-      </button>
-      <div className="text-center text-[#2E1E17] p-5 rounded-xl text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-        <h2>Signup</h2>
-      </div>
-      <div className="flex flex-col space-y-4 ">
-        <TextInputs
-          label="Username:"
-          onChange={(e) => setUsernameInput(e.target.value)}
-          value={usernameInput}
-          show={showUsernameError}
-          message={usernameErrorMessage}
-        />
-        <TextInputs
-          label="Password:"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-          show={showPasswordError}
-          message={passwordErrorMessage}
-        />
-        <TextInputs
-          label="Confirm Password:"
-          onChange={(e) => setConfirmPass(e.target.value)}
-          value={confirmPass}
-          show={showConfirmPasswordError}
-          message={confirmPasswordErrorMessage}
-        />
-        <div className="flex flex-row gap-10 text-center cursor-pointer">
-          <input
-            type="submit"
-            className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500 bg-green-500 hover:bg-green-600"
-          />
+      <div className="flex max-[765px]:flex-col  lg:flex-row gap-10 items-center">
+        <div className="self-center w-[320px] h-full max-[765px]:hidden">
+          <img src={SignupCoffeeImage} alt="Coffee Signup Image" />
+        </div>
+        <div className="">
+          <div className="flex flex-row items-center text-center text-[#2E1E17] p-5 rounded-xl text-3xl md:text-4xl lg:text-5xl font-bold mb-4 gap-2 justify-between">
+            <button
+              onClick={() => navigate("/multi-login")}
+              className="text-base w-[100px] border border-gray-300 rounded-lg py-2 px-3 focus:outline-none bg-blue-500 focus:border-blue-500 text-white hover:bg-blue-700"
+              // style={{ alignSelf: "flex-start" }}
+            >
+              Back
+            </button>
+            <h2 className="flex-grow text-center max-[765px]:text-3xl">
+              Signup
+            </h2>
+          </div>
+          <div className="flex flex-col space-y-4 px-2">
+            <TextInputs
+              label="Username:"
+              onChange={(e) => setUsernameInput(e.target.value)}
+              value={usernameInput}
+              show={showUsernameError}
+              message={usernameErrorMessage}
+            />
+            <TextInputs
+              label="Password:"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              show={showPasswordError}
+              message={passwordErrorMessage}
+            />
+            <TextInputs
+              label="Confirm Password:"
+              onChange={(e) => setConfirmPass(e.target.value)}
+              value={confirmPass}
+              show={showConfirmPasswordError}
+              message={confirmPasswordErrorMessage}
+            />
+            <div className="flex flex-row gap-10 text-center cursor-pointer">
+              <input
+                type="submit"
+                className="items-center h-14 w-full max-w-md border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500 bg-green-500 hover:bg-green-600"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </form>

@@ -9,20 +9,20 @@ const coffeeRouter = Router();
 
 const coffeeSchema = z.object({
   title: z.string({
-    errorMap: (err) => ({ message: "Title needs to be a string" }),
+    errorMap: (_err) => ({ message: "Title needs to be a string" }),
   }),
   instructions: z.string({
-    errorMap: (err) => ({ message: "Description needs to be a string" }),
+    errorMap: (_err) => ({ message: "Description needs to be a string" }),
   }),
   image: z.string({
-    errorMap: (err) => ({ message: "Image needs to be a string" }),
+    errorMap: (_err) => ({ message: "Image needs to be a string" }),
   }),
 });
 
 // INDEX
 // This allows to view ALL the coffee
 // the middleware validateRequest does the strict typing instead of having to write if statements if the variable is the typeof string
-coffeeRouter.get("/", async (req, res) => {
+coffeeRouter.get("/", async (_req, res) => {
   const coffee = await prisma.coffee.findMany({});
   res.send(coffee);
 });
@@ -66,11 +66,10 @@ coffeeRouter.delete("/:id", async (req, res) => {
   return res.status(200).send("Coffee Deleted!");
 });
 
-
 // POST REQUEST AKA CREATING A COFFEE
 coffeeRouter.post(
   "/",
-validateRequest({
+  validateRequest({
     body: z.object({
       title: z.string(),
       instructions: z.string(),

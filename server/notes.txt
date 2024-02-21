@@ -44,3 +44,21 @@ What I learned:
    - use `app.use(cors())` and call the cors function out
 
 - you would connect the backend to the front end by establishing the server for the backend. In this case, it's server 4000 on the server.ts file. Then in the frontend, with the help of CORS, fetch it using the api in the front end and the standard fetch method
+
+
+
+
+Feedback:
+-implement image upload
+-fix the coffee lobby favorites and logout buttons to be centered
+-change the about us
+-change the navbar login/signup if youre loggedin
+-write a better README
+   -Coffee App 
+   -set up
+      -then add your stuff for instructions
+-delete messaround.ts code and encryption test
+-fix the formats for routers
+- the toggleFavoriteAPI() should be
+   -fetch the favorites from the backend
+   -grab the user using the auth
