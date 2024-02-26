@@ -1,22 +1,47 @@
 import { PrismaClient } from "@prisma/client";
 import { Router } from "express";
+import { authMiddleware, getDataFromAuthToken } from "../src/auth.utils";
 
 const prisma = new PrismaClient();
 const favoriteRouter = Router();
 
 // this is to view ALL favorites
 favoriteRouter.get("/", async (req, res) => {
-  const favorite = await prisma.favorite.findMany({});
-  res.send(favorite);
+  const favorites = await prisma.favorite.findMany({});
+  res.send(favorites);
 });
 
-favoriteRouter.post("/", async (req, res) => {
+// this creates the favorite
+favoriteRouter.post("/", authMiddleware, async (req, res) => {
   try {
-    const { userId, coffeeId } = req.body;
+    const [, token] = req.headers.authorization?.split?.(" ") || [];
+    const myJWTData = getDataFromAuthToken(token);
+    const usernameFromJWTData = myJWTData?.username;
+
+    const user = await prisma.user.findFirst({
+      where: {
+        username: usernameFromJWTData,
+      },
+    });
+
+    const { coffeeId } = req.body;
+
+    // Check if the user is found
+    if (!user) {
+      return res.status(401).json({ message: "User not Found" });
+    }
+
+    if (!user.id) {
+      return res.status(401).json({ message: "User Id Not Found" });
+    }
+
+    if (!coffeeId) {
+      return res.status(401).json({ message: "Coffee Id Not Found" });
+    }
 
     const newFavoriteCoffee = await prisma.favorite.create({
       data: {
-        userId,
+        userId: user.id,
         coffeeId,
       },
     });

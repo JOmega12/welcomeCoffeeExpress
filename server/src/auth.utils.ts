@@ -44,7 +44,6 @@ export const getDataFromAuthToken = (token?: string) => {
 };
 
 // this helper function makes sure the person logging in
-
 export const authMiddleware = async (
   req: Request,
   res: Response,

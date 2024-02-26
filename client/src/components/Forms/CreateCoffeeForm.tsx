@@ -16,32 +16,33 @@ const instructionsErrorMessage = "Instructions must be more than a word";
 export const CreateCoffeeForm = () => {
   const [titleInput, setTitleInput] = useState("");
   // const [descriptionInput, setDescriptionInput] = useState("");
-  const [imageInput, setImageInput] = useState<File | undefined>();
+  // const [imageInput, setImageInput] = useState<File | undefined>();
+  const [imageInput, setImageInput] = useState("");
   const [instructionsInput, setInstructionsInput] = useState("");
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   const titleValid = titleInput.length > 2;
   // const descriptionValid = isDescriptionValid(descriptionInput);
-  // const imageValid = isImageAddressValid(imageInput);
+  const imageValid = isImageAddressValid(imageInput);
   const instructionsValid = isDescriptionValid(instructionsInput);
 
   const showTitleError = !titleValid && error;
   // const showDescriptionError = !descriptionValid && error;
-  // const showImageError = !imageValid && error;
+  const showImageError = !imageValid && error;
   const showInstructionsError = !instructionsValid && error;
 
 
 
-  // !still struggling on how to write the code
-  const handleImageOnChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const target = e.target as HTMLInputElement & {
-      files: FileList;
-    }
-    console.log('target', target)
+  // // !still struggling on how to write the code
+  // const handleImageOnChange = (e: React.FormEvent<HTMLInputElement>) => {
+  //   const target = e.target as HTMLInputElement & {
+  //     files: FileList;
+  //   }
+  //   console.log('target', target)
 
-    setImageInput(target.files[0])
-  }
+  //   setImageInput(target.files[0])
+  // }
 
   return (
     <>
@@ -62,7 +63,7 @@ export const CreateCoffeeForm = () => {
             toast.success("Coffee Created!");
             setTitleInput("");
             // setDescriptionInput("");
-            setImageInput(undefined);
+            setImageInput("");
             setInstructionsInput("");
             navigate("/coffee");
             window.location.reload();
@@ -108,26 +109,27 @@ export const CreateCoffeeForm = () => {
           <div className="text-red-500">{instructionsErrorMessage}</div>
         ) : null}
 
-        {/* <CreateCafeInputs
+        <CreateCafeInputs
           label={`Upload Image: (Copy/Paste Image Address)`}
           value={imageInput}
           onChange={(e) => setImageInput(e.target.value)}
           show={showImageError}
-        /> */}
-        <div className="mb-4 w-full">
+          message={imageErrorMessage}
+        />
+        {/* <div className="mb-4 w-full">
           <label htmlFor="">Upload Image:</label>
           <input
             className="w-full border rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
             type="file"
             name="image"
-            // onChange={(e) => setImageInput(e.target.value)}
-            onChange={(e) => handleImageOnChange(e.target)}
+            onChange={(e) => setImageInput(e.target.value)}
+            // onChange={(e) => handleImageOnChange(e.target)}
             value={undefined}
           />
+        </div> */}
           {/* {imageErrorMessage ? (
             <div className="text-red-500">{showImageError}</div>
           ) : null} */}
-        </div>
 
         <section className="mb-4 flex flex-col md:flex-row justify-center gap-10 pb-10 pt-5">
           <div

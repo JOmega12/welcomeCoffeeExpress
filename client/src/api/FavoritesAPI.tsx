@@ -1,6 +1,9 @@
-// import { API_CONFIG } from "./config";
-
 import { EXPRESS_API_CONFIG } from "./config";
+
+
+const getToken = (): string | null => {
+   return localStorage.getItem("token_auth_coffee");
+ };
 
 
 export type FavoriteIDs= {
@@ -19,11 +22,13 @@ export const getAllFavorites = () => {
 }
 
 export const createFavorite = ({userId, coffeeId}: FavoriteIDs) => {
+   const token = getToken();
    return fetch(EXPRESS_API_CONFIG.baseUrl + '/favorites', {
       method: "POST",
       headers: {
          "Content-Type": "application/json",
-      },
+         Authorization: `Bearer ${token}`
+       },
       body: JSON.stringify({userId, coffeeId})
    }).then((res) => {
       if(!res.ok) {
@@ -47,6 +52,7 @@ const deleteFavorite = async(id: number) => {
 
 export const toggleFavoriteAPI = async({userId, coffeeId}: FavoriteIDs) => {
    const allFavorites = await getAllFavorites();
+
    const matchingFavorite = allFavorites.find((favorite: FavoriteIDs) => {
       return favorite.userId === userId && favorite.coffeeId === coffeeId
    });
