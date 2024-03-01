@@ -28,30 +28,42 @@ export const Signup = () => {
   const showPasswordError = !passwordValid && error;
   const showConfirmPasswordError = !confirmPasswordValid && error;
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!usernameValid || !passwordValid || !confirmPasswordValid) {
+      setError(true);
+      return;
+    } 
     try {
-      registerUser({
+      await registerUser({
         username: usernameInput,
         password: password,
       });
+      toast.success("You have been registered :)")
+      setError(false);
+      navigate("/coffee");
 
-      if (!usernameValid || !passwordValid || !confirmPasswordValid) {
-        setError(true);
-      } else {
-        setError(false);
-        navigate("/coffee");
-      }
     } catch (err) {
       toast.error("Signup Error");
       console.log(err);
     }
   };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    if(e.key === "Enter") {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  }
+
   return (
     <form
       className="flex-col flex min-[320px]:h-screen"
       onSubmit={(e) => {
         handleSubmit(e);
+      }}
+      onKeyDown={(e) => {
+        handleKeyDown(e)
       }}
     >
       <div className="flex max-[765px]:flex-col  lg:flex-row gap-10 items-center">
@@ -80,6 +92,7 @@ export const Signup = () => {
               message={usernameErrorMessage}
             />
             <TextInputs
+              type="password"
               label="Password:"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
@@ -87,6 +100,7 @@ export const Signup = () => {
               message={passwordErrorMessage}
             />
             <TextInputs
+              type="password"
               label="Confirm Password:"
               onChange={(e) => setConfirmPass(e.target.value)}
               value={confirmPass}

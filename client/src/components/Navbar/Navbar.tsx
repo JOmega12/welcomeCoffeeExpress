@@ -7,14 +7,17 @@ import { faBars, faTimes, faMugHot} from '@fortawesome/free-solid-svg-icons';
 const NavLinks = () => {
   const activeUnderline = 'active:underline hover:underline';
 
+  const currentUser = localStorage.getItem('token_auth');
 
   return (
     <>
       <NavLink to="/" className={activeUnderline}>Home</NavLink>
       <NavLink to="about-us" className={activeUnderline}>About Us</NavLink>
       <NavLink to="coffee" className={activeUnderline}>Coffee</NavLink>
+      {currentUser ? (null) : (<>      
       <NavLink to="login" className={activeUnderline}>Login</NavLink>
       <NavLink to="signup" className={activeUnderline}>Signup</NavLink>
+      </>)}
     </>
   );
 };

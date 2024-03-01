@@ -48,11 +48,21 @@ export const Login = () => {
       });
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    if(e.key === "Enter") {
+      e.preventDefault();
+      handleSubmit(e);
+    }
+  }
+
   return (
     <form
       className="flex flex-col min-[320px]:h-screen"
       onSubmit={(e) => {
         handleSubmit(e);
+      }}
+      onKeyDown={(e) => {
+        handleKeyDown(e)
       }}
     >
       <div className="flex max-[765px]:flex-col  lg:flex-row gap-10 items-center">
@@ -81,6 +91,7 @@ export const Login = () => {
               message={usernameErrorMessage}
             />
             <TextInputs
+              type="password"
               label="Password:"
               onChange={(e) => setPassword(e.target.value)}
               value={passwordInput}
