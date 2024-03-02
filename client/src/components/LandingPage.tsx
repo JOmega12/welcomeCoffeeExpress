@@ -2,25 +2,10 @@ import { Link } from "react-router-dom";
 import CoffeeLander from "../images/coffeeSVG2.svg";
 import "../custom.css";
 import { useCoffee } from "../providers/CoffeeProvider";
-// import { SetStateAction, useEffect, useState } from "react";
-// import { API_CONFIG } from "../api/config";
+// import { Footer } from "./Footer";
 
 export const LandingPage = () => {
   const { coffee } = useCoffee();
-
-  // const [testBackend, setTestBackend] = useState([]);
-
-
-  // useEffect(() => {
-  //   fetch(API_CONFIG + '/coffee').then((response) => {
-  //     response.json()
-  //   }).then(() => {
-  //     (      data: SetStateAction<never[]>) => {
-  //       setTestBackend(data)
-  //     }
-  //   })
-  // }, [])
-  // console.log(testBackend, 'testbackend')
 
   return (
     <div className=" min-h-screen flex flex-col justify-center items-center font-serif">
@@ -88,7 +73,6 @@ export const LandingPage = () => {
                             <h3 className="text-lg font-semibold">
                               {item.title || "Default Title"}
                             </h3>
-                            {/* <p>{item.description || "Default Description"}</p> */}
                           </div>
                         </div>
                       )
