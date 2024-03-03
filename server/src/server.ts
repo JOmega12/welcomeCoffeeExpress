@@ -28,8 +28,6 @@ declare global {
 }
 
 app.use(express.json());
-
-
 app.use(authController);
 app.use("/coffee", coffeeRouter);
 // app.use("/coffee", createProxyMiddleware({target: 'http://localhost:4000', changeOrigin: true}) ,coffeeRouter);

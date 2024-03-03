@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npx ts-node encryption-playground.ts",
     "start": "node server",
-    "dev": "nodemon server",
+    "dev": "nodemon server.ts",
     "seed": "ts-node prisma/seed.ts"
   },
   "keywords": [],
