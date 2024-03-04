@@ -59,3 +59,9 @@ Feedback:
 - the toggleFavoriteAPI() should be
    -fetch the favorites from the backend
    -grab the user using the auth
+
+
+
+When deploying:
+- for the backend:
+   -it has something to do with the node server.ts script command and need to look up devslopes
