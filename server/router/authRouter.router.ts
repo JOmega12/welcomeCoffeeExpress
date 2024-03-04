@@ -7,7 +7,7 @@ import {
   createTokenForUser,
   createUnsecuredUserInformation,
   encryptPassword,
-} from "../src/auth.utils";
+} from "../auth.utils";
 
 const authController = Router();
 

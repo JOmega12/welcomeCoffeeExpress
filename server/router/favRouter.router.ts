@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { Router } from "express";
-import { authMiddleware, getDataFromAuthToken } from "../src/auth.utils";
+import { authMiddleware, getDataFromAuthToken } from "../auth.utils";
 
 const prisma = new PrismaClient();
 const favoriteRouter = Router();

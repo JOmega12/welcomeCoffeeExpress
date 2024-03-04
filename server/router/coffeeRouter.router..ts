@@ -2,7 +2,7 @@ import { Router } from "express";
 import { PrismaClient } from "@prisma/client";
 import { z } from "zod";
 import { validateRequest } from "zod-express-middleware";
-import { authMiddleware, getDataFromAuthToken } from "../src/auth.utils";
+import { authMiddleware, getDataFromAuthToken } from "../auth.utils";
 
 const prisma = new PrismaClient();
 const coffeeRouter = Router();

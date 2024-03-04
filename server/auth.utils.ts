@@ -4,7 +4,7 @@ import { NextFunction, Request, Response } from "express";
 
 import jwt from "jsonwebtoken";
 import { z } from "zod";
-import { prisma } from "../prisma/db.setup";
+import { prisma } from "./prisma/db.setup";
 import * as dotenv from "dotenv";
 
 dotenv.config();
