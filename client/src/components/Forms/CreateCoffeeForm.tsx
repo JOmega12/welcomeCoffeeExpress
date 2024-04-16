@@ -28,21 +28,9 @@ export const CreateCoffeeForm = () => {
   const instructionsValid = isDescriptionValid(instructionsInput);
 
   const showTitleError = !titleValid && error;
-  // const showDescriptionError = !descriptionValid && error;
   const showImageError = !imageValid && error;
   const showInstructionsError = !instructionsValid && error;
 
-
-
-  // // !still struggling on how to write the code
-  // const handleImageOnChange = (e: React.FormEvent<HTMLInputElement>) => {
-  //   const target = e.target as HTMLInputElement & {
-  //     files: FileList;
-  //   }
-  //   console.log('target', target)
-
-  //   setImageInput(target.files[0])
-  // }
 
   return (
     <>
@@ -55,14 +43,11 @@ export const CreateCoffeeForm = () => {
           } else {
             getNewCoffee({
               title: titleInput,
-              // description: descriptionInput,
-              // image: imageInput,
               image: imageInput,
               instructions: instructionsInput,
             });
             toast.success("Coffee Created!");
             setTitleInput("");
-            // setDescriptionInput("");
             setImageInput("");
             setInstructionsInput("");
             navigate("/coffee");
@@ -81,19 +66,6 @@ export const CreateCoffeeForm = () => {
           show={showTitleError}
           message={titleErrorMessage}
         />
-        {/* <div className="mb-4 w-full">
-          <label htmlFor="">Coffee Description:</label>
-          <textarea
-            value={descriptionInput}
-            onChange={(e) => {
-              setDescriptionInput(e.target.value);
-            }}
-            className="w-full border rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
-          ></textarea>
-        </div>   */}
-        {/* {showDescriptionError ? (
-          <div className="text-red-500">{descriptionErrorMessage}</div>
-        ) : null} */}
 
         <div className="mb-4 w-full">
           <label htmlFor="">Coffee Instructions:</label>
@@ -116,20 +88,6 @@ export const CreateCoffeeForm = () => {
           show={showImageError}
           message={imageErrorMessage}
         />
-        {/* <div className="mb-4 w-full">
-          <label htmlFor="">Upload Image:</label>
-          <input
-            className="w-full border rounded-lg py-2 px-3 focus:outline-none focus:border-blue-500"
-            type="file"
-            name="image"
-            onChange={(e) => setImageInput(e.target.value)}
-            // onChange={(e) => handleImageOnChange(e.target)}
-            value={undefined}
-          />
-        </div> */}
-          {/* {imageErrorMessage ? (
-            <div className="text-red-500">{showImageError}</div>
-          ) : null} */}
 
         <section className="mb-4 flex flex-col md:flex-row justify-center gap-10 pb-10 pt-5">
           <div
